@@ -39,6 +39,12 @@ function Invoke-Compile([string]$editor, [string]$source, [string]$mqlRoot, [str
   Write-Output ("{0}: {1}" -f $name, $result)
 }
 
+$tool = @()
+foreach ($e in @($Mt5Editor, $Mt4Editor)) {
+  if ($e -ne "") { $tool += ("{0}: file version {1}" -f [IO.Path]::GetFileName($e), (Get-Item -LiteralPath $e).VersionInfo.FileVersion) }
+}
+[IO.File]::WriteAllLines((Join-Path $OutDir "toolchain.txt"), [string[]]$tool, (New-Object Text.UTF8Encoding($false)))
+
 if ($Mt5Data -ne "") {
   $mql = Join-Path $Mt5Data "MQL5"
   $files = @(Get-ChildItem -LiteralPath (Join-Path $mql "Experts\CopierProof") -Filter *.mq5) +

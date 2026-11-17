@@ -35,7 +35,9 @@ function Get-LogLines([string]$path) {
 }
 
 $logFile = Join-Path $logDir ((Get-Date).ToString("yyyyMMdd") + ".log")
+$journal = Join-Path $Mt5Data ("logs\" + (Get-Date).ToString("yyyyMMdd") + ".log")
 $before  = (Get-LogLines $logFile).Count
+$beforeJ = (Get-LogLines $journal).Count
 $started = Get-Date
 
 $proc = Start-Process -FilePath $Terminal -ArgumentList "/config:`"$ini`"" -PassThru
@@ -54,7 +56,13 @@ $header = @(
   ("# source: MQL5\Logs\" + [IO.Path]::GetFileName($logFile) + " (lines printed by the script during this run)"),
   ""
 )
+#--- terminal journal lines of this run: build, script start and stop (paths replaced)
+$tmpDir = [IO.Path]::GetTempPath().TrimEnd([char]92)
+$jlines = @(Get-LogLines $journal | Select-Object -Skip $beforeJ |
+  Where-Object { $_ -match "x64 build|start config|script CopierCoreTests|exit with code" } |
+  ForEach-Object { $_.Replace($Mt5Data.TrimEnd([char]92), "<MT5 data>").Replace($tmpDir, "<temp>") })
+$jheader = @("", ("# terminal journal: logs\" + [IO.Path]::GetFileName($journal) + " (selected lines of this run)"))
 New-Item -ItemType Directory -Force -Path (Split-Path -Parent $OutFile) | Out-Null
-[IO.File]::WriteAllLines($OutFile, [string[]]($header + $new), (New-Object Text.UTF8Encoding($false)))
+[IO.File]::WriteAllLines($OutFile, [string[]]($header + $new + $jheader + $jlines), (New-Object Text.UTF8Encoding($false)))
 $summary = $new | Where-Object { $_ -match "passed, " } | Select-Object -Last 1
 Write-Output ("exit code {0}; {1} lines; summary: {2}" -f $proc.ExitCode, $new.Count, $summary)

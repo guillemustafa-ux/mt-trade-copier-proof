@@ -1,0 +1,81 @@
+# One-line mutants of src/Include/CopierProof/CopierCore.mqh, run in MetaTrader 5
+
+mutant: buy limit X ticks worse
+  change: 'MathFloor((masterPrice - ticks * tickSize)' -> 'MathFloor((masterPrice + ticks * tickSize)'
+  compile: Result: 0 errors, 0 warnings, 2608 ms elapsed, cpu='X64 Regular'
+  result: 44 passed, 3 failed
+  failing: S1_InitialBuyIsLimitXTicksBelowMasterEntry, S1_LimitSnapsToSlaveTickGridNeverFewerThanXTicks, E2E_MasterFileToSlaveLimit
+
+mutant: add-ons treated as initial entries
+  change: 'return CP_ROLE_ADDON;' -> 'return CP_ROLE_INITIAL;'
+  compile: Result: 0 errors, 0 warnings, 2739 ms elapsed, cpu='X64 Regular'
+  result: 41 passed, 6 failed
+  failing: S1_AddOnIsCopiedAtMarketWithNoPrice, S3_2_AddOnGoesAtMarketAndThePendingStays, E2E_AddOnAtMarketPendingKept, E2E_ExitClosesCopy, E2E_HalfWrittenFileIgnoredThenCompleteOneCopied, E2E_MasterRestartKeepsSessionAndSlaveFollows
+
+mutant: master exits ignored
+  change: 'if(map[i].status == CP_ST_DONE || CP_FindMaster(snap, map[i].masterTicket) >= 0)' -> 'if(true)'
+  compile: Result: 0 errors, 0 warnings, 3078 ms elapsed, cpu='X64 Regular'
+  result: 42 passed, 5 failed
+  failing: S1_MasterExitClosesTheSlaveCopyInTheSameCycle, S3_1_MasterExitBeforeFillDeletesThePending, E2E_ExitBeforeFillDeletesPending, E2E_ExitClosesCopy, E2E_MasterRestartKeepsSessionAndSlaveFollows
+
+mutant: partial close rounded up
+  change: 'double desiredClosed = CP_FloorToStep(map[e].slaveLotsAtCopy * closedFraction, step);' -> 'double desiredClosed = MathCeil(map[e].slaveLotsAtCopy * closedFraction / step - 1e-7) * step;'
+  compile: Result: 0 errors, 0 warnings, 2742 ms elapsed, cpu='X64 Regular'
+  result: 45 passed, 2 failed
+  failing: S3_4_ClosedFractionRoundsDownToTheSlaveStep, S3_4_SecondPartialCloseCountsWhatWasAlreadyClosed
+
+mutant: no minimum-volume guard on partial close
+  change: 'if(vol - closeNow < specs[s].volMin - CP_EPS)' -> 'if(false)'
+  compile: Result: 0 errors, 0 warnings, 2936 ms elapsed, cpu='X64 Regular'
+  result: 46 passed, 1 failed
+  failing: S3_4_RemainderNeverGoesBelowTheSlaveMinimum
+
+mutant: checksum not verified
+  change: 'if(IntegerToString((long)CP_Checksum(candidate)) != tail)' -> 'if(false)'
+  compile: Result: 0 errors, 0 warnings, 3217 ms elapsed, cpu='X64 Regular'
+  result: 46 passed, 1 failed
+  failing: S3_5_SnapshotWithAChangedByteIsRejected
+
+mutant: older snapshots accepted
+  change: 'if(st.has && !CP_IsNewer(' -> 'if(false && !CP_IsNewer('
+  compile: Result: 0 errors, 0 warnings, 2829 ms elapsed, cpu='X64 Regular'
+  result: 46 passed, 1 failed
+  failing: S3_5_OlderOrRepeatedSnapshotIsNotApplied
+
+mutant: stale snapshots acted on
+  change: 'if(!CP_IsFresh(st.current.writeTime, now, cfg.staleSeconds))' -> 'if(false)'
+  compile: Result: 0 errors, 0 warnings, 2872 ms elapsed, cpu='X64 Regular'
+  result: 46 passed, 1 failed
+  failing: S3_5_StaleSnapshotNeitherOpensNorCloses
+
+mutant: recovery ignores the magic number
+  change: '      if(items[i].magic != cfg.magic)\n         continue;\n      long master' -> '      long master'
+  compile: Result: 0 errors, 0 warnings, 3065 ms elapsed, cpu='X64 Regular'
+  result: 46 passed, 1 failed
+  failing: S3_3_OrderWithAnotherMagicIsNotTakenAsTheCopy
+
+mutant: no grace before a link is dropped
+  change: 'else if(now - map[i].lastSeen > cfg.graceSeconds)' -> 'else if(true)'
+  compile: Result: 0 errors, 0 warnings, 2653 ms elapsed, cpu='X64 Regular'
+  result: 45 passed, 2 failed
+  failing: S3_3_CopyNotYetListedIsNotPlacedTwice, S3_3_RestartBeforeTheTerminalListsOrdersKeepsTheLinks
+
+mutant: slave suffix not applied
+  change: 'return base + CP_Trim(slaveSuffix);' -> 'return base;'
+  compile: Result: 0 errors, 0 warnings, 3885 ms elapsed, cpu='X64 Regular'
+  result: 44 passed, 3 failed
+  failing: S3_6_SlaveSuffixIsAppended, S3_6_MasterSuffixIsReplaced, S3_6_CopyUsesTheSlaveSymbolAndSkipsUnknownOnes
+
+mutant: lots below minimum not raised
+  change: '      v = volMin;' -> '      v = v * 1;'
+  compile: Result: 0 errors, 0 warnings, 2686 ms elapsed, cpu='X64 Regular'
+  result: 46 passed, 1 failed
+  failing: S3_7_LotsBelowMinimumBecomeTheMinimum
+
+mutant: MT4 alias resolved one level only
+  change: 'ids[i] = (j >= 0) ? t.ids[j] : from;' -> 'ids[i] = from;'
+  compile: Result: 0 errors, 0 warnings, 2662 ms elapsed, cpu='X64 Regular'
+  result: 46 passed, 1 failed
+  failing: S3_4_Mt4RemainderTicketKeepsTheOriginalIdentity
+
+mutants: 13, survived: 0

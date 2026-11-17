@@ -1,0 +1,2 @@
+MetaEditor64.exe: file version 5.0.0.6274
+metaeditor.exe: file version 5.0.0.2425

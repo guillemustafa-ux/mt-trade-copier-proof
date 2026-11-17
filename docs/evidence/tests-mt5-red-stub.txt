@@ -1,0 +1,43 @@
+# CopierCoreTests run in MetaTrader 5
+# started (local time): 2026-11-17 14:17:19
+# source: MQL5\Logs\20261117.log (lines printed by the script during this run)
+
+II	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S1_InitialBuyIsLimitXTicksBelowMasterEntry: 0 action(s)
+MP	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S1_InitialSellIsLimitXTicksAboveMasterEntry: 0 action(s)
+RP	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S1_LimitSnapsToSlaveTickGridNeverFewerThanXTicks: buy=4500.30 sell=4500.30
+PL	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S1_AddOnIsCopiedAtMarketWithNoPrice: 0 action(s)
+MM	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S1_MasterExitClosesTheSlaveCopyInTheSameCycle: 0 action(s)
+LI	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S1_OppositeSideIsANewInitialEntry: 0 action(s)
+JF	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S1_LimitPriceAlreadyReachedIsSentAtMarket: 0 action(s)
+EQ	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_1_MasterExitBeforeFillDeletesThePending: 0 action(s)
+MM	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_1_AfterTheDeleteNothingIsOpened: 0 action(s) map=1
+PL	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_2_AddOnGoesAtMarketAndThePendingStays: 0 action(s)
+HK	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_3_TicketMapSurvivesSaveAndLoad: 
+OH	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_3_RestartWithSavedMapPlacesNothingNew: after restart=0, control: 0 action(s)
+FK	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_3_LostMapIsRebuiltFromMagicAndComment: 0 action(s) map=0
+OJ	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_3_OrderWithAnotherMagicIsNotTakenAsTheCopy: 0 action(s)
+IN	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_3_CopyNotYetListedIsNotPlacedTwice: 0 action(s) status=0
+LQ	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_4_HalfClosedOnMasterClosesHalfOnSlave: 0 action(s)
+PP	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_4_ClosedFractionRoundsDownToTheSlaveStep: 0 action(s)
+FS	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_4_SecondPartialCloseCountsWhatWasAlreadyClosed: 0 action(s)
+EK	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_4_AppliedPartialCloseIsNotRepeated: first=0 then 0 action(s)
+LD	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_4_RemainderNeverGoesBelowTheSlaveMinimum: 0 action(s)
+CG	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_4_Mt4RemainderTicketKeepsTheOriginalIdentity: ids=100,101,102
+GF	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_5_CompleteSnapshotIsReadBack: 
+IL	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_5_EveryHalfWrittenPrefixIsRejected: 0 of 0 prefixes accepted; full=rejected
+CS	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_5_SnapshotWithAChangedByteIsRejected: 0.90000000
+KM	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_5_OlderOrRepeatedSnapshotIsNotApplied: a=-1 b=-1 c=-1
+KK	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_5_NewMasterSessionIsAccepted: a=-1 b=-1
+GD	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_5_StaleSnapshotNeitherOpensNorCloses: r=0 0 action(s)
+CE	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_5_SlaveActsOnlyOnceTheCompleteFileArrives: a=-1 r1=0 n1=0 b=-1 0 action(s)
+IK	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_6_SlaveSuffixIsAppended: EURUSD
+PS	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_6_MasterSuffixIsReplaced: EURUSD.a
+JK	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_6_ExplicitPairWinsOverSuffix: XAUUSD EURUSD
+DE	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	PASS S3_6_NoRuleKeepsTheName
+GR	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_6_CopyUsesTheSlaveSymbolAndSkipsUnknownOnes: 0 action(s)
+GN	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_7_LotsRoundDownToTheStep: 0.23700000
+JJ	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_7_LotsBelowMinimumBecomeTheMinimum: 0.00400000
+JF	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_7_LotsAboveMaximumBecomeTheMaximum: 150.00000000
+OR	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_7_CoarseStepRoundsDown: 0.35000000
+EQ	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	FAIL S3_7_CopyIsSizedWithTheMultiplier: 0 action(s)
+RF	0	14:17:21.244	CopierCoreTests (EURUSD,H1)	1 passed, 37 failed
