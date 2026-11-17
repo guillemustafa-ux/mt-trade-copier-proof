@@ -27,19 +27,19 @@ function Copy-Into([string]$dest, [string[]]$files) {
 }
 
 $includes = Get-ChildItem -LiteralPath (Join-Path $repo "src\Include\CopierProof") -Filter *.mqh | ForEach-Object { $_.FullName }
-$tests    = Join-Path $repo "tests\CopierTests.mqh"
+$tests    = @(Get-ChildItem -LiteralPath (Join-Path $repo "tests") -Filter *.mqh | ForEach-Object { $_.FullName })
 
 if ($Mt5Data -ne "") {
   $mql = Join-Path $Mt5Data "MQL5"
   if (-not (Test-Path -LiteralPath $mql)) { throw "Not an MT5 data folder: $Mt5Data" }
   Copy-Into (Join-Path $mql "Include\CopierProof") $includes
   Copy-Into (Join-Path $mql "Experts\CopierProof") (Get-ChildItem -LiteralPath (Join-Path $repo "src\MQL5\Experts") -Filter *.mq5 | ForEach-Object { $_.FullName })
-  Copy-Into (Join-Path $mql "Scripts\CopierProof") @((Join-Path $repo "tests\CopierCoreTests.mq5"), $tests)
+  Copy-Into (Join-Path $mql "Scripts\CopierProof") (@(Join-Path $repo "tests\CopierCoreTests.mq5") + $tests)
 }
 if ($Mt4Data -ne "") {
   $mql = Join-Path $Mt4Data "MQL4"
   if (-not (Test-Path -LiteralPath $mql)) { throw "Not an MT4 data folder: $Mt4Data" }
   Copy-Into (Join-Path $mql "Include\CopierProof") $includes
   Copy-Into (Join-Path $mql "Experts\CopierProof") (Get-ChildItem -LiteralPath (Join-Path $repo "src\MQL4\Experts") -Filter *.mq4 | ForEach-Object { $_.FullName })
-  Copy-Into (Join-Path $mql "Scripts\CopierProof") @((Join-Path $repo "tests\CopierCoreTests.mq4"), $tests)
+  Copy-Into (Join-Path $mql "Scripts\CopierProof") (@(Join-Path $repo "tests\CopierCoreTests.mq4") + $tests)
 }

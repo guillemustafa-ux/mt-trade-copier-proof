@@ -246,11 +246,14 @@ void Test_S3_1_ExitBeforeFill()
    bool ok = ArraySize(acts) == 1 && acts[0].type == CP_ACT_DELETE_PENDING && acts[0].slaveTicket == 500;
    Expect(ok, "S3_1_MasterExitBeforeFillDeletesThePending", Describe(acts));
 
-//--- pending deleted: nothing is opened later and the link is forgotten
+//--- pending deleted: nothing is opened, and after the grace period the link is forgotten
    CPSlaveItem none[];
    Cycle(s, map, none, specs, cfg, T_NOW + 1, acts);
-   Expect(ArraySize(acts) == 0 && ArraySize(map) == 0, "S3_1_AfterTheDeleteNothingIsOpened",
-          Describe(acts) + " map=" + IntegerToString(ArraySize(map)));
+   int soon = ArraySize(acts);
+   s.writeTime = T_NOW + cfg.graceSeconds + 1;
+   Cycle(s, map, none, specs, cfg, T_NOW + cfg.graceSeconds + 1, acts);
+   Expect(soon == 0 && ArraySize(acts) == 0 && ArraySize(map) == 0, "S3_1_AfterTheDeleteNothingIsOpened",
+          "soon=" + IntegerToString(soon) + " later " + Describe(acts) + " map=" + IntegerToString(ArraySize(map)));
   }
 
 //+------------------------------------------------------------------+
@@ -298,9 +301,36 @@ void Test_S3_3_MapRoundTrip()
    for(int i = 0; same && i < 2; i++)
       same = b[i].masterTicket == a[i].masterTicket && b[i].role == a[i].role && b[i].status == a[i].status &&
              b[i].slaveTicket == a[i].slaveTicket && b[i].slaveSymbol == a[i].slaveSymbol && b[i].side == a[i].side &&
-             Near(b[i].masterLotsAtCopy, a[i].masterLotsAtCopy) && Near(b[i].slaveLotsAtCopy, a[i].slaveLotsAtCopy) &&
-             b[i].placedAt == a[i].placedAt;
+             Near(b[i].masterLotsAtCopy, a[i].masterLotsAtCopy) && Near(b[i].slaveLotsAtCopy, a[i].slaveLotsAtCopy);
    Expect(same, "S3_3_TicketMapSurvivesSaveAndLoad", CP_MapToText(b));
+  }
+
+void Test_S3_3_RestartBeforeOrdersAreListed()
+  {
+   CPConfig cfg; DefaultConfig(cfg);
+   CCPSnapshot s; CPSlaveItem items[]; CPSymbolSpec specs[];
+   RestartFixture(s, items, specs);
+   CPMapEntry saved[];
+   CP_MapAdd(saved, 100, CP_ROLE_INITIAL, CP_ST_PENDING, 500, "EURUSD", CP_SIDE_BUY, 0.10, 0.10, T_NOW - 3600);
+   CP_MapAdd(saved, 101, CP_ROLE_ADDON, CP_ST_OPEN, 501, "EURUSD", CP_SIDE_BUY, 0.20, 0.20, T_NOW - 3600);
+   CPMapEntry map[];
+   CP_MapFromText(CP_MapToText(saved), map);
+   CP_MapMarkSeen(map, T_NOW);                 // what the slave does after loading
+   CPSlaveItem notYetListed[];
+   CPAction acts[];
+   Cycle(s, map, notYetListed, specs, cfg, T_NOW + 2, acts);
+   int early = ArraySize(acts);
+   bool kept = ArraySize(map) == 2 && map[0].status != CP_ST_DONE && map[1].status != CP_ST_DONE;
+   Cycle(s, map, items, specs, cfg, T_NOW + 3, acts);   // the terminal has listed them now
+   int listed = ArraySize(acts);
+//--- control: without the load-time mark the same empty list drops both links
+   CPMapEntry unmarked[];
+   CP_MapFromText(CP_MapToText(saved), unmarked);
+   Cycle(s, unmarked, notYetListed, specs, cfg, T_NOW + 2, acts);
+   bool dropped = ArraySize(unmarked) == 2 && unmarked[0].status == CP_ST_DONE && unmarked[1].status == CP_ST_DONE;
+   Expect(early == 0 && kept && listed == 0 && dropped, "S3_3_RestartBeforeTheTerminalListsOrdersKeepsTheLinks",
+          "early=" + IntegerToString(early) + " kept=" + (kept ? "yes" : "no") + " listed=" + IntegerToString(listed) +
+          " control dropped=" + (dropped ? "yes" : "no"));
   }
 
 void Test_S3_3_RestartWithMap()
@@ -607,6 +637,9 @@ void Test_S3_7_Lots()
    Expect(Near(c, 0.01), "S3_7_LotsBelowMinimumBecomeTheMinimum", DoubleToString(c, 8));
    Expect(Near(d, 100), "S3_7_LotsAboveMaximumBecomeTheMaximum", DoubleToString(d, 8));
    Expect(Near(e, 0.30), "S3_7_CoarseStepRoundsDown", DoubleToString(e, 8));
+   int d1 = CP_StepDigits(0.01), d2 = CP_StepDigits(0.1), d3 = CP_StepDigits(1.0), d4 = CP_StepDigits(0.05);
+   Expect(d1 == 2 && d2 == 1 && d3 == 0 && d4 == 2, "S3_7_VolumeDecimalsFollowTheStep",
+          IntegerToString(d1) + "," + IntegerToString(d2) + "," + IntegerToString(d3) + "," + IntegerToString(d4));
   }
 
 void Test_S3_7_MultiplierInDecision()
@@ -621,6 +654,8 @@ void Test_S3_7_MultiplierInDecision()
    Cycle(s, map, items, specs, cfg, T_NOW, acts);
    Expect(ArraySize(acts) == 1 && Near(acts[0].lots, 0.25), "S3_7_CopyIsSizedWithTheMultiplier", Describe(acts));
   }
+
+#include "CopierEngineTests.mqh"
 
 //+------------------------------------------------------------------+
 int RunAllCopierTests()
@@ -641,6 +676,7 @@ int RunAllCopierTests()
    Test_S3_3_RecoverFromComments();
    Test_S3_3_ForeignMagic();
    Test_S3_3_JustPlacedNotVisible();
+   Test_S3_3_RestartBeforeOrdersAreListed();
    Test_S3_4_SameFraction();
    Test_S3_4_RoundsDown();
    Test_S3_4_Cumulative();
@@ -658,6 +694,7 @@ int RunAllCopierTests()
    Test_S3_6_ActionUsesMappedSymbol();
    Test_S3_7_Lots();
    Test_S3_7_MultiplierInDecision();
+   RunEngineTests();
    Print(IntegerToString(g_pass), " passed, ", IntegerToString(g_fail), " failed");
    return g_fail;
   }

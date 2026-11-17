@@ -84,7 +84,7 @@ struct CPMapEntry
    int               side;
    double            masterLotsAtCopy;
    double            slaveLotsAtCopy;
-   long              placedAt;          // GMT seconds
+   long              lastSeen;          // GMT seconds
   };
 
 struct CPAction
@@ -508,6 +508,19 @@ double CP_FloorToStep(const double value, const double step)
    return NormalizeDouble(v, 8);
   }
 
+//--- decimals of a lot step (0.01 -> 2, 0.1 -> 1, 1 -> 0), for normalizing order volumes
+int CP_StepDigits(const double step)
+  {
+   int d = 0;
+   double v = step;
+   while(d < 8 && MathAbs(v - MathRound(v)) > 1e-7)
+     {
+      v *= 10;
+      d++;
+     }
+   return d;
+  }
+
 //--- master lots x multiplier, rounded down to the step, clamped to [min, max]
 double CP_ClampLots(const double raw, const double volMin, const double volMax, const double volStep)
   {
@@ -555,7 +568,7 @@ int CP_ClassifyRole(const CPMasterPos &pos[], const int idx)
 //+------------------------------------------------------------------+
 //| Ticket map (persisted by the slave)                              |
 //|   CPMAP|1|<count>                                                |
-//|   M|master|role|status|slaveTicket|symbol|side|mLots|sLots|placed|
+//|   M|master|role|status|slaveTicket|symbol|side|mLots|sLots       |
 //+------------------------------------------------------------------+
 int CP_MapFind(const CPMapEntry &map[], const long masterTicket)
   {
@@ -574,7 +587,7 @@ int CP_MapFindBySlave(const CPMapEntry &map[], const long slaveTicket)
   }
 
 int CP_MapAdd(CPMapEntry &map[], const long masterTicket, const int role, const int status, const long slaveTicket,
-              const string slaveSymbol, const int side, const double masterLots, const double slaveLots, const long placedAt)
+              const string slaveSymbol, const int side, const double masterLots, const double slaveLots, const long lastSeen)
   {
    int n = ArraySize(map);
    ArrayResize(map, n + 1);
@@ -586,7 +599,7 @@ int CP_MapAdd(CPMapEntry &map[], const long masterTicket, const int role, const 
    map[n].side             = side;
    map[n].masterLotsAtCopy = masterLots;
    map[n].slaveLotsAtCopy  = slaveLots;
-   map[n].placedAt         = placedAt;
+   map[n].lastSeen         = lastSeen;
    return n;
   }
 
@@ -598,6 +611,7 @@ void CP_MapRemoveAt(CPMapEntry &map[], const int idx)
    ArrayResize(map, n - 1);
   }
 
+//--- lastSeen is not saved: a loaded map is marked seen at load time (CP_MapMarkSeen)
 string CP_MapToText(const CPMapEntry &map[])
   {
    int n = ArraySize(map);
@@ -606,8 +620,15 @@ string CP_MapToText(const CPMapEntry &map[])
       body += "M|" + IntegerToString(map[i].masterTicket) + "|" + IntegerToString(map[i].role) + "|" +
               IntegerToString(map[i].status) + "|" + IntegerToString(map[i].slaveTicket) + "|" + map[i].slaveSymbol +
               "|" + IntegerToString(map[i].side) + "|" + DoubleToString(map[i].masterLotsAtCopy, 8) + "|" +
-              DoubleToString(map[i].slaveLotsAtCopy, 8) + "|" + IntegerToString(map[i].placedAt) + "\n";
+              DoubleToString(map[i].slaveLotsAtCopy, 8) + "\n";
    return CP_Seal(body);
+  }
+
+//--- after a restart the terminal may not list every order yet: give it the grace period
+void CP_MapMarkSeen(CPMapEntry &map[], const long now)
+  {
+   for(int i = 0; i < ArraySize(map); i++)
+      map[i].lastSeen = now;
   }
 
 bool CP_MapFromText(const string text, CPMapEntry &map[])
@@ -627,14 +648,14 @@ bool CP_MapFromText(const string text, CPMapEntry &map[])
    for(int i = 0; i < count; i++)
      {
       string f[];
-      if(StringSplit(lines[i + 1], '|', f) != 10 || f[0] != "M")
+      if(StringSplit(lines[i + 1], '|', f) != 9 || f[0] != "M")
         {
          ArrayResize(map, 0);
          return false;
         }
       CP_MapAdd(map, StringToInteger(f[1]), (int)StringToInteger(f[2]), (int)StringToInteger(f[3]),
                 StringToInteger(f[4]), f[5], (int)StringToInteger(f[6]), StringToDouble(f[7]),
-                StringToDouble(f[8]), StringToInteger(f[9]));
+                StringToDouble(f[8]), 0);
      }
    return true;
   }
@@ -725,7 +746,7 @@ void CP_SyncMap(CPMapEntry &map[], const CPSlaveItem &items[], const CCPSnapshot
          if(items[k].magic == cfg.magic && items[k].origin == items[i].origin && items[k].kind == CP_KIND_PENDING)
             slaveLots += items[k].lots;
       int status = CP_HasPending(items, items[i].origin, cfg.magic) ? CP_ST_PENDING : CP_ST_OPEN;
-      CP_MapAdd(map, master, role, status, items[i].origin, items[i].symbol, items[i].side, masterLots, slaveLots, 0);
+      CP_MapAdd(map, master, role, status, items[i].origin, items[i].symbol, items[i].side, masterLots, slaveLots, now);
      }
 
    for(int i = 0; i < ArraySize(map); i++)
@@ -734,12 +755,16 @@ void CP_SyncMap(CPMapEntry &map[], const CPSlaveItem &items[], const CCPSnapshot
          continue;
       bool pending = CP_HasPending(items, map[i].slaveTicket, cfg.magic);
       double vol = CP_PositionVolume(items, map[i].slaveTicket, cfg.magic);
-      if(pending)
-         map[i].status = CP_ST_PENDING;
-      else if(vol > CP_EPS)
-         map[i].status = CP_ST_OPEN;
-      else if(now - map[i].placedAt > cfg.graceSeconds)
-         map[i].status = CP_ST_DONE;   // filled and closed, deleted, or closed by hand: never re-copied
+      if(pending || vol > CP_EPS)
+        {
+         map[i].status   = pending ? CP_ST_PENDING : CP_ST_OPEN;
+         map[i].lastSeen = now;
+        }
+      //--- not listed for longer than the grace period (a new order or a terminal that
+      //--- is still loading its trades gets that long): filled and closed, deleted or
+      //--- closed by hand. The master ticket is never copied again.
+      else if(now - map[i].lastSeen > cfg.graceSeconds)
+         map[i].status = CP_ST_DONE;
      }
 
    for(int i = ArraySize(map) - 1; i >= 0; i--)
