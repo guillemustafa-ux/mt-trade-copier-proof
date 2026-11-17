@@ -35,7 +35,8 @@ $mutants = @(
   @("lots below minimum not raised", "      v = volMin;", "      v = v * 1;"),
   @("MT4 alias resolved one level only", "ids[i] = (j >= 0) ? t.ids[j] : from;", "ids[i] = from;"),
   @("stale-master alert on every cycle", "if(cycleResult == CP_CYCLE_STALE && !frozen)", "if(cycleResult == CP_CYCLE_STALE)"),
-  @("demo guard lets any account run", "   if(isDemo)`n      return `"`";", "   if(true)`n      return `"`";")
+  @("demo guard lets any account run", "   if(isDemo)`n      return `"`";", "   if(true)`n      return `"`";"),
+  @("broker minimum distance ignored for buy limits", "if(limitPrice > highest + CP_EPS)", "if(false)")
 )
 
 $lines = @("# One-line mutants of src/Include/CopierProof/CopierCore.mqh, run in MetaTrader 5", "")

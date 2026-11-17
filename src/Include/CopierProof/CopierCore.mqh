@@ -75,6 +75,7 @@ struct CPSymbolSpec
    double            volStep;
    double            bid;
    double            ask;
+   double            minDistance;  // broker's minimum distance of a pending order from the market, in price
   };
 
 //--- persisted link between one master ticket and its slave copy
@@ -555,6 +556,26 @@ bool CP_LimitIsMarketable(const int side, const double limitPrice, const double 
    return bid > 0 && bid >= limitPrice - CP_EPS;
   }
 
+//--- a limit closer to the market than the broker's minimum distance (stops level) is
+//--- rejected (MT4 error 130): move it further away, which keeps it at least X ticks better
+double CP_LimitOutsideMinDistance(const int side, const double limitPrice, const double bid, const double ask,
+                                  const double minDistance, const double tickSize)
+  {
+   if(minDistance <= 0 || tickSize <= 0)
+      return limitPrice;
+   if(side == CP_SIDE_BUY)
+     {
+      double highest = ask - minDistance;
+      if(limitPrice > highest + CP_EPS)
+         return NormalizeDouble(MathFloor(highest / tickSize + 1e-7) * tickSize, 10);
+      return limitPrice;
+     }
+   double lowest = bid + minDistance;
+   if(limitPrice < lowest - CP_EPS)
+      return NormalizeDouble(MathCeil(lowest / tickSize - 1e-7) * tickSize, 10);
+   return limitPrice;
+  }
+
 //--- initial entry = no earlier master position with the same symbol and side
 int CP_ClassifyRole(const CPMasterPos &pos[], const int idx)
   {
@@ -826,11 +847,16 @@ int CP_Decide(const CCPSnapshot &snap, const CPMapEntry &map[], const CPSlaveIte
            }
          double limit = CP_LimitPrice(snap.pos[m].price, side, cfg.ticksBetter, specs[s].tickSize);
          if(CP_LimitIsMarketable(side, limit, specs[s].bid, specs[s].ask))
+           {
             CP_PushAction(acts, CP_ACT_PLACE_MARKET, snap.pos[m].ticket, role, symbol, side, lots, 0, 0,
                           snap.pos[m].lots, "limit price already reached: market");
-         else
-            CP_PushAction(acts, CP_ACT_PLACE_LIMIT, snap.pos[m].ticket, role, symbol, side, lots, limit, 0,
-                          snap.pos[m].lots, "initial entry as limit");
+            continue;
+           }
+         double placed = CP_LimitOutsideMinDistance(side, limit, specs[s].bid, specs[s].ask, specs[s].minDistance,
+                                                    specs[s].tickSize);
+         CP_PushAction(acts, CP_ACT_PLACE_LIMIT, snap.pos[m].ticket, role, symbol, side, lots, placed, 0,
+                       snap.pos[m].lots, MathAbs(placed - limit) > CP_EPS ?
+                       "initial entry as limit, moved to the broker's minimum distance" : "initial entry as limit");
          continue;
         }
 

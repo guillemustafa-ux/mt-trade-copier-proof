@@ -80,6 +80,7 @@ public:
       spec.volStep  = 0.01;
       spec.bid      = 1.10100;
       spec.ask      = 1.10102;
+      spec.minDistance = 0;
       return spec.valid;
      }
 

@@ -67,6 +67,9 @@ public:
 
    virtual bool      Start(string &error)
      {
+      //--- CTrade reads the margin mode when it is built, which can be before the login;
+      //--- PositionClosePartial refuses to run unless it knows the account is hedging
+      m_trade.SetMarginMode();
       if(AccountInfoInteger(ACCOUNT_MARGIN_MODE) == ACCOUNT_MARGIN_MODE_RETAIL_HEDGING)
          return true;
       error = "slave needs an MT5 hedging account; netting accounts are not supported";
@@ -127,6 +130,7 @@ public:
       spec.volStep  = SymbolInfoDouble(symbol, SYMBOL_VOLUME_STEP);
       spec.bid      = tick.bid;
       spec.ask      = tick.ask;
+      spec.minDistance = (double)SymbolInfoInteger(symbol, SYMBOL_TRADE_STOPS_LEVEL) * SymbolInfoDouble(symbol, SYMBOL_POINT);
       spec.valid    = spec.tickSize > 0 && spec.volMin > 0 && spec.volStep > 0 && spec.bid > 0 && spec.ask > 0;
       return spec.valid;
      }

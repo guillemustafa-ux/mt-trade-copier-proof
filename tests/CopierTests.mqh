@@ -69,18 +69,19 @@ void AddItem(CPSlaveItem &items[], const long ticket, const long origin, const i
   }
 
 void AddSpec(CPSymbolSpec &specs[], const string symbol, const double tick, const double vmin, const double vmax,
-             const double step, const double bid, const double ask)
+             const double step, const double bid, const double ask, const double minDistance = 0)
   {
    int n = ArraySize(specs);
    ArrayResize(specs, n + 1);
-   specs[n].symbol   = symbol;
-   specs[n].valid    = true;
-   specs[n].tickSize = tick;
-   specs[n].volMin   = vmin;
-   specs[n].volMax   = vmax;
-   specs[n].volStep  = step;
-   specs[n].bid      = bid;
-   specs[n].ask      = ask;
+   specs[n].symbol      = symbol;
+   specs[n].valid       = true;
+   specs[n].tickSize    = tick;
+   specs[n].volMin      = vmin;
+   specs[n].volMax      = vmax;
+   specs[n].volStep     = step;
+   specs[n].bid         = bid;
+   specs[n].ask         = ask;
+   specs[n].minDistance = minDistance;
   }
 
 //--- EURUSD on the slave: 5-digit tick, 0.01 lots min/step, market well above 1.1000
@@ -227,6 +228,31 @@ void Test_S1_LimitAlreadyReached()
    Cycle(s, map, items, specs, cfg, T_NOW, acts);
    bool ok = ArraySize(acts) == 1 && acts[0].type == CP_ACT_PLACE_MARKET && acts[0].role == CP_ROLE_INITIAL;
    Expect(ok, "S1_LimitPriceAlreadyReachedIsSentAtMarket", Describe(acts));
+  }
+
+//--- MT4 demo run, direction B: a limit 3 ticks from the market was rejected with error 130
+//--- (stops level 8 points). The limit moves to the broker's minimum distance: still at least X better.
+void Test_S1_LimitKeepsBrokerMinimumDistance()
+  {
+   CPConfig cfg; DefaultConfig(cfg);
+   CCPSnapshot s; FreshSnapshot(s);
+   AddPos(s, 100, "EURUSD", CP_SIDE_BUY, 0.10, 1.10005, 1000);    // buy limit 1.10000, ask 1.10003
+   AddPos(s, 101, "EURUSD", CP_SIDE_SELL, 0.10, 1.10002, 1000);   // sell limit 1.10007, bid 1.10001
+   CPMapEntry map[]; CPSlaveItem items[];
+   CPSymbolSpec specs[]; AddSpec(specs, "EURUSD", 0.00001, 0.01, 100.0, 0.01, 1.10001, 1.10003, 0.00008);
+   CPAction acts[];
+   Cycle(s, map, items, specs, cfg, T_NOW, acts);
+   bool ok = ArraySize(acts) == 2 && acts[0].type == CP_ACT_PLACE_LIMIT && Near(acts[0].price, 1.09995) &&
+             acts[1].type == CP_ACT_PLACE_LIMIT && Near(acts[1].price, 1.10009);
+//--- far enough from the market: unchanged
+   CPSymbolSpec far[]; AddSpec(far, "EURUSD", 0.00001, 0.01, 100.0, 0.01, 1.10100, 1.10102, 0.00008);
+   CPAction acts2[];
+   CCPSnapshot s2; FreshSnapshot(s2);
+   AddPos(s2, 100, "EURUSD", CP_SIDE_BUY, 0.10, 1.10005, 1000);
+   CPMapEntry map2[];
+   Cycle(s2, map2, items, far, cfg, T_NOW, acts2);
+   ok = ok && ArraySize(acts2) == 1 && Near(acts2[0].price, 1.10000);
+   Expect(ok, "S1_LimitInsideTheBrokerMinimumDistanceMovesFurtherAway", Describe(acts) + " / " + Describe(acts2));
   }
 
 //+------------------------------------------------------------------+
@@ -696,6 +722,7 @@ int RunAllCopierTests()
    Test_S1_ExitClosesCopy();
    Test_S1_OppositeSideIsInitial();
    Test_S1_LimitAlreadyReached();
+   Test_S1_LimitKeepsBrokerMinimumDistance();
    Test_S3_1_ExitBeforeFill();
    Test_S3_2_AddOnWhilePending();
    Test_S3_3_MapRoundTrip();

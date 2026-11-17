@@ -102,6 +102,7 @@ public:
       spec.volStep  = MarketInfo(symbol, MODE_LOTSTEP);
       spec.bid      = MarketInfo(symbol, MODE_BID);
       spec.ask      = MarketInfo(symbol, MODE_ASK);
+      spec.minDistance = MarketInfo(symbol, MODE_STOPLEVEL) * MarketInfo(symbol, MODE_POINT);
       spec.valid    = spec.tickSize > 0 && spec.volMin > 0 && spec.volStep > 0 && spec.bid > 0 && spec.ask > 0;
       return spec.valid;
      }
