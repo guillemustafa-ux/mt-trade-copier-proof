@@ -1,0 +1,6 @@
+
+
+<MT4 data>\MQL4\Scripts\CopierProof\LiveAgentMT4.mq4 : information: compiling 'LiveAgentMT4.mq4'
+<MT4 data>\MQL4\Scripts\CopierProof\LiveAgentCommon.mqh : information: including 'LiveAgentCommon.mqh'
+<MT4 data>\MQL4\Include\CopierProof\CopierFiles.mqh : information: including 'CopierFiles.mqh'
+Result: 0 errors, 0 warnings, 86 msec elapsed
