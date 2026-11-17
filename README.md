@@ -1,13 +1,13 @@
 # MT4/MT5 trade copier: limit entry X ticks better, add-ons at market, mirrored exits
 
-Four Expert Advisors that copy trades from a master account to a slave account running on the **same PC**. Master and slave can each be MetaTrader 4 or MetaTrader 5. They talk through one file in the terminals' shared `Terminal\Common\Files\CopierProof` folder.
+Four Expert Advisors that copy trades from a master account to a slave account running on the **same PC**. Master and slave can each be MetaTrader 4 or MetaTrader 5. They talk through one file in the terminals' shared `Terminal\Common\Files\CopierProof` folder. The demo run covered MT4 -> MT5 and MT5 -> MT4; MT4 -> MT4 and MT5 -> MT5 were not run.
 
 > **Status (2026-11-17), every number below comes from a file in [`docs/evidence/`](docs/evidence):**
 > - All eight programs (four EAs, two test scripts, two demo-run helper scripts) compile with `0 errors, 0 warnings`: `MetaEditor64.exe` file version 5.0.0.6323 for MQL5, MetaTrader 4's `metaeditor.exe` file version 5.0.0.2425 for MQL4 ([compile logs](docs/evidence/compile)).
 > - The test script runs **in MetaTrader 5 (build 6323), with no orders sent**: `51 passed, 0 failed` ([output](docs/evidence/tests-mt5.txt)). 43 tests exercise the pure decision logic. 8 run the real master and slave code end to end through real files, with a fake broker in place of the trading calls.
-> - One-line mutants of the decision logic: each of the 16 makes at least one test fail, `mutants: 16, survived: 0` ([output](docs/evidence/mutants-mt5.txt)).
-> - **Run on two demo accounts** (MetaQuotes-Demo, MetaTrader 4 and MetaTrader 5, one PC, EURUSD), in both directions: the eight scenarios below pass in each direction's second run. Median copy delay 496.5 ms over 24 copy actions, 551.5 ms for exits ([results](docs/evidence/live/RESULTS.md)). The first run of each direction is kept: one scenario not produced, and one real failure that led to a fix. See [Demo run](#demo-run).
-> - **Never run on a real account.** All four EAs refuse to run on an account that is not a demo account.
+> - Single-change mutants of the decision logic (each changes one line, except one that removes a two-line check): each of the 16 makes at least one test fail, `mutants: 16, survived: 0` ([output](docs/evidence/mutants-mt5.txt)).
+> - **Run on two demo accounts** (MetaQuotes-Demo, MetaTrader 4 and MetaTrader 5, one PC, EURUSD), in both directions, with the EAs as committed: the eight scenarios below pass in each direction. Median copy delay 480 ms over 24 copy actions, 546 ms for exits ([results](docs/evidence/live/RESULTS.md)). Three earlier runs are kept: one scenario not produced, one real failure that led to two fixes, and one full pass with the EAs from before those fixes. See [Demo run](#demo-run).
+> - **Never run on a real account.** All four EAs refuse to run on an account that is not a demo account. That check is covered by a unit test (`Demo_NonDemoAccountIsRefused`) and by reading the code; it was not exercised on a non-demo account.
 
 ## What it does
 
@@ -58,8 +58,8 @@ Each rule has deterministic tests; the names are the ones printed in [`tests-mt5
 
 1. **Master exits before the slave's limit fills.** The slave deletes its pending order and opens nothing. Tests: `S3_1_MasterExitBeforeFillDeletesThePending`, `S3_1_AfterTheDeleteNothingIsOpened`, `E2E_ExitBeforeFillDeletesPending`.
 2. **Add-on while the initial limit is still unfilled.** The add-on is copied at market at once. The pending limit stays in place. Tests: `S3_2_AddOnGoesAtMarketAndThePendingStays`, `E2E_AddOnAtMarketPendingKept`.
-3. **Slave terminal restart, no duplicates.** Every copy is recorded in a ticket map file (master ticket to slave ticket), written right after each order. Every copy also carries the slave's magic number and the comment `CP:<master ticket>`. If the terminal stops between an order and the map save, the link is rebuilt from that magic and comment. After a restart, links are kept for 10 s even if the terminal has not listed its orders yet. Tests: `S3_3_TicketMapSurvivesSaveAndLoad`, `S3_3_RestartWithSavedMapPlacesNothingNew`, `S3_3_LostMapIsRebuiltFromMagicAndComment`, `S3_3_OrderWithAnotherMagicIsNotTakenAsTheCopy`, `S3_3_CopyNotYetListedIsNotPlacedTwice`, `S3_3_RestartBeforeTheTerminalListsOrdersKeepsTheLinks`, `E2E_SlaveRestartPlacesNoDuplicate`.
-4. **Partial close on the master.** The slave closes the same fraction of its copy, rounded **down** to its lot step. Fractions add up across several partial closes. A partial close never leaves less than the slave's minimum volume. MT4 gives the remaining part a new ticket with the comment `from #<old ticket>`. Both MT4 EAs keep an alias file, so the copy stays linked to the original ticket. Tests: `S3_4_HalfClosedOnMasterClosesHalfOnSlave`, `S3_4_ClosedFractionRoundsDownToTheSlaveStep`, `S3_4_SecondPartialCloseCountsWhatWasAlreadyClosed`, `S3_4_AppliedPartialCloseIsNotRepeated`, `S3_4_RemainderNeverGoesBelowTheSlaveMinimum`, `S3_4_Mt4RemainderTicketKeepsTheOriginalIdentity`.
+3. **Slave terminal restart: no duplicate order in the tested cases** (the tests below and scenario g of the demo run). Every copy is recorded in a ticket map file (master ticket to slave ticket), written right after each order. Every copy is also placed with the slave's magic number and the comment `CP:<master ticket>` (the comment can change later: see Limits). If the terminal stops between an order and the map save, the link is rebuilt from that magic and comment. After a restart, links are kept for 10 s even if the terminal has not listed its orders yet. Tests: `S3_3_TicketMapSurvivesSaveAndLoad`, `S3_3_RestartWithSavedMapPlacesNothingNew`, `S3_3_LostMapIsRebuiltFromMagicAndComment`, `S3_3_OrderWithAnotherMagicIsNotTakenAsTheCopy`, `S3_3_CopyNotYetListedIsNotPlacedTwice`, `S3_3_RestartBeforeTheTerminalListsOrdersKeepsTheLinks`, `E2E_SlaveRestartPlacesNoDuplicate`.
+4. **Partial close on the master.** The slave closes the same fraction of its copy, rounded **down** to its lot step. Fractions add up across several partial closes. A partial close never leaves less than the slave's minimum volume. MT4 gives the remaining part a new ticket with the comment `from #<old ticket>` (seen in the demo run). Both MT4 EAs keep an alias file, so the copy stays linked to the original ticket. Tests: `S3_4_HalfClosedOnMasterClosesHalfOnSlave`, `S3_4_ClosedFractionRoundsDownToTheSlaveStep`, `S3_4_SecondPartialCloseCountsWhatWasAlreadyClosed`, `S3_4_AppliedPartialCloseIsNotRepeated`, `S3_4_RemainderNeverGoesBelowTheSlaveMinimum`, `S3_4_Mt4RemainderTicketKeepsTheOriginalIdentity`.
 5. **Stale or half-written master file.** The slave never acts on a partial snapshot:
    - the master writes a temporary file and renames it;
    - the slave accepts a file only if its checksum matches;
@@ -79,22 +79,32 @@ The client's rules have their own tests: `S1_InitialBuyIsLimitXTicksBelowMasterE
 - **The limit is closer to the market than the broker allows.** Brokers set a minimum distance between a pending order and the market (the stops level: 8 points on the MetaTrader 4 demo used here, 0 on the MetaTrader 5 one). A limit inside it is rejected (MetaTrader 4 error 130). The slave moves such a limit out to that distance, so it stays at least X ticks better than the master's entry, just further away. Test: `S1_LimitInsideTheBrokerMinimumDistanceMovesFurtherAway`. Found in the demo run (direction B, first run).
 - **A copy closed on the slave side** (its own stop, or by hand), or a pending deleted by hand, is not copied again while the master position stays open.
 - **First start of the slave:** every open master position is copied by the same rules.
-- **Not connected:** the master publishes nothing, and the slave waits. Account checks run on the first connected cycle, because at terminal start-up the account number is not known yet in `OnInit`.
-- **Demo accounts only.** On the first connected cycle, each of the four EAs checks the account (MQL5: `ACCOUNT_TRADE_MODE == ACCOUNT_TRADE_MODE_DEMO`, MQL4: `IsDemo()`). On any other account it logs `<EA name> runs on demo accounts only and this account is not a demo account; master stopped` (or `slave stopped`) and removes itself before sending or publishing anything. Test: `Demo_NonDemoAccountIsRefused`.
+- **Not connected:** the master publishes nothing, and the slave waits. Account checks, and the files named after the account, wait for the first connected cycle instead of `OnInit`. In the demo run, MetaTrader 4 ran the master's `OnInit` before its login (`master publishing` at 16:09:56.152 in [`A/mt4-experts.log`](docs/evidence/live/A/mt4-experts.log) line 4, login at 16:09:57.706 in [`A/mt4-journal.log`](docs/evidence/live/A/mt4-journal.log) line 7), and again after it. This order was not checked for MetaTrader 5.
+- **Demo accounts only.** On the first connected cycle, each of the four EAs checks the account (MQL5: `ACCOUNT_TRADE_MODE == ACCOUNT_TRADE_MODE_DEMO`, MQL4: `IsDemo()`). On any other account it logs `<EA name> runs on demo accounts only and this account is not a demo account; master stopped` (or `slave stopped`) and removes itself before sending or publishing anything. Covered by the test `Demo_NonDemoAccountIsRefused` (on the check itself) and a mutant, and by reading the code; it was not exercised on a non-demo account.
 
 ## Install
 
 1. In each terminal, find its data folder: **File > Open Data Folder**.
-2. Copy the files, by hand or with the script:
+2. Copy the files, by hand or with the script. By hand, the EAs need only these:
+
+   | From this repository | To the MetaTrader 5 data folder | To the MetaTrader 4 data folder |
+   |---|---|---|
+   | `src/Include/CopierProof/*.mqh` | `MQL5\Include\CopierProof\` | `MQL4\Include\CopierProof\` |
+   | `src/MQL5/Experts/*.mq5` | `MQL5\Experts\CopierProof\` | |
+   | `src/MQL4/Experts/*.mq4` | | `MQL4\Experts\CopierProof\` |
+   | Tests (optional): `tests/CopierCoreTests.mq5` or `.mq4`, `tests/CopierTests.mqh`, `tests/CopierEngineTests.mqh` | `MQL5\Scripts\CopierProof\` | `MQL4\Scripts\CopierProof\` |
+
+   With the script:
    ```powershell
    .\tools\deploy.ps1 -Mt5Data "<MT5 data folder>" -Mt4Data "<MT4 data folder>"
    ```
-   It writes only into `CopierProof` subfolders of `MQL5\Include`, `\Experts` and `\Scripts` (MQL4 the same).
+   It writes only into `CopierProof` subfolders of `MQL5\Include`, `\Experts` and `\Scripts` (MQL4 the same). Besides the EAs and the tests, it also copies the demo-run helper scripts (`LiveAgentMT5.mq5`, `LiveAgentMT4.mq4`, `LiveAgentCommon.mqh`) into `Scripts\CopierProof`. These open and close positions when `tools/live-run.ps1` asks; they do nothing unless started on a chart. To leave them out, copy by hand, or delete them from `Scripts\CopierProof` after the script.
 3. Compile in MetaEditor (`Experts\CopierProof\*.mq5` or `*.mq4`), or:
    ```powershell
    .\tools\compile.ps1 -Mt5Data "<MT5 data folder>" -Mt5Editor "<MetaTrader 5>\MetaEditor64.exe" `
-                       -Mt4Data "<MT4 data folder>" -Mt4Editor "<MetaTrader 4>\metaeditor.exe"
+                       -Mt4Data "<MT4 data folder>" -Mt4Editor "<MetaTrader 4>\metaeditor.exe" -OutDir "<a folder for the logs>"
    ```
+   Without `-OutDir`, the script overwrites the committed logs in `docs\evidence\compile`.
 4. Master terminal: attach `MasterMT5` or `MasterMT4` to any one chart.
 5. Slave terminal: attach `SlaveMT5` or `SlaveMT4` to any one chart. Set the inputs, and turn on **Algo Trading** (MT5) or **AutoTrading** (MT4).
 6. Both terminals run on the same Windows user on the same PC, with the same `Channel` input.
@@ -127,13 +137,13 @@ Slave (`SlaveMT5`, `SlaveMT4`):
 
 ## Tests
 
-- `tests/CopierCoreTests.mq5` runs every test in MetaTrader 5. It needs no trading account and sends no order. The end-to-end tests write and then delete files named `selftest.*` in `Common\Files\CopierProof`. To run it from the command line, after deploying and compiling:
+- `tests/CopierCoreTests.mq5` runs every test in MetaTrader 5. It needs no trading account and sends no order. The end-to-end tests write and then delete files named `selftest.*` in `Common\Files\CopierProof`. To run it from the command line, after deploying and compiling, with MetaTrader 5 closed (the script starts the terminal itself and waits for it to exit):
   ```powershell
   .\tools\run-tests-mt5.ps1 -Mt5Data "<MT5 data folder>" -Terminal "<MetaTrader 5>\terminal64.exe" -OutFile docs\evidence\tests-mt5.txt
   ```
   This starts the terminal with a startup configuration (`[StartUp] Script=CopierProof\CopierCoreTests`, `ShutdownTerminal=1`) and copies the lines the script printed.
 - `tests/CopierCoreTests.mq4` runs the same tests in MetaTrader 4. It compiles with 0 errors and 0 warnings, but it has **not been run** (see Limits).
-- `tools/mutants-mt5.ps1` changes one line of the decision logic at a time and checks that some test fails.
+- `tools/mutants-mt5.ps1` makes one change to the decision logic at a time (one line, except one mutant that removes a two-line check) and checks that some test fails.
 - `tools/live-run.ps1` and `tools/live-evidence.ps1` run and record the demo run (see [Demo run](#demo-run)). They use the helper scripts in `tests/live/`, which are not part of the copier.
 - **First failing run:** before the logic was written, the test script ran against a stub with the same functions and no rules. The result was `1 passed, 37 failed`. The stub is [`docs/evidence/red-stub/CopierCore.mqh`](docs/evidence/red-stub/CopierCore.mqh) and the output is [`tests-mt5-red-stub.txt`](docs/evidence/tests-mt5-red-stub.txt). That run used the first 38 tests; the end-to-end and later tests were added afterwards.
 
@@ -141,50 +151,57 @@ Slave (`SlaveMT5`, `SlaveMT4`):
 
 On 2026-11-17, on one Windows PC: MetaTrader 4 (build 1492) and MetaTrader 5 (build 6323), each logged into a MetaQuotes-Demo **demo** account, `EURUSD`, 0.01 lots (0.02 for the add-on, so it can be partly closed). Direction A: master MetaTrader 4, slave MetaTrader 5. Direction B: master MetaTrader 5, slave MetaTrader 4. The master's positions were opened and closed by a helper script on the master's chart (`tests/live/LiveAgentMT4.mq4`, `LiveAgentMT5.mq5`), driven by `tools/live-run.ps1`. The copier EAs never trade the master.
 
-The full table, the logs of both terminals for each scenario, and the trade histories are in [`docs/evidence/live/RESULTS.md`](docs/evidence/live/RESULTS.md). Second run of each direction:
+The full table, the logs of both terminals for each scenario, and the trade histories are in [`docs/evidence/live/RESULTS.md`](docs/evidence/live/RESULTS.md). The runs with the EAs as committed ([`A/`](docs/evidence/live/A), [`B/`](docs/evidence/live/B)):
 
 | Scenario | A: MT4 -> MT5 | B: MT5 -> MT4 |
 |---|---|---|
-| b. Master closes before the limit fills | Pending deleted 543 ms after the master close, nothing opened | 446 ms, nothing opened |
-| a. Initial entry as a limit X ticks better | X = 7: limit 7 ticks better, filled about 74 s later | X = 3, broker minimum distance 8 points: limit 8 ticks better, filled about 145 s later |
-| d. Add-on at market | 482 ms | 409 ms |
-| e. Partial close | 0.01 of the 0.02 copy closed, 450 ms | 384 ms |
+| b. Master closes before the limit fills | Pending deleted 548 ms after the master close, nothing opened | 446 ms, nothing opened |
+| a. Initial entry as a limit X ticks better | X = 9: limit 9 ticks better, filled about 114 s later | X = 3, broker minimum distance 8 points: limit 8 ticks below the master's entry, filled about 145 s later |
+| d. Add-on at market | 456 ms | 409 ms |
+| e. Partial close | 0.01 of the 0.02 copy closed, 383 ms | 384 ms |
 | g. Slave restart with open copies | No duplicate order | No duplicate order |
-| f. Master exit | Copies closed 469 ms and 560 ms after the master | 567 ms and 616 ms |
-| h. Master stopped longer than 10 s | One alert on freeze (10.0 s after the master stopped), one on resume | One alert on freeze (10.8 s), one on resume |
-| c. Limit price already reached | Sent at market (X = 0), 336 ms and 393 ms | 561 ms and 568 ms |
+| f. Master exit | Copies closed 471 ms and 544 ms after the master | 567 ms and 616 ms |
+| h. Master stopped longer than 10 s | One alert on freeze (10.9 s after the master EA was removed), one on resume | One alert on freeze (10.8 s), one on resume |
+| c. Limit price already reached | Sent at market (X = 0), 438 ms and 474 ms | 561 ms and 568 ms |
 
-**Copy delay** (master's trade confirmed to slave's trade confirmed, from the terminals' own logs), 24 actions over both runs: min 336 ms, median 496.5 ms, max 6430 ms. Exits only: median 551.5 ms, max 658 ms. The 6430 ms is direction B, scenario h: three limit orders sent exactly at the broker's minimum distance were rejected (error 130) before the fourth was accepted.
+**Copy delay** (master's trade confirmed to slave's trade confirmed, from the terminals' own logs), 24 counted actions over these two runs: min 340 ms, median 480 ms, max 6430 ms. Exits only: median 546 ms, max 658 ms. The 6430 ms is direction B, scenario h: three sends of a limit at the broker's minimum distance were refused (error 130) before the fourth was accepted. Two more pairs of direction B are not counted, because the slave EA had just been restarted and its first cycle came after the master's trade: scenario a (2203 ms, including one refused send and the 2 s wait before the retry) and scenario c (561 ms).
 
-**What failed, kept in the repository:**
+**Earlier runs, kept in the repository:**
 
-- Direction A, first run ([`A-run1/`](docs/evidence/live/A-run1)): scenario c was not produced. The driver restarted the slave when the master's price had moved, but the slave's quote was 1 tick away from the limit, so both copies were placed as limits. The copier behaved correctly; the driver now uses X = 0 for c.
-- Direction B, first run ([`B-run1/`](docs/evidence/live/B-run1)): the MetaTrader 4 slave's limit, 3 ticks from the market, was rejected with error 130, 16 times in 30 s, because that demo's stops level is 8 points. This led to the minimum-distance rule above.
+- Direction A, first run ([`A-run1/`](docs/evidence/live/A-run1)): scenario c was not produced. The driver restarted the slave when the master's price had moved, but the slave's quote was 1 tick away from the limit, so both copies were placed as limits. The copier behaved correctly; the driver now uses X = 0 for c. The driver's own log also has false lines (a timeout, and "no limit" in a); RESULTS.md explains them.
+- Direction A, second run ([`A-run2/`](docs/evidence/live/A-run2)): all eight scenarios passed, but with the EAs from before the two fixes below, so direction A was run again with the committed EAs (`A/`).
+- Direction B, first run ([`B-run1/`](docs/evidence/live/B-run1)): the MetaTrader 4 slave's limit, 3 ticks below the master's entry, was refused with error 130, 16 times between 15:24:56 and 15:25:26, because that demo's stops level is 8 points. This led to the minimum-distance rule above. The master helper's partial close then failed, which led to a `SetMarginMode()` call in the helper and in `SlaveMT5`.
 
-Both accounts were left with no positions and no orders ([`final-check.log`](docs/evidence/live/final-check.log)).
+Both accounts were left with no positions and no orders ([`final-check.log`](docs/evidence/live/final-check.log), after the last run).
 
-To repeat it, deploy and compile as in [Install](#install), then, with both terminals closed:
+To repeat it, you need: each terminal already logged into its demo account (the driver does not log in), `EURUSD` in Market Watch, and the market open. Deploy and compile as in [Install](#install), then, with both terminals closed:
 
 ```powershell
 .\tools\live-run.ps1 -Mode A -Mt5Data "<MT5 data>" -Mt5Terminal "<MetaTrader 5>\terminal64.exe" `
    -Mt4Data "<MT4 data>" -Mt4Terminal "<MetaTrader 4>\terminal.exe" -WorkDir "<scratch>\live" -IniDir "<scratch>\ini"
-.\tools\live-evidence.ps1 -Mode A -Mt5Data "<MT5 data>" -Mt4Data "<MT4 data>" -WorkDir "<scratch>\live" -OutDir docs\evidence\live\A
+.\tools\live-evidence.ps1 -Mode A -Mt5Data "<MT5 data>" -Mt4Data "<MT4 data>" -WorkDir "<scratch>\live" -OutDir "<scratch>\evidence\A"
 ```
 
-`-Mode B` for the other direction. The driver starts each terminal with a temporary startup configuration that attaches the EA and the helper script to an M1 chart and turns on algo trading (`[Experts] Enabled=1, AllowLiveTrading=1` for MetaTrader 5, `ExpertsEnable=true, ExpertsTrades=true` for MetaTrader 4). It writes the EA inputs as `CopierProof-*.set` files in `MQL5\Presets` and `MQL4\Presets`, and the helper scripts' files in `Common\Files\CopierProof\live`. It stops if an account is not a demo account or already has open positions or orders.
+`-Mode B` for the other direction. The driver starts each terminal with a temporary startup configuration that attaches the EA and the helper script to an M1 chart and turns on algo trading (`[Experts] Enabled=1, AllowLiveTrading=1` for MetaTrader 5, `ExpertsEnable=true, ExpertsTrades=true` for MetaTrader 4). It writes the EA inputs as `CopierProof-*.set` files in `MQL5\Presets` and `MQL4\Presets`, and the helper scripts' files in `Common\Files\CopierProof\live`. It stops if an account is not a demo account or already has open positions or orders. MetaTrader 4 may keep AutoTrading on after the run: its `config\experts.ini` was rewritten when it started with the driver's configuration (what the file holds was not checked). Check the algo trading switch of both terminals before using them for anything else. `live-evidence.ps1` overwrites the files in `-OutDir`: give it another folder to keep the committed evidence.
 
 ## Limits
 
 - **Same PC only.** Master and slave share `Terminal\Common\Files`. There is no network, VPS or cloud transport.
-- **MT5 hedging accounts only.** On a netting account the MT5 EAs stop at their first connected cycle. MT4 accounts are hedging by design.
-- **Demo accounts, one broker, one symbol, one session.** Run on MetaQuotes-Demo (MetaTrader 4 and MetaTrader 5), `EURUSD`, 0.01 and 0.02 lots, about 25 minutes on 2026-11-17. No real account, no other broker, no other symbol, no fast-market or news conditions. Nothing here claims results with real money. The EAs refuse accounts that are not demo accounts; a build for real money would remove that check.
-- **Order calls tested on one broker only.** On MetaQuotes-Demo these were accepted: MT5 market orders (filling by symbol: FOK), MT5 limit orders with `ORDER_FILLING_RETURN` and `GTC`, MT5 partial closes, and MT4 `OrderSend`, `OrderClose` (partial too) and `OrderDelete`. Another broker may refuse other filling modes or `GTC`, or rewrite comments.
-- **Limits at the broker's minimum distance.** The slave places such a limit exactly at that distance. A tick against it before the order reaches the server gets error 130, and the slave tries again after `InpRetrySeconds` (2 s). In the demo run: one retry in direction B scenario a, three in scenario h (6.4 s).
-- **Delay depends on the setup.** About 0.5 s median here: two 200 ms timers (`InpTimerMs` on both sides) plus one order round trip of 241 to 257 ms from this PC to the MetaQuotes servers.
-- **Different price feeds.** X ticks are counted from the master's entry price. Here the two feeds were within 3 ticks of each other. Between brokers the gap can be larger: the limit can then be already reached (sent at market) or far from the slave's market.
+- **MT5 hedging accounts only.** On a netting account the MT5 EAs stop at their first connected cycle (by code; no netting account was used).
+- **MT4 accounts that allow hedging and closing in any order only.** MetaTrader 4 has error codes for brokers that forbid hedging (149) and for brokers that enforce FIFO closing (150). Such brokers are not supported and were not tested; neither error appeared on the MT4 demo used here.
+- **Two of the four pairs run.** MT4 -> MT5 and MT5 -> MT4 ran on the demo accounts. MT4 -> MT4 and MT5 -> MT5 use the same EAs but were not run.
+- **Demo accounts, one broker, one symbol, one day.** Run on MetaQuotes-Demo (MetaTrader 4 and MetaTrader 5), `EURUSD`, 0.01 and 0.02 lots, five runs between 15:11 and 16:14 on 2026-11-17, about 19 minutes in all ([RESULTS.md](docs/evidence/live/RESULTS.md)). No real account, no other broker, no other symbol, no fast-market or news conditions. Nothing here claims results with real money. The EAs refuse accounts that are not demo accounts; a build for real money would remove that check.
+- **Only open positions are copied.** Master pending orders are not copied, and neither are the master's stop loss and take profit: the copies are sent without them. When the master's stop or target closes its position, the slave copy is closed as a master exit, at market, after the copy delay (by code; not run).
+- **Order calls tested on one broker only.** On MetaQuotes-Demo these were accepted: MT5 market orders (filling by symbol: FOK), MT5 limit orders with `ORDER_FILLING_RETURN` and `GTC`, MT5 partial closes, and MT4 `OrderSend`, `OrderClose` (partial too) and `OrderDelete` (apart from the refused limits below). Another broker may refuse other filling modes or `GTC`, or rewrite comments.
+- **Limits at the broker's minimum distance.** The slave places such a limit exactly at that distance from its own quote. In direction B, MetaTrader 4 refused 4 of these sends with error 130: 1 in scenario a, 3 in scenario h. None of them reached the server: the Journal has no line for them, while a request the server rejects does leave one ([RESULTS.md](docs/evidence/live/RESULTS.md)). The cause was not established. The slave sent each again after `InpRetrySeconds` (2 s); in h the limit was placed 6.4 s after the master's entry.
+- **A minimum distance the terminal reports as 0 is taken as none.** Some brokers use a floating minimum distance and report the stops level as 0. The slave would not move such a limit, and the broker could refuse it with error 130. Not seen here: the MT5 demo reported 0 and accepted every limit.
+- **Failed sends are retried without end.** A send that fails is tried again every `InpRetrySeconds` while the master position is open, with one `FAILED` line in the Experts log per try, no retry cap and no alert. In the first direction B run (old code), that was 16 tries in about 30 s.
+- **A copy not listed for more than 10 s is taken as closed.** While connected, if the slave terminal does not list a copy for more than 10 s, the slave treats it as closed (filled and then closed, closed by hand, or closed by the broker) and never places it again. If it shows up later, it is no longer closed together with the master.
+- **Delay depends on the setup.** About 0.5 s median here: two 200 ms timers (`InpTimerMs` on both sides) plus one order round trip of 240.9 to 317.4 ms from this PC to the MetaQuotes servers (MetaTrader 5 Journal, `done in`, runs `A/` and `B/`).
+- **Different price feeds.** X ticks are counted from the master's entry price. Before each run, the driver sampled both feeds for 10 s: master ask minus slave ask was -2 to 6 ticks in `A/`, -1 to 0 in `B/`, and within -1 to 3 in the earlier runs (`driver.log` line 11 of each run). In both final checks, the first sample right after MetaTrader 4 connected was 12 and 13 ticks apart on the bid; the 22 later samples were -1 to 2 ticks apart (line 13 onwards of [`final-check-after-B.log`](docs/evidence/live/final-check-after-B.log) and [`final-check.log`](docs/evidence/live/final-check.log)). Between brokers the gap can be larger: the limit can then be already reached (sent at market) or far from the slave's market.
 - **The MQL4 test script was compiled, not run.** The MT4 EAs themselves ran in the demo run.
 - **MT4 partial closes** rely on the server's `from #<ticket>` comment, and on the MT4 EA running when the partial close happens. A broker that rewrites that comment, or a partial close made while the EA is off, can break the link for that position.
-- **Comments can be changed by brokers.** The ticket map is the primary link. Rebuilding from the `CP:<ticket>` comment only covers a stop between an order and the map save. It does not cover an MT4 remainder after a partial close, which carries `from #<ticket>` instead.
+- **Comments can change after the order.** The ticket map is the primary link. Rebuilding from the `CP:<ticket>` comment only covers a stop between an order and the map save. It does not cover an MT4 remainder after a partial close, which carries `from #<ticket>` instead, nor an MT5 copy after a partial close: on the MT5 demo its comment was empty afterwards ([`A/mt5-experts.log`](docs/evidence/live/A/mt5-experts.log) line 19, [`A/driver.log`](docs/evidence/live/A/driver.log) line 49). Brokers can also rewrite comments.
 - **A stopped master freezes the slave:** after `InpStaleSeconds` without a snapshot, the slave neither copies nor closes. An exit made on the master in that time is copied only when the master's EA writes again.
 - **Rename atomicity is not documented** for MQL's `FileMove`. The checksum, not the rename, is what makes the slave reject a partial file.
 - **Lots raised to the minimum** (rule 7) increase the slave's relative size when the master trades below it.
