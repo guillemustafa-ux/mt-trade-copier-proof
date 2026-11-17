@@ -1,0 +1,15 @@
+scenario;master_action;master_id;master_time;slave_action;slave_time;delay_ms;counted
+b;OPEN;11444776543;15:29:15.669;limit (initial entry as limit);15:29:16.148;479;yes
+b;CLOSE;11444776543;15:29:19.577;delete (master closed before the limit filled);15:29:20.023;446;yes
+a;OPEN;11444779629;15:29:31.163;limit (initial entry as limit, moved to the broker's minimum distance);15:29:33.366;2203;no: slave EA started after the master action
+d;OPEN;11444809453;15:31:58.370;market (add-on copied at market);15:31:58.779;409;yes
+e;CLOSE;11444809453;15:31:59.180;close (master partial close);15:31:59.564;384;yes
+f;CLOSE;11444809453;15:32:33.615;close (master closed);15:32:34.182;567;yes
+f;CLOSE;11444779629;15:32:33.863;close (master closed);15:32:34.479;616;yes
+h;OPEN;11444816058;15:32:34.883;limit (initial entry as limit, moved to the broker's minimum distance);15:32:41.313;6430;yes
+h;CLOSE;11444816058;15:33:22.379;delete (master closed before the limit filled);15:33:22.953;574;yes
+c;OPEN;11444826036;15:33:29.130;market (limit price already reached: market);15:33:29.691;561;no: slave EA started after the master action
+c;OPEN;11444826107;15:33:29.435;market (limit price already reached: market);15:33:30.003;568;yes
+c;CLOSE;11444826107;15:33:32.346;close (master closed);15:33:32.948;602;yes
+c;CLOSE;11444826036;15:33:32.587;close (master closed);15:33:33.245;658;yes
+# counted: 11 pairs; min 384 ms; median 568 ms; max 6430 ms

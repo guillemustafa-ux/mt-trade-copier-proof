@@ -1,0 +1,63 @@
+2026-11-17 15:24:17.810  run B start: master=mt5 slave=mt4 channel=liveB
+2026-11-17 15:24:17.853  mt5 preset CopierProof-B-master.set : InpChannel=liveB
+2026-11-17 15:24:17.859  mt4 preset CopierProof-B-slave-x200.set : InpChannel=liveB, InpTicksBetter=200
+2026-11-17 15:24:17.910  mt5 start: expert=CopierProof\MasterMT5 preset=CopierProof-B-master.set ini=cp-live-mt5-acc50e40.ini
+2026-11-17 15:24:20.393  ok: mt5 helper script connected
+2026-11-17 15:24:20.399  mt5 status: ask=1.10165 bid=1.10161 connected=1 demo=1 digits=5 filling=1 hedging=1 orders=0 positions=0 program_trade_allowed=1 stops_level=0 symbol=EURUSD terminal_trade_allowed=1 tick_size=0.00001000 vol_min=0.01 vol_step=0.01
+2026-11-17 15:24:20.421  mt4 start: expert=CopierProof\SlaveMT4 preset=CopierProof-B-slave-x200.set ini=cp-live-mt4-dca51f3a.ini
+2026-11-17 15:24:24.651  ok: mt4 helper script connected
+2026-11-17 15:24:24.659  mt4 status: ask=1.10186 bid=1.10183 connected=1 demo=1 digits=5 hedging=1 orders=0 positions=0 program_trade_allowed=1 stops_level=8 symbol=EURUSD terminal_trade_allowed=1 tick_size=0.00001000 vol_min=0.01 vol_step=0.01
+2026-11-17 15:24:24.679  ok: master snapshot written
+2026-11-17 15:24:40.008  feeds over 10 s: master ask - slave ask = -1.0..0.0 ticks; slave bid - master bid min 0.0 ticks; tick size 1E-05
+2026-11-17 15:24:40.029  X for scenarios a, d, e, g, f, h: 3 ticks (c uses X = 0)
+2026-11-17 15:24:40.033  === scenario b start
+2026-11-17 15:24:40.056  mt5 <- 1|OPEN|buy|0.01|b|END
+2026-11-17 15:24:40.385  mt5 -> 1|OK|OPEN|ticket=11444709283|price=1.10165|lots=0.01
+2026-11-17 15:24:40.974  ok: slave limit for master #11444709283
+2026-11-17 15:24:40.983  b: master open 1.10165, slave: order #1644101021 buy limit 0.01 @1.09965 CP:11444709283
+2026-11-17 15:24:44.009  mt5 <- 2|CLOSE|11444709283|0|END
+2026-11-17 15:24:44.284  mt5 -> 2|OK|CLOSE|ticket=11444709283|closed=0.01|price=1.10161
+2026-11-17 15:24:44.877  ok: slave pending deleted
+2026-11-17 15:24:49.893  b: slave copies 5 s after: []
+2026-11-17 15:24:49.897  === scenario b end
+2026-11-17 15:24:49.911  mt4 <- 1|QUIT|END
+2026-11-17 15:24:49.985  mt4 -> 1|OK|QUIT
+2026-11-17 15:24:51.645  mt4 terminal closed
+2026-11-17 15:24:51.654  mt4 preset CopierProof-B-slave-x3.set : InpChannel=liveB, InpTicksBetter=3
+2026-11-17 15:24:51.671  mt4 start: expert=CopierProof\SlaveMT4 preset=CopierProof-B-slave-x3.set ini=cp-live-mt4-5829f560.ini
+2026-11-17 15:24:56.142  ok: mt4 helper script connected
+2026-11-17 15:24:56.151  mt4 status: ask=1.10165 bid=1.10161 connected=1 demo=1 digits=5 hedging=1 orders=0 positions=0 program_trade_allowed=1 stops_level=8 symbol=EURUSD terminal_trade_allowed=1 tick_size=0.00001000 vol_min=0.01 vol_step=0.01
+2026-11-17 15:24:56.154  === scenario a start
+2026-11-17 15:24:56.164  mt5 <- 3|OPEN|buy|0.01|a|END
+2026-11-17 15:24:56.449  mt5 -> 3|OK|OPEN|ticket=11444712709|price=1.10163|lots=0.01
+2026-11-17 15:25:26.493  TIMEOUT after 30 s: slave copy of master #11444712709
+2026-11-17 15:25:26.498  a: master open 1.10163, slave: 
+2026-11-17 15:25:26.500  a: NO copy on the slave after 30 s
+2026-11-17 15:25:26.502  === scenario a end
+2026-11-17 15:25:26.502  === scenario d start
+2026-11-17 15:25:26.509  mt5 <- 4|OPEN|buy|0.02|d|END
+2026-11-17 15:25:26.820  mt5 -> 4|OK|OPEN|ticket=11444719863|price=1.10164|lots=0.02
+2026-11-17 15:25:27.261  ok: slave add-on 0.02 at market
+2026-11-17 15:25:27.265  d: slave: position #1644101179 buy 0.02 @1.10164 CP:11444719863
+2026-11-17 15:25:27.266  === scenario d end
+2026-11-17 15:25:27.268  === scenario e start
+2026-11-17 15:25:27.283  mt5 <- 5|CLOSE|11444719863|0.01|END
+2026-11-17 15:25:27.352  mt5 -> 5|ERR|CLOSE|retcode=10009|done at 1.10164
+2026-11-17 15:25:27.373  RUN ERROR: command failed: 5|ERR|CLOSE|retcode=10009|done at 1.10164
+2026-11-17 15:25:27.407  mt5 <- 6|FLAT|7770001|END
+2026-11-17 15:25:27.971  mt5 -> 6|OK|FLAT|closed=2|deleted=0|failed=0
+2026-11-17 15:25:27.986  mt5 <- 7|EXPORT|370|END
+2026-11-17 15:25:28.054  mt5 -> 7|OK|EXPORT|deals=15|orders=17
+2026-11-17 15:25:28.059  mt5 final open items: 0
+2026-11-17 15:25:28.073  mt4 <- 2|FLAT|20261117|END
+2026-11-17 15:25:28.454  mt4 -> 2|ERR|FLAT|closed=0|deleted=0|failed=1
+2026-11-17 15:25:28.467  mt4 <- 3|EXPORT|371|END
+2026-11-17 15:25:28.548  mt4 -> 3|OK|EXPORT|orders=9
+2026-11-17 15:25:28.555  mt4 final open items: 0
+2026-11-17 15:25:28.571  mt4 <- 4|QUIT|END
+2026-11-17 15:25:28.642  mt4 -> 4|OK|QUIT
+2026-11-17 15:25:29.810  mt4 terminal closed
+2026-11-17 15:25:29.825  mt5 <- 8|QUIT|END
+2026-11-17 15:25:29.903  mt5 -> 8|OK|QUIT
+2026-11-17 15:25:32.355  mt5 terminal closed
+2026-11-17 15:25:32.375  run B end

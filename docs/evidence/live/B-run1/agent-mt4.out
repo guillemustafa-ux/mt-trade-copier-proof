@@ -1,0 +1,4 @@
+1|OK|QUIT
+2|ERR|FLAT|closed=0|deleted=0|failed=1
+3|OK|EXPORT|orders=9
+4|OK|QUIT

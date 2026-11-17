@@ -1,0 +1,15 @@
+scenario;master_action;master_id;master_time;slave_action;slave_time;delay_ms;counted
+b;OPEN;1644098746;15:12:13.009;limit (initial entry as limit);15:12:13.573;564;yes
+b;CLOSE;1644098746;15:12:17.086;delete (master closed before the limit filled);15:12:17.567;481;yes
+a;OPEN;1644098830;15:12:28.539;limit (initial entry as limit);15:12:29.022;483;yes
+d;OPEN;1644098947;15:12:59.006;market (add-on copied at market);15:12:59.422;416;yes
+e;CLOSE;1644098947;15:12:59.905;close (master partial close);15:13:00.228;323;yes
+f;CLOSE;1644098947;15:13:34.656;close (master closed);15:13:35.144;488;yes
+f;CLOSE;1644098830;15:13:34.966;close (master closed);15:13:35.394;428;yes
+h;OPEN;1644099083;15:13:35.853;limit (initial entry as limit);15:13:36.347;494;yes
+h;CLOSE;1644099083;15:14:46.597;delete (master closed before the limit filled);15:14:47.117;520;yes
+c;OPEN;1644099282;15:14:50.795;limit (initial entry as limit);15:16:09.227;78432;no: slave EA started after the master action
+c;OPEN;1644099284;15:14:51.167;limit (initial entry as limit);15:16:09.478;78311;no: slave EA started after the master action
+c;CLOSE;1644099284;15:16:41.058;delete (master closed before the limit filled);15:16:41.533;475;yes
+c;CLOSE;1644099282;15:16:41.352;close (master closed);15:16:41.782;430;yes
+# counted: 11 pairs; min 323 ms; median 481 ms; max 564 ms

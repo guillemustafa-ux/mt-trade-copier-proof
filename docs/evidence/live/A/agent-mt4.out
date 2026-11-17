@@ -1,0 +1,14 @@
+1|OK|OPEN|ticket=1644100348|price=1.10197|lots=0.01
+2|OK|CLOSE|ticket=1644100348|closed=0.01|price=1.10195|remainder=0
+3|OK|OPEN|ticket=1644100401|price=1.10199|lots=0.01
+4|OK|OPEN|ticket=1644100608|price=1.10196|lots=0.02
+5|OK|CLOSE|ticket=1644100608|closed=0.01|price=1.10188|remainder=1644100609
+6|OK|CLOSEALL|closed=2|deleted=0|failed=0
+7|OK|OPEN|ticket=1644100706|price=1.10192|lots=0.01
+8|OK|QUIT
+9|OK|CLOSEALL|closed=1|deleted=0|failed=0
+10|OK|OPEN|ticket=1644100829|price=1.10191|lots=0.01
+11|OK|OPEN|ticket=1644100830|price=1.10188|lots=0.01
+12|OK|CLOSEALL|closed=2|deleted=0|failed=0
+13|OK|EXPORT|orders=9
+14|OK|QUIT

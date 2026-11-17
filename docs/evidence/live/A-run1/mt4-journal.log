@@ -1,0 +1,51 @@
+0	15:11:50.745	MetaTrader 4 build 1492 started (MetaQuotes Software Corp.)
+0	15:11:50.745	<system details>
+0	15:11:50.745	Data Folder: <MT4 data>
+0	15:11:50.784	Started with configuration file '<scratch>\cp-live-mt4-d2499ad6.ini'
+2	15:11:51.265	Expert CopierProof\MasterMT4 EURUSD,M1: loaded successfully
+2	15:11:51.273	Script CopierProof\LiveAgentMT4 EURUSD,M1: loaded successfully
+0	15:11:52.582	'<demo-mt4>': login on MetaQuotes-Demo through <access point> (ping: 243.85 ms)
+0	15:11:54.483	'<demo-mt4>': previous successful authorization performed from <ip>
+0	15:12:12.698	'<demo-mt4>': instant order buy 0.01 EURUSD at 1.10215 sl: 0.00000 tp: 0.00000
+0	15:12:13.009	Trades: use MetaTrader VPS Hosting Service to speed up the execution: 0.12 ms via 'VPS Amsterdam 15' instead of 243.85 ms
+0	15:12:13.009	'<demo-mt4>': order was opened : #1644098746 buy 0.01 EURUSD at 1.10215 sl: 0.00000 tp: 0.00000
+0	15:12:16.781	'<demo-mt4>': close order #1644098746 buy 0.01 EURUSD at 1.10215 sl: 0.00000 tp: 0.00000 at price 1.10212
+0	15:12:17.086	'<demo-mt4>': order #1644098746 buy 0.01 EURUSD at 1.10215 sl: 0.00000 tp: 0.00000 closed at price 1.10212
+0	15:12:28.231	'<demo-mt4>': instant order buy 0.01 EURUSD at 1.10216 sl: 0.00000 tp: 0.00000
+0	15:12:28.539	'<demo-mt4>': order was opened : #1644098830 buy 0.01 EURUSD at 1.10216 sl: 0.00000 tp: 0.00000
+0	15:12:58.681	'<demo-mt4>': instant order buy 0.02 EURUSD at 1.10213 sl: 0.00000 tp: 0.00000
+0	15:12:59.006	'<demo-mt4>': order was opened : #1644098947 buy 0.02 EURUSD at 1.10213 sl: 0.00000 tp: 0.00000
+0	15:12:59.563	'<demo-mt4>': close order #1644098947 buy 0.01 EURUSD at 1.10213 sl: 0.00000 tp: 0.00000 at price 1.10207
+0	15:12:59.905	'<demo-mt4>': order #1644098947 buy 0.01 EURUSD at 1.10213 sl: 0.00000 tp: 0.00000 closed at price 1.10207
+0	15:12:59.905	'<demo-mt4>': remainder of order #1644098947 was opened : #1644098949 buy 0.01 EURUSD at 1.10213 sl: 0.00000 tp: 0.00000
+0	15:13:34.346	'<demo-mt4>': close order #1644098949 buy 0.01 EURUSD at 1.10213 sl: 0.00000 tp: 0.00000 at price 1.10204
+0	15:13:34.656	'<demo-mt4>': order #1644098949 buy 0.01 EURUSD at 1.10213 sl: 0.00000 tp: 0.00000 closed at price 1.10204
+0	15:13:34.657	'<demo-mt4>': close order #1644098830 buy 0.01 EURUSD at 1.10216 sl: 0.00000 tp: 0.00000 at price 1.10204
+0	15:13:34.966	'<demo-mt4>': order #1644098830 buy 0.01 EURUSD at 1.10216 sl: 0.00000 tp: 0.00000 closed at price 1.10204
+0	15:13:35.542	'<demo-mt4>': instant order buy 0.01 EURUSD at 1.10207 sl: 0.00000 tp: 0.00000
+0	15:13:35.851	'<demo-mt4>': order was opened : #1644099083 buy 0.01 EURUSD at 1.10207 sl: 0.00000 tp: 0.00000
+2	15:14:05.937	Script LiveAgentMT4 EURUSD,M1: removed
+2	15:14:05.949	Expert MasterMT4 EURUSD,M1: removed
+0	15:14:07.016	MetaTrader 4 build 1492 stopped
+0	15:14:32.354	MetaTrader 4 build 1492 started (MetaQuotes Software Corp.)
+0	15:14:32.354	<system details>
+0	15:14:32.354	Data Folder: <MT4 data>
+0	15:14:32.399	Started with configuration file '<scratch>\cp-live-mt4-10411ce4.ini'
+2	15:14:32.937	Expert CopierProof\MasterMT4 EURUSD,M1: loaded successfully
+2	15:14:32.945	Script CopierProof\LiveAgentMT4 EURUSD,M1: loaded successfully
+0	15:14:34.215	'<demo-mt4>': login on MetaQuotes-Demo through <access point> (ping: 243.85 ms)
+0	15:14:36.114	'<demo-mt4>': previous successful authorization performed from <ip>
+0	15:14:46.283	'<demo-mt4>': close order #1644099083 buy 0.01 EURUSD at 1.10207 sl: 0.00000 tp: 0.00000 at price 1.10206
+0	15:14:46.597	'<demo-mt4>': order #1644099083 buy 0.01 EURUSD at 1.10207 sl: 0.00000 tp: 0.00000 closed at price 1.10206
+0	15:14:50.483	'<demo-mt4>': instant order buy 0.01 EURUSD at 1.10208 sl: 0.00000 tp: 0.00000
+0	15:14:50.795	Trades: use MetaTrader VPS Hosting Service to speed up the execution: 0.12 ms via 'VPS Amsterdam 15' instead of 243.85 ms
+0	15:14:50.795	'<demo-mt4>': order was opened : #1644099282 buy 0.01 EURUSD at 1.10208 sl: 0.00000 tp: 0.00000
+0	15:14:50.860	'<demo-mt4>': instant order sell 0.01 EURUSD at 1.10205 sl: 0.00000 tp: 0.00000
+0	15:14:51.167	'<demo-mt4>': order was opened : #1644099284 sell 0.01 EURUSD at 1.10205 sl: 0.00000 tp: 0.00000
+0	15:16:40.763	'<demo-mt4>': close order #1644099284 sell 0.01 EURUSD at 1.10205 sl: 0.00000 tp: 0.00000 at price 1.10204
+0	15:16:41.058	'<demo-mt4>': order #1644099284 sell 0.01 EURUSD at 1.10205 sl: 0.00000 tp: 0.00000 closed at price 1.10204
+0	15:16:41.059	'<demo-mt4>': close order #1644099282 buy 0.01 EURUSD at 1.10208 sl: 0.00000 tp: 0.00000 at price 1.10201
+0	15:16:41.352	'<demo-mt4>': order #1644099282 buy 0.01 EURUSD at 1.10208 sl: 0.00000 tp: 0.00000 closed at price 1.10201
+2	15:16:44.327	Script LiveAgentMT4 EURUSD,M1: removed
+2	15:16:44.339	Expert MasterMT4 EURUSD,M1: removed
+0	15:16:45.593	MetaTrader 4 build 1492 stopped

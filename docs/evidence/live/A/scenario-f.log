@@ -1,0 +1,50 @@
+# Direction A, scenario f: every line of the driver, both Experts logs and both Journals, merged by local time
+
+[driver] 2026-11-17 15:22:41.697  g: slave tickets 20 s after restart: 11444667275,11444680529 (same)
+[driver] 2026-11-17 15:22:41.701  === scenario g end
+[driver] 2026-11-17 15:22:41.705  === scenario f start
+[driver] 2026-11-17 15:22:41.712  mt4 <- 6|CLOSEALL|7770001|END
+[mt4-journal] 0	15:22:41.721	'<demo-mt4>': close order #1644100609 buy 0.01 EURUSD at 1.10196 sl: 0.00000 tp: 0.00000 at price 1.10189
+[mt4-experts] 0	15:22:42.028	LiveAgentMT4 EURUSD,M1: [LiveAgent] CLOSE done #1644100609 0.01 of 0.01 @1.10189
+[mt4-experts] 2	15:22:42.028	LiveAgentMT4 EURUSD,M1: close #1644100609 buy 0.01 EURUSD at 1.10196 at price 1.10189
+[mt4-journal] 0	15:22:42.028	'<demo-mt4>': close order #1644100401 buy 0.01 EURUSD at 1.10199 sl: 0.00000 tp: 0.00000 at price 1.10188
+[mt4-journal] 0	15:22:42.028	'<demo-mt4>': order #1644100609 buy 0.01 EURUSD at 1.10196 sl: 0.00000 tp: 0.00000 closed at price 1.10189
+[mt4-experts] 0	15:22:42.099	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 152: 1 position(s)
+[mt5-journal] RQ	0	15:22:42.247	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444680529 buy 0.01 EURUSD 1.10191
+[mt4-experts] 2	15:22:42.339	LiveAgentMT4 EURUSD,M1: close #1644100401 buy 0.01 EURUSD at 1.10199 at price 1.10188
+[mt4-experts] 0	15:22:42.339	LiveAgentMT4 EURUSD,M1: [LiveAgent] CLOSE done #1644100401 0.01 of 0.01 @1.10188
+[mt4-journal] 0	15:22:42.339	'<demo-mt4>': order #1644100401 buy 0.01 EURUSD at 1.10199 sl: 0.00000 tp: 0.00000 closed at price 1.10188
+[mt4-experts] 0	15:22:42.341	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 6 CLOSEALL: OK|closed=2|deleted=0|failed=0
+[mt4-experts] 0	15:22:42.343	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644100401;buy;EURUSD;0.01;1.10199;7770001;live:a
+[mt4-experts] 0	15:22:42.358	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644100609;buy;EURUSD;0.01;1.10196;7770001;from #1644100608
+[driver] 2026-11-17 15:22:42.374  mt4 -> 6|OK|CLOSEALL|closed=2|deleted=0|failed=0
+[mt5-journal] IF	0	15:22:42.492	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444680529 buy 0.01 EURUSD 1.10191
+[mt5-journal] GF	0	15:22:42.493	Trades	'<demo-mt5>': deal #11205926759 sell 0.01 EURUSD at 1.10188 done (based on order #11444686735)
+[mt5-experts] QR	0	15:22:42.497	SlaveMT5 (EURUSD,M1)	[CopierProof] close slave #11444680529 master #1644100608 EURUSD buy 0.01 (master closed)
+[mt5-journal] CI	0	15:22:42.497	Trades	'<demo-mt5>': order #11444686735 sell 0.01 / 0.01 EURUSD at 1.10188 done in 250.069 ms
+[mt4-experts] 0	15:22:42.504	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 153: 0 position(s)
+[mt5-experts] EP	0	15:22:42.513	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE position;11444680529;buy;EURUSD;0.01;1.10191;20261117;
+[mt5-journal] GH	0	15:22:42.653	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444667275 buy 0.01 EURUSD 1.10192
+[mt5-journal] LI	0	15:22:42.897	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444667275 buy 0.01 EURUSD 1.10192
+[mt5-experts] GE	0	15:22:42.899	SlaveMT5 (EURUSD,M1)	[CopierProof] close slave #11444667275 master #1644100401 EURUSD buy 0.01 (master closed)
+[mt5-journal] QR	0	15:22:42.899	Trades	'<demo-mt5>': order #11444686770 sell 0.01 / 0.01 EURUSD at 1.10188 done in 246.474 ms
+[mt5-journal] HO	0	15:22:42.899	Trades	'<demo-mt5>': deal #11205926791 sell 0.01 EURUSD at 1.10188 done (based on order #11444686770)
+[mt5-experts] OE	0	15:22:42.920	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE position;11444667275;buy;EURUSD;0.01;1.10192;20261117;CP:1644100401
+[driver] 2026-11-17 15:22:42.985  ok: slave copies closed
+[driver] 2026-11-17 15:22:42.988  === scenario f end
+[driver] 2026-11-17 15:22:42.991  === scenario h start
+[driver] 2026-11-17 15:22:42.999  mt4 <- 7|OPEN|buy|0.01|h|END
+[mt4-journal] 0	15:22:43.012	'<demo-mt4>': instant order buy 0.01 EURUSD at 1.10192 sl: 0.00000 tp: 0.00000
+[mt4-experts] 0	15:22:43.309	LiveAgentMT4 EURUSD,M1: [LiveAgent] OPEN done #1644100706 buy 0.01 EURUSD @1.10192 (live:h)
+[mt4-experts] 2	15:22:43.309	LiveAgentMT4 EURUSD,M1: open #1644100706 buy 0.01 EURUSD at 1.10192 ok
+[mt4-journal] 0	15:22:43.309	'<demo-mt4>': order was opened : #1644100706 buy 0.01 EURUSD at 1.10192 sl: 0.00000 tp: 0.00000
+[mt4-experts] 0	15:22:43.311	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 7 OPEN: OK|ticket=1644100706|price=1.10192|lots=0.01
+[mt4-experts] 0	15:22:43.312	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644100706;buy;EURUSD;0.01;1.10192;7770001;live:h
+[driver] 2026-11-17 15:22:43.375  mt4 -> 7|OK|OPEN|ticket=1644100706|price=1.10192|lots=0.01
+[mt4-experts] 0	15:22:43.521	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 155: 1 position(s)
+[mt5-journal] MM	0	15:22:43.639	Trades	'<demo-mt5>': buy limit 0.01 EURUSD at 1.10185
+[mt5-journal] QQ	0	15:22:43.886	Trades	'<demo-mt5>': order #11444686897 buy limit 0.01 / 0.01 EURUSD at 1.10185 done in 247.195 ms
+[mt5-journal] DF	0	15:22:43.886	Trades	'<demo-mt5>': accepted buy limit 0.01 EURUSD at 1.10185
+[mt5-experts] PG	0	15:22:43.930	SlaveMT5 (EURUSD,M1)	[CopierProof] limit @1.10185000 master #1644100706 EURUSD buy 0.01 -> slave #11444686897 (initial entry as limit)
+[mt5-experts] RN	0	15:22:43.941	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD order;11444686897;buy limit;EURUSD;0.01;1.10185;20261117;CP:1644100706
+[driver] 2026-11-17 15:22:43.982  ok: slave copy of master #1644100706

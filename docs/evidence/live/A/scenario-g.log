@@ -1,0 +1,62 @@
+# Direction A, scenario g: every line of the driver, both Experts logs and both Journals, merged by local time
+
+[driver] 2026-11-17 15:22:10.645  e: slave 3 s after: position lots 0.02; position #11444667275 buy 0.01 @1.10192 CP:1644100401; position #11444680529 buy 0.01 @1.10191 
+[driver] 2026-11-17 15:22:10.646  === scenario e end
+[driver] 2026-11-17 15:22:10.648  === scenario g start
+[driver] 2026-11-17 15:22:10.658  g: slave tickets before restart: 11444667275,11444680529
+[driver] 2026-11-17 15:22:10.663  mt5 <- 2|QUIT|END
+[mt5-experts] IQ	0	15:22:10.672	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] QUIT: closing this chart
+[mt5-journal] DQ	0	15:22:10.673	Scripts	script LiveAgentMT5 (EURUSD,M1) removed
+[mt5-journal] PK	0	15:22:10.701	Experts	expert SlaveMT5 (EURUSD,M1) removed
+[driver] 2026-11-17 15:22:10.734  mt5 -> 2|OK|QUIT
+[mt5-journal] PR	0	15:22:13.562	Terminal	exit with code 0
+[mt5-journal] MP	0	15:22:13.945	Network	'<demo-mt5>': disconnected from MetaQuotes-Demo
+[mt5-journal] RI	0	15:22:14.020	Terminal	stopped with 0
+[mt5-journal] KL	0	15:22:14.129	Terminal	shutdown with 0
+[driver] 2026-11-17 15:22:14.171  mt5 terminal closed
+[driver] 2026-11-17 15:22:19.201  mt5 start: expert=CopierProof\SlaveMT5 preset=CopierProof-A-slave-x7.set ini=cp-live-mt5-120f565a.ini
+[mt5-journal] MD	0	15:22:19.567	Startup	successfully initialized from start config "<scratch>\cp-live-mt5-120f565a.ini"
+[mt5-journal] PS	0	15:22:19.590	Terminal	MetaTrader 5 x64 build 6323 started for MetaQuotes Ltd.
+[mt5-journal] PE	0	15:22:19.591	Terminal	launched with <scratch>\cp-live-mt5-120f565a.ini
+[mt5-journal] RP	0	15:22:19.591	Terminal	<MT5 data>
+[mt5-journal] MD	0	15:22:19.591	Terminal	<system details>
+[mt5-journal] LN	0	15:22:19.592	MCP	started on <ip>:22346
+[mt5-journal] NI	0	15:22:20.733	MQL5	2 inputs read from expert 'CopierProof\SlaveMT5' set file "<MT5 data>\MQL5\Presets\CopierProof-A-slave-x7.set"
+[mt5-journal] MQ	0	15:22:20.743	Experts	expert SlaveMT5 (EURUSD,M1) loaded successfully
+[mt5-journal] CJ	0	15:22:20.750	Scripts	script LiveAgentMT5 (EURUSD,M1) loaded successfully
+[mt5-journal] QG	0	15:22:21.073	Network	'<demo-mt5>': previous successful authorization performed from <ip> on 2026.11.17 20:20:53
+[mt5-journal] DJ	0	15:22:21.073	Network	'<demo-mt5>': authorized on MetaQuotes-Demo through <access point> (ping: 242.68 ms, build 6323)
+[mt5-journal] EH	0	15:22:21.482	Network	'<demo-mt5>': trading has been enabled, demo account - hedging mode
+[mt5-journal] GL	0	15:22:21.482	Network	'<demo-mt5>': balance management has been disabled - demo account
+[mt5-journal] NF	0	15:22:21.482	Network	'<demo-mt5>': terminal synchronized with MetaQuotes Ltd.: 2 positions, 0 orders, 12143 symbols, 0 spreads
+[mt5-journal] FN	0	15:22:21.514	Trades	use MetaTrader VPS Hosting Service to speed up the execution: 0.12 ms via 'VPS Amsterdam 15' instead of 239.63 ms
+[mt5-experts] HL	0	15:22:21.596	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] agent started on EURUSD: demo account, 2 open item(s)
+[driver] 2026-11-17 15:22:21.666  ok: mt5 helper script connected
+[driver] 2026-11-17 15:22:21.671  mt5 status: ask=1.10193 bid=1.10189 connected=1 demo=1 digits=5 filling=1 hedging=1 orders=0 positions=2 program_trade_allowed=1 stops_level=0 symbol=EURUSD terminal_trade_allowed=1 tick_size=0.00001000 vol_min=0.01 vol_step=0.01
+[mt5-experts] CE	0	15:22:21.833	SlaveMT5 (EURUSD,M1)	[CopierProof] slave reading Common\Files\CopierProof\liveA.snap, ticket map CopierProof\liveA.slave-<demo-mt5>-20261117.map (2 link(s) loaded)
+[mt5-experts] JR	0	15:22:21.834	SlaveMT5 (EURUSD,M1)	[CopierProof] following master session 1794939614
+[driver] 2026-11-17 15:22:41.697  g: slave tickets 20 s after restart: 11444667275,11444680529 (same)
+[driver] 2026-11-17 15:22:41.701  === scenario g end
+[driver] 2026-11-17 15:22:41.705  === scenario f start
+[driver] 2026-11-17 15:22:41.712  mt4 <- 6|CLOSEALL|7770001|END
+[mt4-journal] 0	15:22:41.721	'<demo-mt4>': close order #1644100609 buy 0.01 EURUSD at 1.10196 sl: 0.00000 tp: 0.00000 at price 1.10189
+[mt4-experts] 0	15:22:42.028	LiveAgentMT4 EURUSD,M1: [LiveAgent] CLOSE done #1644100609 0.01 of 0.01 @1.10189
+[mt4-experts] 2	15:22:42.028	LiveAgentMT4 EURUSD,M1: close #1644100609 buy 0.01 EURUSD at 1.10196 at price 1.10189
+[mt4-journal] 0	15:22:42.028	'<demo-mt4>': close order #1644100401 buy 0.01 EURUSD at 1.10199 sl: 0.00000 tp: 0.00000 at price 1.10188
+[mt4-journal] 0	15:22:42.028	'<demo-mt4>': order #1644100609 buy 0.01 EURUSD at 1.10196 sl: 0.00000 tp: 0.00000 closed at price 1.10189
+[mt4-experts] 0	15:22:42.099	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 152: 1 position(s)
+[mt5-journal] RQ	0	15:22:42.247	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444680529 buy 0.01 EURUSD 1.10191
+[mt4-experts] 2	15:22:42.339	LiveAgentMT4 EURUSD,M1: close #1644100401 buy 0.01 EURUSD at 1.10199 at price 1.10188
+[mt4-experts] 0	15:22:42.339	LiveAgentMT4 EURUSD,M1: [LiveAgent] CLOSE done #1644100401 0.01 of 0.01 @1.10188
+[mt4-journal] 0	15:22:42.339	'<demo-mt4>': order #1644100401 buy 0.01 EURUSD at 1.10199 sl: 0.00000 tp: 0.00000 closed at price 1.10188
+[mt4-experts] 0	15:22:42.341	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 6 CLOSEALL: OK|closed=2|deleted=0|failed=0
+[mt4-experts] 0	15:22:42.343	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644100401;buy;EURUSD;0.01;1.10199;7770001;live:a
+[mt4-experts] 0	15:22:42.358	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644100609;buy;EURUSD;0.01;1.10196;7770001;from #1644100608
+[driver] 2026-11-17 15:22:42.374  mt4 -> 6|OK|CLOSEALL|closed=2|deleted=0|failed=0
+[mt5-journal] IF	0	15:22:42.492	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444680529 buy 0.01 EURUSD 1.10191
+[mt5-journal] GF	0	15:22:42.493	Trades	'<demo-mt5>': deal #11205926759 sell 0.01 EURUSD at 1.10188 done (based on order #11444686735)
+[mt5-experts] QR	0	15:22:42.497	SlaveMT5 (EURUSD,M1)	[CopierProof] close slave #11444680529 master #1644100608 EURUSD buy 0.01 (master closed)
+[mt5-journal] CI	0	15:22:42.497	Trades	'<demo-mt5>': order #11444686735 sell 0.01 / 0.01 EURUSD at 1.10188 done in 250.069 ms
+[mt4-experts] 0	15:22:42.504	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 153: 0 position(s)
+[mt5-experts] EP	0	15:22:42.513	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE position;11444680529;buy;EURUSD;0.01;1.10191;20261117;
+[mt5-journal] GH	0	15:22:42.653	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444667275 buy 0.01 EURUSD 1.10192

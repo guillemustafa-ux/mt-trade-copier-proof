@@ -1,0 +1,58 @@
+QG	0	15:28:55.761	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] agent started on EURUSD: demo account, 0 open item(s)
+EK	0	15:28:55.784	MasterMT5 (EURUSD,M1)	[CopierProof] master publishing to Common\Files\CopierProof\liveB.snap (session 1794940135, seq 0)
+FK	0	15:29:15.669	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] OPEN done #11444776543 buy 0.01 EURUSD @1.10149 (live:b)
+FI	0	15:29:15.670	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 1 OPEN: OK|ticket=11444776543|price=1.10149|lots=0.01
+NL	0	15:29:15.671	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD position;11444776543;buy;EURUSD;0.01;1.10149;7770001;live:b
+EM	0	15:29:15.808	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 22: 1 position(s)
+OM	0	15:29:19.577	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] CLOSE done #11444776543 0.01 of 0.01 @1.10145
+GI	0	15:29:19.577	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 2 CLOSE: OK|ticket=11444776543|closed=0.01|price=1.10145
+HK	0	15:29:19.578	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE position;11444776543;buy;EURUSD;0.01;1.10149;7770001;live:b
+PG	0	15:29:19.605	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 27: 0 position(s)
+DO	0	15:29:31.163	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] OPEN done #11444779629 buy 0.01 EURUSD @1.10149 (live:a)
+FM	0	15:29:31.164	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 3 OPEN: OK|ticket=11444779629|price=1.10149|lots=0.01
+FP	0	15:29:31.164	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD position;11444779629;buy;EURUSD;0.01;1.10149;7770001;live:a
+CQ	0	15:29:31.198	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 39: 1 position(s)
+GD	0	15:31:58.370	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] OPEN done #11444809453 buy 0.02 EURUSD @1.10141 (live:d)
+RJ	0	15:31:58.370	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 4 OPEN: OK|ticket=11444809453|price=1.10141|lots=0.02
+GI	0	15:31:58.371	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD position;11444809453;buy;EURUSD;0.02;1.10141;7770001;live:d
+RI	0	15:31:58.404	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 187: 2 position(s)
+DP	0	15:31:59.180	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] CLOSE done #11444809453 0.01 of 0.02 @1.10138
+OL	0	15:31:59.181	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 5 CLOSE: OK|ticket=11444809453|closed=0.01|price=1.10138
+FS	0	15:31:59.182	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] CHANGE position;11444809453;buy;EURUSD;0.01;1.10141;7770001;
+DF	0	15:31:59.196	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 188: 2 position(s)
+FE	0	15:32:33.615	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] CLOSE done #11444809453 0.01 of 0.01 @1.10137
+IN	0	15:32:33.801	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 223: 1 position(s)
+DM	0	15:32:33.863	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] CLOSE done #11444779629 0.01 of 0.01 @1.10137
+MG	0	15:32:33.864	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 6 CLOSEALL: OK|closed=2|deleted=0|failed=0
+QD	0	15:32:33.864	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE position;11444779629;buy;EURUSD;0.01;1.10149;7770001;live:a
+II	0	15:32:33.882	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE position;11444809453;buy;EURUSD;0.01;1.10141;7770001;
+GH	0	15:32:34.002	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 224: 0 position(s)
+LR	0	15:32:34.883	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] OPEN done #11444816058 buy 0.01 EURUSD @1.10140 (live:h)
+EP	0	15:32:34.884	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 7 OPEN: OK|ticket=11444816058|price=1.10140|lots=0.01
+QS	0	15:32:34.885	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD position;11444816058;buy;EURUSD;0.01;1.10140;7770001;live:h
+LG	0	15:32:34.998	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 226: 1 position(s)
+RE	0	15:32:41.359	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] QUIT: closing this chart
+GO	0	15:33:11.939	MasterMT5 (EURUSD,M1)	[CopierProof] master publishing to Common\Files\CopierProof\liveB.snap (session 1794940135, seq 233)
+GR	0	15:33:11.979	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] agent started on EURUSD: demo account, 1 open item(s)
+FL	0	15:33:12.149	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 234: 1 position(s)
+KJ	0	15:33:22.379	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] CLOSE done #11444816058 0.01 of 0.01 @1.10135
+GI	0	15:33:22.379	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 9 CLOSEALL: OK|closed=1|deleted=0|failed=0
+OF	0	15:33:22.380	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE position;11444816058;buy;EURUSD;0.01;1.10140;7770001;live:h
+LH	0	15:33:22.550	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 245: 0 position(s)
+EO	0	15:33:29.130	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] OPEN done #11444826036 buy 0.01 EURUSD @1.10139 (live:cb1)
+DS	0	15:33:29.131	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 10 OPEN: OK|ticket=11444826036|price=1.10139|lots=0.01
+GN	0	15:33:29.131	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD position;11444826036;buy;EURUSD;0.01;1.10139;7770001;live:cb1
+KG	0	15:33:29.160	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 252: 1 position(s)
+DH	0	15:33:29.435	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] OPEN done #11444826107 sell 0.01 EURUSD @1.10136 (live:cs1)
+HJ	0	15:33:29.435	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 11 OPEN: OK|ticket=11444826107|price=1.10136|lots=0.01
+KO	0	15:33:29.435	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD position;11444826107;sell;EURUSD;0.01;1.10136;7770001;live:cs1
+OO	0	15:33:29.568	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 253: 2 position(s)
+RN	0	15:33:32.346	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] CLOSE done #11444826107 0.01 of 0.01 @1.10139
+CF	0	15:33:32.567	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 257: 1 position(s)
+EE	0	15:33:32.587	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] CLOSE done #11444826036 0.01 of 0.01 @1.10136
+KO	0	15:33:32.588	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 12 CLOSEALL: OK|closed=2|deleted=0|failed=0
+CQ	0	15:33:32.588	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE position;11444826036;buy;EURUSD;0.01;1.10139;7770001;live:cb1
+CO	0	15:33:32.596	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE position;11444826107;sell;EURUSD;0.01;1.10136;7770001;live:cs1
+OR	0	15:33:32.767	MasterMT5 (EURUSD,M1)	[CopierProof] snapshot seq 258: 0 position(s)
+MJ	0	15:33:33.371	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 13 EXPORT: OK|deals=19|orders=19
+QF	0	15:33:34.986	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] QUIT: closing this chart

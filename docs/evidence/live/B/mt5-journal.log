@@ -1,0 +1,94 @@
+ND	0	15:28:53.778	Startup	successfully initialized from start config "<scratch>\cp-live-mt5-67451372.ini"
+NR	0	15:28:53.802	Terminal	MetaTrader 5 x64 build 6323 started for MetaQuotes Ltd.
+OE	0	15:28:53.802	Terminal	<system details>
+CS	0	15:28:53.802	Terminal	<MT5 data>
+JR	0	15:28:53.802	Terminal	launched with <scratch>\cp-live-mt5-67451372.ini
+GN	0	15:28:53.803	MCP	started on <ip>:22346
+QF	0	15:28:54.863	MQL5	1 inputs read from expert 'CopierProof\MasterMT5' set file "<MT5 data>\MQL5\Presets\CopierProof-B-master.set"
+FO	0	15:28:54.869	Experts	expert MasterMT5 (EURUSD,M1) loaded successfully
+JM	0	15:28:54.877	Scripts	script LiveAgentMT5 (EURUSD,M1) loaded successfully
+RI	0	15:28:55.249	Network	'<demo-mt5>': authorized on MetaQuotes-Demo through <access point> (ping: 242.68 ms, build 6323)
+FD	0	15:28:55.249	Network	'<demo-mt5>': previous successful authorization performed from <ip> on 2026.11.17 20:28:36
+QE	0	15:28:55.657	Network	'<demo-mt5>': terminal synchronized with MetaQuotes Ltd.: 0 positions, 0 orders, 12143 symbols, 0 spreads
+HK	0	15:28:55.657	Network	'<demo-mt5>': trading has been enabled, demo account - hedging mode
+NO	0	15:28:55.657	Network	'<demo-mt5>': balance management has been disabled - demo account
+CN	0	15:28:55.688	Trades	use MetaTrader VPS Hosting Service to speed up the execution: 0.12 ms via 'VPS Amsterdam 15' instead of 239.63 ms
+GN	0	15:29:15.419	Trades	'<demo-mt5>': market buy 0.01 EURUSD
+GD	0	15:29:15.664	Trades	'<demo-mt5>': deal #11206021658 buy 0.01 EURUSD at 1.10149 done (based on order #11444776543)
+JF	0	15:29:15.664	Trades	'<demo-mt5>': accepted market buy 0.01 EURUSD
+FQ	0	15:29:15.669	Trades	'<demo-mt5>': order #11444776543 buy 0.01 / 0.01 EURUSD at 1.10149 done in 250.343 ms
+RS	0	15:29:19.326	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444776543 buy 0.01 EURUSD 1.10149
+GG	0	15:29:19.575	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444776543 buy 0.01 EURUSD 1.10149
+GD	0	15:29:19.575	Trades	'<demo-mt5>': deal #11206022324 sell 0.01 EURUSD at 1.10145 done (based on order #11444777195)
+PG	0	15:29:19.577	Trades	'<demo-mt5>': order #11444777195 sell 0.01 / 0.01 EURUSD at 1.10145 done in 250.703 ms
+PD	0	15:29:30.916	Trades	'<demo-mt5>': market buy 0.01 EURUSD
+ON	0	15:29:31.161	Trades	'<demo-mt5>': deal #11206025034 buy 0.01 EURUSD at 1.10149 done (based on order #11444779629)
+OO	0	15:29:31.162	Trades	'<demo-mt5>': accepted market buy 0.01 EURUSD
+PJ	0	15:29:31.163	Trades	'<demo-mt5>': order #11444779629 buy 0.01 / 0.01 EURUSD at 1.10149 done in 246.921 ms
+IS	0	15:31:58.124	Trades	'<demo-mt5>': market buy 0.02 EURUSD
+OI	0	15:31:58.367	Trades	'<demo-mt5>': deal #11206055918 buy 0.02 EURUSD at 1.10141 done (based on order #11444809453)
+GJ	0	15:31:58.367	Trades	'<demo-mt5>': accepted market buy 0.02 EURUSD
+LM	0	15:31:58.370	Trades	'<demo-mt5>': order #11444809453 buy 0.02 / 0.02 EURUSD at 1.10141 done in 246.076 ms
+PO	0	15:31:58.931	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444809453 buy 0.02 EURUSD 1.10141
+IQ	0	15:31:59.179	Trades	'<demo-mt5>': deal #11206056034 sell 0.01 EURUSD at 1.10138 done (based on order #11444809588)
+EQ	0	15:31:59.180	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444809453 buy 0.01 EURUSD 1.10141
+GK	0	15:31:59.180	Trades	'<demo-mt5>': order #11444809588 sell 0.01 / 0.01 EURUSD at 1.10138 done in 249.093 ms
+PF	0	15:32:33.374	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444809453 buy 0.01 EURUSD 1.10141
+CK	0	15:32:33.611	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444809453 buy 0.01 EURUSD 1.10141
+MI	0	15:32:33.612	Trades	'<demo-mt5>': deal #11206062468 sell 0.01 EURUSD at 1.10137 done (based on order #11444815842)
+DD	0	15:32:33.615	Trades	'<demo-mt5>': order #11444815842 sell 0.01 / 0.01 EURUSD at 1.10137 done in 241.549 ms
+EM	0	15:32:33.615	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444779629 buy 0.01 EURUSD 1.10149
+FS	0	15:32:33.860	Trades	'<demo-mt5>': deal #11206062504 sell 0.01 EURUSD at 1.10137 done (based on order #11444815881)
+DR	0	15:32:33.862	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD
+OG	0	15:32:33.863	Trades	'<demo-mt5>': order #11444815881 sell 0.01 / 0.01 EURUSD at 1.10137 done in 247.603 ms
+FD	0	15:32:34.635	Trades	'<demo-mt5>': market buy 0.01 EURUSD
+JN	0	15:32:34.882	Trades	'<demo-mt5>': deal #11206062683 buy 0.01 EURUSD at 1.10140 done (based on order #11444816058)
+JO	0	15:32:34.883	Trades	'<demo-mt5>': accepted market buy 0.01 EURUSD
+JK	0	15:32:34.883	Trades	'<demo-mt5>': order #11444816058 buy 0.01 / 0.01 EURUSD at 1.10140 done in 248.337 ms
+JO	0	15:32:41.359	Scripts	script LiveAgentMT5 (EURUSD,M1) removed
+RK	0	15:32:41.390	Experts	expert MasterMT5 (EURUSD,M1) removed
+EM	0	15:32:43.718	Terminal	exit with code 0
+PJ	0	15:32:44.213	Network	'<demo-mt5>': disconnected from MetaQuotes-Demo
+EP	0	15:32:44.294	Terminal	stopped with 0
+QK	0	15:32:44.411	Terminal	shutdown with 0
+GS	0	15:33:09.872	Startup	successfully initialized from start config "<scratch>\cp-live-mt5-443c8fc5.ini"
+PD	0	15:33:09.898	Terminal	MetaTrader 5 x64 build 6323 started for MetaQuotes Ltd.
+NO	0	15:33:09.898	Terminal	<system details>
+II	0	15:33:09.898	Terminal	<MT5 data>
+QQ	0	15:33:09.898	Terminal	launched with <scratch>\cp-live-mt5-443c8fc5.ini
+ED	0	15:33:09.899	MCP	started on <ip>:22346
+RP	0	15:33:11.135	MQL5	1 inputs read from expert 'CopierProof\MasterMT5' set file "<MT5 data>\MQL5\Presets\CopierProof-B-master.set"
+LE	0	15:33:11.143	Experts	expert MasterMT5 (EURUSD,M1) loaded successfully
+DS	0	15:33:11.151	Scripts	script LiveAgentMT5 (EURUSD,M1) loaded successfully
+CS	0	15:33:11.381	Network	'<demo-mt5>': authorized on MetaQuotes-Demo through <access point> (ping: 242.68 ms, build 6323)
+GN	0	15:33:11.381	Network	'<demo-mt5>': previous successful authorization performed from <ip> on 2026.11.17 20:28:58
+JO	0	15:33:11.789	Network	'<demo-mt5>': terminal synchronized with MetaQuotes Ltd.: 1 positions, 0 orders, 12143 symbols, 0 spreads
+HQ	0	15:33:11.790	Network	'<demo-mt5>': trading has been enabled, demo account - hedging mode
+NE	0	15:33:11.790	Network	'<demo-mt5>': balance management has been disabled - demo account
+EP	0	15:33:11.824	Trades	use MetaTrader VPS Hosting Service to speed up the execution: 0.12 ms via 'VPS Amsterdam 15' instead of 239.63 ms
+QJ	0	15:33:22.127	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444816058 buy 0.01 EURUSD 1.10140
+FO	0	15:33:22.372	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444816058 buy 0.01 EURUSD 1.10140
+HM	0	15:33:22.372	Trades	'<demo-mt5>': deal #11206071973 sell 0.01 EURUSD at 1.10135 done (based on order #11444825063)
+HP	0	15:33:22.379	Trades	'<demo-mt5>': order #11444825063 sell 0.01 / 0.01 EURUSD at 1.10135 done in 251.957 ms
+PO	0	15:33:28.879	Trades	'<demo-mt5>': market buy 0.01 EURUSD
+DF	0	15:33:29.126	Trades	'<demo-mt5>': deal #11206073019 buy 0.01 EURUSD at 1.10139 done (based on order #11444826036)
+DG	0	15:33:29.127	Trades	'<demo-mt5>': accepted market buy 0.01 EURUSD
+NR	0	15:33:29.130	Trades	'<demo-mt5>': order #11444826036 buy 0.01 / 0.01 EURUSD at 1.10139 done in 251.718 ms
+KE	0	15:33:29.189	Trades	'<demo-mt5>': market sell 0.01 EURUSD
+PO	0	15:33:29.433	Trades	'<demo-mt5>': deal #11206073090 sell 0.01 EURUSD at 1.10136 done (based on order #11444826107)
+FN	0	15:33:29.433	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD
+OK	0	15:33:29.435	Trades	'<demo-mt5>': order #11444826107 sell 0.01 / 0.01 EURUSD at 1.10136 done in 246.117 ms
+NF	0	15:33:32.092	Trades	'<demo-mt5>': market buy 0.01 EURUSD, close #11444826107 sell 0.01 EURUSD 1.10136
+DE	0	15:33:32.346	Trades	'<demo-mt5>': deal #11206073498 buy 0.01 EURUSD at 1.10139 done (based on order #11444826510)
+KF	0	15:33:32.346	Trades	'<demo-mt5>': accepted market buy 0.01 EURUSD
+QQ	0	15:33:32.346	Trades	'<demo-mt5>': order #11444826510 buy 0.01 / 0.01 EURUSD at 1.10139 done in 254.712 ms
+OS	0	15:33:32.347	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444826036 buy 0.01 EURUSD 1.10139
+RD	0	15:33:32.585	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444826036 buy 0.01 EURUSD 1.10139
+ND	0	15:33:32.585	Trades	'<demo-mt5>': deal #11206073539 sell 0.01 EURUSD at 1.10136 done (based on order #11444826552)
+EG	0	15:33:32.587	Trades	'<demo-mt5>': order #11444826552 sell 0.01 / 0.01 EURUSD at 1.10136 done in 240.856 ms
+GH	0	15:33:34.986	Scripts	script LiveAgentMT5 (EURUSD,M1) removed
+IM	0	15:33:35.018	Experts	expert MasterMT5 (EURUSD,M1) removed
+IK	0	15:33:37.055	Terminal	exit with code 0
+CI	0	15:33:37.202	Network	'<demo-mt5>': disconnected from MetaQuotes-Demo
+KF	0	15:33:37.338	Terminal	stopped with 0
+RE	0	15:33:37.448	Terminal	shutdown with 0

@@ -1,0 +1,15 @@
+scenario;master_action;master_id;master_time;slave_action;slave_time;delay_ms;counted
+b;OPEN;1644100348;15:20:35.026;limit (initial entry as limit);15:20:35.400;374;yes
+b;CLOSE;1644100348;15:20:38.846;delete (master closed before the limit filled);15:20:39.389;543;yes
+a;OPEN;1644100401;15:20:51.469;limit (initial entry as limit);15:20:51.980;511;yes
+d;OPEN;1644100608;15:22:06.290;market (add-on copied at market);15:22:06.772;482;yes
+e;CLOSE;1644100608;15:22:07.115;close (master partial close);15:22:07.565;450;yes
+f;CLOSE;1644100608;15:22:42.028;close (master closed);15:22:42.497;469;yes
+f;CLOSE;1644100401;15:22:42.339;close (master closed);15:22:42.899;560;yes
+h;OPEN;1644100706;15:22:43.309;limit (initial entry as limit);15:22:43.930;621;yes
+h;CLOSE;1644100706;15:23:25.888;delete (master closed before the limit filled);15:23:26.492;604;yes
+c;OPEN;1644100829;15:23:33.551;market (limit price already reached: market);15:23:33.887;336;yes
+c;OPEN;1644100830;15:23:33.893;market (limit price already reached: market);15:23:34.286;393;yes
+c;CLOSE;1644100830;15:23:36.812;close (master closed);15:23:37.290;478;yes
+c;CLOSE;1644100829;15:23:37.111;close (master closed);15:23:37.535;424;yes
+# counted: 13 pairs; min 336 ms; median 478 ms; max 621 ms

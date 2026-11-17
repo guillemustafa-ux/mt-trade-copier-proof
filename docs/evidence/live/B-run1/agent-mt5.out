@@ -1,0 +1,8 @@
+1|OK|OPEN|ticket=11444709283|price=1.10165|lots=0.01
+2|OK|CLOSE|ticket=11444709283|closed=0.01|price=1.10161
+3|OK|OPEN|ticket=11444712709|price=1.10163|lots=0.01
+4|OK|OPEN|ticket=11444719863|price=1.10164|lots=0.02
+5|ERR|CLOSE|retcode=10009|done at 1.10164
+6|OK|FLAT|closed=2|deleted=0|failed=0
+7|OK|EXPORT|deals=15|orders=17
+8|OK|QUIT

@@ -1,0 +1,109 @@
+0	15:28:56.688	Expert CopierProof\SlaveMT4 EURUSD,M1: loaded successfully
+0	15:28:56.689	SlaveMT4 EURUSD,M1 inputs: InpChannel=liveB; InpMagic=20261117; InpTicksBetter=200; InpLotMultiplier=1.0; InpSymbolMap=; InpMasterSuffix=; InpSlaveSuffix=; InpTimerMs=200; InpStaleSeconds=10; InpSlippagePoints=10; InpRetrySeconds=2; 
+0	15:28:56.696	Script CopierProof\LiveAgentMT4 EURUSD,M1: loaded successfully
+0	15:28:56.726	LiveAgentMT4 EURUSD,M1: initialized
+0	15:28:57.115	SlaveMT4 EURUSD,M1: initialized
+0	15:28:59.993	LiveAgentMT4 EURUSD,M1: [LiveAgent] agent started on EURUSD: demo account, 0 open item(s)
+0	15:29:00.195	SlaveMT4 EURUSD,M1: initialized
+0	15:29:00.395	SlaveMT4 EURUSD,M1: [CopierProof] slave reading Common\Files\CopierProof\liveB.snap, ticket map CopierProof\liveB.slave-<demo-mt4>-20261117.map (1 link(s) loaded)
+0	15:29:00.395	SlaveMT4 EURUSD,M1: [CopierProof] following master session 1794940135
+2	15:29:16.146	SlaveMT4 EURUSD,M1: open #1644101979 buy limit 0.01 EURUSD at 1.09949 ok
+0	15:29:16.148	SlaveMT4 EURUSD,M1: [CopierProof] limit @1.09949000 master #11444776543 EURUSD buy 0.01 -> slave #1644101979 (initial entry as limit)
+0	15:29:16.177	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD order;1644101979;buy limit;EURUSD;0.01;1.09949;20261117;CP:11444776543
+2	15:29:20.023	SlaveMT4 EURUSD,M1: delete #1644101979 buy limit 0.01 EURUSD at 1.09949 sl: 0.00000 tp: 0.00000 ok
+0	15:29:20.023	SlaveMT4 EURUSD,M1: [CopierProof] delete slave #1644101979 master #11444776543 EURUSD buy 0.01 (master closed before the limit filled)
+0	15:29:20.039	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE order;1644101979;buy limit;EURUSD;0.01;1.09949;20261117;CP:11444776543
+0	15:29:25.133	LiveAgentMT4 EURUSD,M1: [LiveAgent] QUIT: closing this chart
+0	15:29:25.133	LiveAgentMT4 EURUSD,M1: uninit reason 0
+0	15:29:25.136	Script LiveAgentMT4 EURUSD,M1: removed
+0	15:29:25.139	SlaveMT4 EURUSD,M1: uninit reason 4
+0	15:29:25.151	Expert SlaveMT4 EURUSD,M1: removed
+0	15:29:27.329	Expert CopierProof\SlaveMT4 EURUSD,M1: loaded successfully
+0	15:29:27.330	SlaveMT4 EURUSD,M1 inputs: InpChannel=liveB; InpMagic=20261117; InpTicksBetter=3; InpLotMultiplier=1.0; InpSymbolMap=; InpMasterSuffix=; InpSlaveSuffix=; InpTimerMs=200; InpStaleSeconds=10; InpSlippagePoints=10; InpRetrySeconds=2; 
+0	15:29:27.336	Script CopierProof\LiveAgentMT4 EURUSD,M1: loaded successfully
+0	15:29:27.365	LiveAgentMT4 EURUSD,M1: initialized
+0	15:29:27.731	SlaveMT4 EURUSD,M1: initialized
+0	15:29:30.859	LiveAgentMT4 EURUSD,M1: [LiveAgent] agent started on EURUSD: demo account, 0 open item(s)
+0	15:29:31.044	SlaveMT4 EURUSD,M1: initialized
+0	15:29:31.243	SlaveMT4 EURUSD,M1: [CopierProof] slave reading Common\Files\CopierProof\liveB.snap, ticket map CopierProof\liveB.slave-<demo-mt4>-20261117.map (1 link(s) loaded)
+0	15:29:31.243	SlaveMT4 EURUSD,M1: [CopierProof] following master session 1794940135
+0	15:29:31.243	SlaveMT4 EURUSD,M1: [CopierProof] FAILED limit master #11444779629 EURUSD buy 0.01: OrderSend limit error 130
+2	15:29:33.360	SlaveMT4 EURUSD,M1: open #1644102033 buy limit 0.01 EURUSD at 1.10141 ok
+0	15:29:33.366	SlaveMT4 EURUSD,M1: [CopierProof] limit @1.10141000 master #11444779629 EURUSD buy 0.01 -> slave #1644102033 (initial entry as limit, moved to the broker's minimum distance)
+0	15:29:33.376	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD order;1644102033;buy limit;EURUSD;0.01;1.10141;20261117;CP:11444779629
+0	15:31:58.061	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644102033;buy;EURUSD;0.01;1.10141;20261117;CP:11444779629
+0	15:31:58.075	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE order;1644102033;buy limit;EURUSD;0.01;1.10141;20261117;CP:11444779629
+2	15:31:58.773	SlaveMT4 EURUSD,M1: open #1644102478 buy 0.02 EURUSD at 1.10140 ok
+0	15:31:58.779	SlaveMT4 EURUSD,M1: [CopierProof] market master #11444809453 EURUSD buy 0.02 -> slave #1644102478 (add-on copied at market)
+0	15:31:58.790	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644102478;buy;EURUSD;0.02;1.10140;20261117;CP:11444809453
+2	15:31:59.564	SlaveMT4 EURUSD,M1: close #1644102478 buy 0.01 EURUSD at 1.10140 at price 1.10138
+0	15:31:59.564	SlaveMT4 EURUSD,M1: [CopierProof] close slave #1644102478 master #11444809453 EURUSD buy 0.01 (master partial close)
+0	15:31:59.595	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644102481;buy;EURUSD;0.01;1.10140;20261117;from #1644102478
+0	15:31:59.603	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644102478;buy;EURUSD;0.02;1.10140;20261117;CP:11444809453
+0	15:32:02.741	LiveAgentMT4 EURUSD,M1: [LiveAgent] QUIT: closing this chart
+0	15:32:02.741	LiveAgentMT4 EURUSD,M1: uninit reason 0
+0	15:32:02.746	Script LiveAgentMT4 EURUSD,M1: removed
+0	15:32:02.774	SlaveMT4 EURUSD,M1: uninit reason 4
+0	15:32:02.789	Expert SlaveMT4 EURUSD,M1: removed
+0	15:32:09.967	Expert CopierProof\SlaveMT4 EURUSD,M1: loaded successfully
+0	15:32:09.967	SlaveMT4 EURUSD,M1 inputs: InpChannel=liveB; InpMagic=20261117; InpTicksBetter=3; InpLotMultiplier=1.0; InpSymbolMap=; InpMasterSuffix=; InpSlaveSuffix=; InpTimerMs=200; InpStaleSeconds=10; InpSlippagePoints=10; InpRetrySeconds=2; 
+0	15:32:09.974	Script CopierProof\LiveAgentMT4 EURUSD,M1: loaded successfully
+0	15:32:09.994	LiveAgentMT4 EURUSD,M1: initialized
+0	15:32:10.378	SlaveMT4 EURUSD,M1: initialized
+0	15:32:13.267	LiveAgentMT4 EURUSD,M1: [LiveAgent] agent started on EURUSD: demo account, 2 open item(s)
+0	15:32:13.368	SlaveMT4 EURUSD,M1: initialized
+0	15:32:13.567	SlaveMT4 EURUSD,M1: [CopierProof] slave reading Common\Files\CopierProof\liveB.snap, ticket map CopierProof\liveB.slave-<demo-mt4>-20261117.map (2 link(s) loaded)
+0	15:32:13.567	SlaveMT4 EURUSD,M1: [CopierProof] following master session 1794940135
+2	15:32:34.182	SlaveMT4 EURUSD,M1: close #1644102481 buy 0.01 EURUSD at 1.10140 at price 1.10137
+0	15:32:34.182	SlaveMT4 EURUSD,M1: [CopierProof] close slave #1644102481 master #11444809453 EURUSD buy 0.01 (master closed)
+0	15:32:34.214	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644102481;buy;EURUSD;0.01;1.10140;20261117;from #1644102478
+2	15:32:34.479	SlaveMT4 EURUSD,M1: close #1644102033 buy 0.01 EURUSD at 1.10141 at price 1.10137
+0	15:32:34.479	SlaveMT4 EURUSD,M1: [CopierProof] close slave #1644102033 master #11444779629 EURUSD buy 0.01 (master closed)
+0	15:32:34.494	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644102033;buy;EURUSD;0.01;1.10141;20261117;CP:11444779629
+0	15:32:35.119	SlaveMT4 EURUSD,M1: [CopierProof] FAILED limit master #11444816058 EURUSD buy 0.01: OrderSend limit error 130
+0	15:32:37.144	SlaveMT4 EURUSD,M1: [CopierProof] FAILED limit master #11444816058 EURUSD buy 0.01: OrderSend limit error 130
+0	15:32:39.177	SlaveMT4 EURUSD,M1: [CopierProof] FAILED limit master #11444816058 EURUSD buy 0.01: OrderSend limit error 130
+2	15:32:41.311	SlaveMT4 EURUSD,M1: open #1644102613 buy limit 0.01 EURUSD at 1.10133 ok
+0	15:32:41.312	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD order;1644102613;buy limit;EURUSD;0.01;1.10133;20261117;CP:11444816058
+0	15:32:41.313	SlaveMT4 EURUSD,M1: [CopierProof] limit @1.10133000 master #11444816058 EURUSD buy 0.01 -> slave #1644102613 (initial entry as limit, moved to the broker's minimum distance)
+0	15:32:52.181	SlaveMT4 EURUSD,M1: [CopierProof] master snapshot older than 10 s: master not running? no copies and no exits until it is back
+0	15:32:52.181	SlaveMT4 EURUSD,M1: [CopierProof] ALERT master snapshot older than 10 s: slave frozen, no copies and no exits until the master is back
+0	15:32:52.181	SlaveMT4 EURUSD,M1: Alert: [CopierProof] master snapshot older than 10 s: slave frozen, no copies and no exits until the master is back
+0	15:33:12.305	SlaveMT4 EURUSD,M1: [CopierProof] following master session 1794940135
+0	15:33:12.305	SlaveMT4 EURUSD,M1: [CopierProof] ALERT master snapshot fresh again: slave resumed
+0	15:33:12.305	SlaveMT4 EURUSD,M1: Alert: [CopierProof] master snapshot fresh again: slave resumed
+2	15:33:22.953	SlaveMT4 EURUSD,M1: delete #1644102613 buy limit 0.01 EURUSD at 1.10133 sl: 0.00000 tp: 0.00000 ok
+0	15:33:22.953	SlaveMT4 EURUSD,M1: [CopierProof] delete slave #1644102613 master #11444816058 EURUSD buy 0.01 (master closed before the limit filled)
+0	15:33:22.968	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE order;1644102613;buy limit;EURUSD;0.01;1.10133;20261117;CP:11444816058
+0	15:33:23.095	LiveAgentMT4 EURUSD,M1: [LiveAgent] QUIT: closing this chart
+0	15:33:23.096	LiveAgentMT4 EURUSD,M1: uninit reason 0
+0	15:33:23.099	Script LiveAgentMT4 EURUSD,M1: removed
+0	15:33:23.101	SlaveMT4 EURUSD,M1: uninit reason 4
+0	15:33:23.111	Expert SlaveMT4 EURUSD,M1: removed
+0	15:33:25.112	Expert CopierProof\SlaveMT4 EURUSD,M1: loaded successfully
+0	15:33:25.113	SlaveMT4 EURUSD,M1 inputs: InpChannel=liveB; InpMagic=20261117; InpTicksBetter=0; InpLotMultiplier=1.0; InpSymbolMap=; InpMasterSuffix=; InpSlaveSuffix=; InpTimerMs=200; InpStaleSeconds=10; InpSlippagePoints=10; InpRetrySeconds=2; 
+0	15:33:25.119	Script CopierProof\LiveAgentMT4 EURUSD,M1: loaded successfully
+0	15:33:25.139	LiveAgentMT4 EURUSD,M1: initialized
+0	15:33:25.489	SlaveMT4 EURUSD,M1: initialized
+0	15:33:28.832	LiveAgentMT4 EURUSD,M1: [LiveAgent] agent started on EURUSD: demo account, 0 open item(s)
+0	15:33:28.960	SlaveMT4 EURUSD,M1: initialized
+0	15:33:29.158	SlaveMT4 EURUSD,M1: [CopierProof] slave reading Common\Files\CopierProof\liveB.snap, ticket map CopierProof\liveB.slave-<demo-mt4>-20261117.map (1 link(s) loaded)
+0	15:33:29.158	SlaveMT4 EURUSD,M1: [CopierProof] following master session 1794940135
+2	15:33:29.688	SlaveMT4 EURUSD,M1: open #1644102728 buy 0.01 EURUSD at 1.10139 ok
+0	15:33:29.691	SlaveMT4 EURUSD,M1: [CopierProof] market master #11444826036 EURUSD buy 0.01 -> slave #1644102728 (limit price already reached: market)
+0	15:33:29.704	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644102728;buy;EURUSD;0.01;1.10139;20261117;CP:11444826036
+2	15:33:29.999	SlaveMT4 EURUSD,M1: open #1644102730 sell 0.01 EURUSD at 1.10136 ok
+0	15:33:30.003	SlaveMT4 EURUSD,M1: [CopierProof] market master #11444826107 EURUSD sell 0.01 -> slave #1644102730 (limit price already reached: market)
+0	15:33:30.014	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644102730;sell;EURUSD;0.01;1.10136;20261117;CP:11444826107
+2	15:33:32.948	SlaveMT4 EURUSD,M1: close #1644102730 sell 0.01 EURUSD at 1.10136 at price 1.10140
+0	15:33:32.948	SlaveMT4 EURUSD,M1: [CopierProof] close slave #1644102730 master #11444826107 EURUSD sell 0.01 (master closed)
+0	15:33:32.980	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644102730;sell;EURUSD;0.01;1.10136;20261117;CP:11444826107
+2	15:33:33.245	SlaveMT4 EURUSD,M1: close #1644102728 buy 0.01 EURUSD at 1.10139 at price 1.10136
+0	15:33:33.245	SlaveMT4 EURUSD,M1: [CopierProof] close slave #1644102728 master #11444826036 EURUSD buy 0.01 (master closed)
+0	15:33:33.260	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644102728;buy;EURUSD;0.01;1.10139;20261117;CP:11444826036
+0	15:33:33.479	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 4 EXPORT: OK|orders=9
+0	15:33:33.572	LiveAgentMT4 EURUSD,M1: [LiveAgent] QUIT: closing this chart
+0	15:33:33.572	LiveAgentMT4 EURUSD,M1: uninit reason 0
+0	15:33:33.575	Script LiveAgentMT4 EURUSD,M1: removed
+0	15:33:33.577	SlaveMT4 EURUSD,M1: uninit reason 4
+0	15:33:33.590	Expert SlaveMT4 EURUSD,M1: removed

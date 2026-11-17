@@ -1,0 +1,45 @@
+NM	0	15:24:18.339	Startup	successfully initialized from start config "<scratch>\cp-live-mt5-acc50e40.ini"
+FI	0	15:24:18.364	Terminal	MetaTrader 5 x64 build 6323 started for MetaQuotes Ltd.
+HJ	0	15:24:18.365	Terminal	<system details>
+LJ	0	15:24:18.365	Terminal	<MT5 data>
+OK	0	15:24:18.365	Terminal	launched with <scratch>\cp-live-mt5-acc50e40.ini
+RG	0	15:24:18.366	MCP	started on <ip>:22346
+DM	0	15:24:19.513	MQL5	1 inputs read from expert 'CopierProof\MasterMT5' set file "<MT5 data>\MQL5\Presets\CopierProof-B-master.set"
+GP	0	15:24:19.522	Experts	expert MasterMT5 (EURUSD,M1) loaded successfully
+OD	0	15:24:19.530	Scripts	script LiveAgentMT5 (EURUSD,M1) loaded successfully
+HP	0	15:24:19.818	Network	'<demo-mt5>': authorized on MetaQuotes-Demo through <access point> (ping: 242.68 ms, build 6323)
+DM	0	15:24:19.818	Network	'<demo-mt5>': previous successful authorization performed from <ip> on 2026.11.17 20:23:35
+FL	0	15:24:20.236	Network	'<demo-mt5>': terminal synchronized with MetaQuotes Ltd.: 0 positions, 0 orders, 12143 symbols, 0 spreads
+KR	0	15:24:20.236	Network	'<demo-mt5>': trading has been enabled, demo account - hedging mode
+IF	0	15:24:20.236	Network	'<demo-mt5>': balance management has been disabled - demo account
+GE	0	15:24:20.268	Trades	use MetaTrader VPS Hosting Service to speed up the execution: 0.12 ms via 'VPS Amsterdam 15' instead of 239.63 ms
+NI	0	15:24:40.068	Trades	'<demo-mt5>': market buy 0.01 EURUSD
+JS	0	15:24:40.315	Trades	'<demo-mt5>': accepted market buy 0.01 EURUSD
+PK	0	15:24:40.315	Trades	'<demo-mt5>': deal #11205950399 buy 0.01 EURUSD at 1.10165 done (based on order #11444709283)
+QH	0	15:24:40.321	Trades	'<demo-mt5>': order #11444709283 buy 0.01 / 0.01 EURUSD at 1.10165 done in 253.047 ms
+DJ	0	15:24:44.032	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444709283 buy 0.01 EURUSD 1.10165
+MN	0	15:24:44.274	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444709283 buy 0.01 EURUSD 1.10165
+MM	0	15:24:44.274	Trades	'<demo-mt5>': deal #11205951187 sell 0.01 EURUSD at 1.10161 done (based on order #11444710002)
+RP	0	15:24:44.274	Trades	'<demo-mt5>': order #11444710002 sell 0.01 / 0.01 EURUSD at 1.10161 done in 242.693 ms
+NO	0	15:24:56.173	Trades	'<demo-mt5>': market buy 0.01 EURUSD
+ME	0	15:24:56.419	Trades	'<demo-mt5>': deal #11205954049 buy 0.01 EURUSD at 1.10163 done (based on order #11444712709)
+LF	0	15:24:56.419	Trades	'<demo-mt5>': accepted market buy 0.01 EURUSD
+LQ	0	15:24:56.420	Trades	'<demo-mt5>': order #11444712709 buy 0.01 / 0.01 EURUSD at 1.10163 done in 247.034 ms
+NJ	0	15:25:26.521	Trades	'<demo-mt5>': market buy 0.02 EURUSD
+KP	0	15:25:26.765	Trades	'<demo-mt5>': deal #11205961566 buy 0.02 EURUSD at 1.10164 done (based on order #11444719863)
+PQ	0	15:25:26.766	Trades	'<demo-mt5>': accepted market buy 0.02 EURUSD
+RD	0	15:25:26.768	Trades	'<demo-mt5>': order #11444719863 buy 0.02 / 0.02 EURUSD at 1.10164 done in 247.032 ms
+QF	0	15:25:27.426	Trades	'<demo-mt5>': market sell 0.02 EURUSD, close #11444719863 buy 0.02 EURUSD 1.10164
+OJ	0	15:25:27.675	Trades	'<demo-mt5>': deal #11205961777 sell 0.02 EURUSD at 1.10161 done (based on order #11444720049)
+KI	0	15:25:27.678	Trades	'<demo-mt5>': accepted market sell 0.02 EURUSD
+GN	0	15:25:27.680	Trades	'<demo-mt5>': order #11444720049 sell 0.02 / 0.02 EURUSD at 1.10161 done in 254.731 ms
+DS	0	15:25:27.680	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444712709 buy 0.01 EURUSD 1.10163
+MG	0	15:25:27.925	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444712709 buy 0.01 EURUSD 1.10163
+LD	0	15:25:27.925	Trades	'<demo-mt5>': deal #11205961824 sell 0.01 EURUSD at 1.10161 done (based on order #11444720093)
+GG	0	15:25:27.925	Trades	'<demo-mt5>': order #11444720093 sell 0.01 / 0.01 EURUSD at 1.10161 done in 245.055 ms
+RH	0	15:25:29.856	Scripts	script LiveAgentMT5 (EURUSD,M1) removed
+JM	0	15:25:29.886	Experts	expert MasterMT5 (EURUSD,M1) removed
+NK	0	15:25:31.899	Terminal	exit with code 0
+MI	0	15:25:32.136	Network	'<demo-mt5>': disconnected from MetaQuotes-Demo
+DF	0	15:25:32.214	Terminal	stopped with 0
+KF	0	15:25:32.320	Terminal	shutdown with 0

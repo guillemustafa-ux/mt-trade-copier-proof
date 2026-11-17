@@ -1,0 +1,55 @@
+EL	0	15:11:57.169	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] agent started on EURUSD: demo account, 0 open item(s)
+QE	0	15:11:57.324	SlaveMT5 (EURUSD,M1)	[CopierProof] slave reading Common\Files\CopierProof\liveA.snap, ticket map CopierProof\liveA.slave-<demo-mt5>-20261117.map (0 link(s) loaded)
+NR	0	15:11:57.324	SlaveMT5 (EURUSD,M1)	[CopierProof] following master session 1794939114
+IP	0	15:12:13.573	SlaveMT5 (EURUSD,M1)	[CopierProof] limit @1.10015000 master #1644098746 EURUSD buy 0.01 -> slave #11444570567 (initial entry as limit)
+EO	0	15:12:13.573	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD order;11444570567;buy limit;EURUSD;0.01;1.10015;20261117;CP:1644098746
+CN	0	15:12:17.567	SlaveMT5 (EURUSD,M1)	[CopierProof] delete slave #11444570567 master #1644098746 EURUSD buy 0.01 (master closed before the limit filled)
+DO	0	15:12:17.585	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE order;11444570567;buy limit;EURUSD;0.01;1.10015;20261117;CP:1644098746
+MP	0	15:12:22.722	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] QUIT: closing this chart
+CM	0	15:12:28.076	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] agent started on EURUSD: demo account, 0 open item(s)
+MD	0	15:12:28.371	SlaveMT5 (EURUSD,M1)	[CopierProof] slave reading Common\Files\CopierProof\liveA.snap, ticket map CopierProof\liveA.slave-<demo-mt5>-20261117.map (1 link(s) loaded)
+IQ	0	15:12:28.371	SlaveMT5 (EURUSD,M1)	[CopierProof] following master session 1794939114
+IQ	0	15:12:29.022	SlaveMT5 (EURUSD,M1)	[CopierProof] limit @1.10210000 master #1644098830 EURUSD buy 0.01 -> slave #11444576683 (initial entry as limit)
+DP	0	15:12:29.038	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD order;11444576683;buy limit;EURUSD;0.01;1.10210;20261117;CP:1644098830
+DS	0	15:12:58.243	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD position;11444576683;buy;EURUSD;0.01;1.10210;20261117;CP:1644098830
+MM	0	15:12:58.248	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE order;11444576683;buy limit;EURUSD;0.01;1.10210;20261117;CP:1644098830
+FO	0	15:12:59.422	SlaveMT5 (EURUSD,M1)	[CopierProof] market master #1644098947 EURUSD buy 0.02 -> slave #11444583963 (add-on copied at market)
+DQ	0	15:12:59.423	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD position;11444583963;buy;EURUSD;0.02;1.10210;20261117;CP:1644098947
+DN	0	15:13:00.228	SlaveMT5 (EURUSD,M1)	[CopierProof] close slave #11444583963 master #1644098947 EURUSD buy 0.01 (master partial close)
+KH	0	15:13:00.233	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] CHANGE position;11444583963;buy;EURUSD;0.01;1.10210;20261117;
+RP	0	15:13:03.363	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] QUIT: closing this chart
+OM	0	15:13:14.201	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] agent started on EURUSD: demo account, 2 open item(s)
+QD	0	15:13:14.493	SlaveMT5 (EURUSD,M1)	[CopierProof] slave reading Common\Files\CopierProof\liveA.snap, ticket map CopierProof\liveA.slave-<demo-mt5>-20261117.map (2 link(s) loaded)
+DQ	0	15:13:14.493	SlaveMT5 (EURUSD,M1)	[CopierProof] following master session 1794939114
+RM	0	15:13:35.136	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD order;11444591126;sell;EURUSD;0.01;0.00000;20261117;
+RE	0	15:13:35.144	SlaveMT5 (EURUSD,M1)	[CopierProof] close slave #11444583963 master #1644098947 EURUSD buy 0.01 (master closed)
+LG	0	15:13:35.167	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE position;11444583963;buy;EURUSD;0.01;1.10210;20261117;
+EF	0	15:13:35.173	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE order;11444591126;sell;EURUSD;0.01;0.00000;20261117;
+MF	0	15:13:35.394	SlaveMT5 (EURUSD,M1)	[CopierProof] close slave #11444576683 master #1644098830 EURUSD buy 0.01 (master closed)
+GF	0	15:13:35.417	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE position;11444576683;buy;EURUSD;0.01;1.10210;20261117;CP:1644098830
+DE	0	15:13:36.347	SlaveMT5 (EURUSD,M1)	[CopierProof] limit @1.10201000 master #1644099083 EURUSD buy 0.01 -> slave #11444591315 (initial entry as limit)
+KL	0	15:13:36.353	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD order;11444591315;buy limit;EURUSD;0.01;1.10201;20261117;CP:1644099083
+HQ	0	15:14:16.081	SlaveMT5 (EURUSD,M1)	[CopierProof] master snapshot older than 10 s: master not running? no copies and no exits until it is back
+FL	0	15:14:16.081	SlaveMT5 (EURUSD,M1)	[CopierProof] ALERT master snapshot older than 10 s: slave frozen, no copies and no exits until the master is back
+RR	0	15:14:16.081	SlaveMT5 (EURUSD,M1)	Alert: [CopierProof] master snapshot older than 10 s: slave frozen, no copies and no exits until the master is back
+DF	0	15:14:36.672	SlaveMT5 (EURUSD,M1)	[CopierProof] following master session 1794939114
+ON	0	15:14:36.672	SlaveMT5 (EURUSD,M1)	[CopierProof] ALERT master snapshot fresh again: slave resumed
+GR	0	15:14:36.672	SlaveMT5 (EURUSD,M1)	Alert: [CopierProof] master snapshot fresh again: slave resumed
+PJ	0	15:14:47.117	SlaveMT5 (EURUSD,M1)	[CopierProof] delete slave #11444591315 master #1644099083 EURUSD buy 0.01 (master closed before the limit filled)
+LR	0	15:14:47.140	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE order;11444591315;buy limit;EURUSD;0.01;1.10201;20261117;CP:1644099083
+RM	0	15:14:47.234	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] QUIT: closing this chart
+QI	0	15:16:08.689	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] agent started on EURUSD: demo account, 0 open item(s)
+RI	0	15:16:08.981	SlaveMT5 (EURUSD,M1)	[CopierProof] slave reading Common\Files\CopierProof\liveA.snap, ticket map CopierProof\liveA.slave-<demo-mt5>-20261117.map (1 link(s) loaded)
+NN	0	15:16:08.981	SlaveMT5 (EURUSD,M1)	[CopierProof] following master session 1794939114
+PD	0	15:16:09.227	SlaveMT5 (EURUSD,M1)	[CopierProof] limit @1.10202000 master #1644099282 EURUSD buy 0.01 -> slave #11444618083 (initial entry as limit)
+OL	0	15:16:09.244	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD order;11444618083;buy limit;EURUSD;0.01;1.10202;20261117;CP:1644099282
+GO	0	15:16:09.478	SlaveMT5 (EURUSD,M1)	[CopierProof] limit @1.10211000 master #1644099284 EURUSD sell 0.01 -> slave #11444618118 (initial entry as limit)
+FP	0	15:16:09.493	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD order;11444618118;sell limit;EURUSD;0.01;1.10211;20261117;CP:1644099284
+PR	0	15:16:11.590	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] ADD position;11444618083;buy;EURUSD;0.01;1.10202;20261117;CP:1644099282
+NL	0	15:16:11.596	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE order;11444618083;buy limit;EURUSD;0.01;1.10202;20261117;CP:1644099282
+JN	0	15:16:41.533	SlaveMT5 (EURUSD,M1)	[CopierProof] delete slave #11444618118 master #1644099284 EURUSD sell 0.01 (master closed before the limit filled)
+KG	0	15:16:41.553	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE order;11444618118;sell limit;EURUSD;0.01;1.10211;20261117;CP:1644099284
+GJ	0	15:16:41.782	SlaveMT5 (EURUSD,M1)	[CopierProof] close slave #11444618083 master #1644099282 EURUSD buy 0.01 (master closed)
+LK	0	15:16:41.801	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] GONE position;11444618083;buy;EURUSD;0.01;1.10202;20261117;CP:1644099282
+OF	0	15:16:41.960	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] command 4 EXPORT: OK|deals=7|orders=10
+FR	0	15:16:42.031	LiveAgentMT5 (EURUSD,M1)	[LiveAgent] QUIT: closing this chart

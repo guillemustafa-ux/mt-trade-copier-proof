@@ -1,0 +1,130 @@
+PS	0	15:11:55.104	Startup	successfully initialized from start config "<scratch>\cp-live-mt5-7ee22e9a.ini"
+PH	0	15:11:55.129	Terminal	MetaTrader 5 x64 build 6323 started for MetaQuotes Ltd.
+NH	0	15:11:55.129	Terminal	<system details>
+IE	0	15:11:55.129	Terminal	<MT5 data>
+OH	0	15:11:55.129	Terminal	launched with <scratch>\cp-live-mt5-7ee22e9a.ini
+MQ	0	15:11:55.131	MCP	started on <ip>:22346
+GR	0	15:11:56.299	MQL5	2 inputs read from expert 'CopierProof\SlaveMT5' set file "<MT5 data>\MQL5\Presets\CopierProof-A-slave-x200.set"
+MN	0	15:11:56.308	Experts	expert SlaveMT5 (EURUSD,M1) loaded successfully
+KF	0	15:11:56.317	Scripts	script LiveAgentMT5 (EURUSD,M1) loaded successfully
+FN	0	15:11:56.590	Network	'<demo-mt5>': authorized on MetaQuotes-Demo through <access point> (ping: 242.68 ms, build 6323)
+DR	0	15:11:56.590	Network	'<demo-mt5>': previous successful authorization performed from <ip> on 2026.11.17 20:10:08
+DS	0	15:11:56.989	Network	'<demo-mt5>': terminal synchronized with MetaQuotes Ltd.: 0 positions, 0 orders, 12143 symbols, 0 spreads
+ML	0	15:11:56.989	Network	'<demo-mt5>': trading has been enabled, demo account - hedging mode
+GQ	0	15:11:56.989	Network	'<demo-mt5>': balance management has been disabled - demo account
+OK	0	15:11:57.019	Trades	use MetaTrader VPS Hosting Service to speed up the execution: 0.12 ms via 'VPS Amsterdam 15' instead of 239.63 ms
+CD	0	15:12:13.323	Trades	'<demo-mt5>': buy limit 0.01 EURUSD at 1.10015
+JM	0	15:12:13.567	Trades	'<demo-mt5>': accepted buy limit 0.01 EURUSD at 1.10015
+GO	0	15:12:13.567	Trades	'<demo-mt5>': order #11444570567 buy limit 0.01 / 0.01 EURUSD at 1.10015 done in 244.789 ms
+MK	0	15:12:17.320	Trades	'<demo-mt5>': cancel order #11444570567 buy limit 0.01 EURUSD at 1.10015
+QH	0	15:12:17.567	Trades	'<demo-mt5>': accepted cancel order #11444570567 buy 0  at market
+KN	0	15:12:17.567	Trades	'<demo-mt5>': cancel #11444570567 buy limit 0.01 EURUSD at market done in 246.691 ms
+GL	0	15:12:22.722	Scripts	script LiveAgentMT5 (EURUSD,M1) removed
+IF	0	15:12:22.753	Experts	expert SlaveMT5 (EURUSD,M1) removed
+OO	0	15:12:24.720	Terminal	exit with code 0
+LD	0	15:12:25.461	Network	'<demo-mt5>': disconnected from MetaQuotes-Demo
+KR	0	15:12:25.543	Terminal	stopped with 0
+FI	0	15:12:25.662	Terminal	shutdown with 0
+DI	0	15:12:26.105	Startup	successfully initialized from start config "<scratch>\cp-live-mt5-b0645d14.ini"
+IF	0	15:12:26.129	Terminal	MetaTrader 5 x64 build 6323 started for MetaQuotes Ltd.
+CQ	0	15:12:26.129	Terminal	<system details>
+HO	0	15:12:26.129	Terminal	<MT5 data>
+DN	0	15:12:26.129	Terminal	launched with <scratch>\cp-live-mt5-b0645d14.ini
+KK	0	15:12:26.130	MCP	started on <ip>:22346
+OL	0	15:12:27.241	MQL5	2 inputs read from expert 'CopierProof\SlaveMT5' set file "<MT5 data>\MQL5\Presets\CopierProof-A-slave-x6.set"
+FD	0	15:12:27.249	Experts	expert SlaveMT5 (EURUSD,M1) loaded successfully
+DQ	0	15:12:27.256	Scripts	script LiveAgentMT5 (EURUSD,M1) loaded successfully
+CE	0	15:12:27.604	Network	'<demo-mt5>': authorized on MetaQuotes-Demo through <access point> (ping: 242.68 ms, build 6323)
+JH	0	15:12:27.604	Network	'<demo-mt5>': previous successful authorization performed from <ip> on 2026.11.17 20:11:59
+FI	0	15:12:28.008	Network	'<demo-mt5>': terminal synchronized with MetaQuotes Ltd.: 0 positions, 0 orders, 12143 symbols, 0 spreads
+KG	0	15:12:28.008	Network	'<demo-mt5>': trading has been enabled, demo account - hedging mode
+IK	0	15:12:28.008	Network	'<demo-mt5>': balance management has been disabled - demo account
+PR	0	15:12:28.039	Trades	use MetaTrader VPS Hosting Service to speed up the execution: 0.12 ms via 'VPS Amsterdam 15' instead of 239.63 ms
+DN	0	15:12:28.774	Trades	'<demo-mt5>': buy limit 0.01 EURUSD at 1.10210
+JS	0	15:12:29.020	Trades	'<demo-mt5>': accepted buy limit 0.01 EURUSD at 1.10210
+HD	0	15:12:29.020	Trades	'<demo-mt5>': order #11444576683 buy limit 0.01 / 0.01 EURUSD at 1.10210 done in 246.497 ms
+LF	0	15:12:58.223	Trades	'<demo-mt5>': deal #11205819572 buy 0.01 EURUSD at 1.10210 done (based on order #11444576683)
+RE	0	15:12:59.176	Trades	'<demo-mt5>': market buy 0.02 EURUSD
+FH	0	15:12:59.418	Trades	'<demo-mt5>': deal #11205819883 buy 0.02 EURUSD at 1.10210 done (based on order #11444583963)
+KI	0	15:12:59.419	Trades	'<demo-mt5>': accepted market buy 0.02 EURUSD
+JL	0	15:12:59.420	Trades	'<demo-mt5>': order #11444583963 buy 0.02 / 0.02 EURUSD at 1.10210 done in 244.502 ms
+JN	0	15:12:59.984	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444583963 buy 0.02 EURUSD 1.10210
+KR	0	15:13:00.227	Trades	'<demo-mt5>': deal #11205820029 sell 0.01 EURUSD at 1.10207 done (based on order #11444584109)
+RP	0	15:13:00.228	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444583963 buy 0.01 EURUSD 1.10210
+NL	0	15:13:00.228	Trades	'<demo-mt5>': order #11444584109 sell 0.01 / 0.01 EURUSD at 1.10207 done in 244.810 ms
+FG	0	15:13:03.363	Scripts	script LiveAgentMT5 (EURUSD,M1) removed
+CM	0	15:13:03.393	Experts	expert SlaveMT5 (EURUSD,M1) removed
+GD	0	15:13:05.553	Terminal	exit with code 0
+RR	0	15:13:06.559	Network	'<demo-mt5>': disconnected from MetaQuotes-Demo
+RK	0	15:13:06.643	Terminal	stopped with 0
+HR	0	15:13:06.761	Terminal	shutdown with 0
+HF	0	15:13:12.237	Startup	successfully initialized from start config "<scratch>\cp-live-mt5-c8a93011.ini"
+FM	0	15:13:12.261	Terminal	MetaTrader 5 x64 build 6323 started for MetaQuotes Ltd.
+IG	0	15:13:12.262	Terminal	<system details>
+NF	0	15:13:12.262	Terminal	<MT5 data>
+NG	0	15:13:12.262	Terminal	launched with <scratch>\cp-live-mt5-c8a93011.ini
+RL	0	15:13:12.263	MCP	started on <ip>:22346
+IG	0	15:13:13.337	MQL5	2 inputs read from expert 'CopierProof\SlaveMT5' set file "<MT5 data>\MQL5\Presets\CopierProof-A-slave-x6.set"
+HS	0	15:13:13.344	Experts	expert SlaveMT5 (EURUSD,M1) loaded successfully
+JH	0	15:13:13.353	Scripts	script LiveAgentMT5 (EURUSD,M1) loaded successfully
+JL	0	15:13:13.722	Network	'<demo-mt5>': authorized on MetaQuotes-Demo through <access point> (ping: 242.68 ms, build 6323)
+GQ	0	15:13:13.722	Network	'<demo-mt5>': previous successful authorization performed from <ip> on 2026.11.17 20:12:30
+LP	0	15:13:14.129	Network	'<demo-mt5>': terminal synchronized with MetaQuotes Ltd.: 2 positions, 0 orders, 12143 symbols, 0 spreads
+CN	0	15:13:14.129	Network	'<demo-mt5>': trading has been enabled, demo account - hedging mode
+IR	0	15:13:14.129	Network	'<demo-mt5>': balance management has been disabled - demo account
+CH	0	15:13:14.162	Trades	use MetaTrader VPS Hosting Service to speed up the execution: 0.12 ms via 'VPS Amsterdam 15' instead of 239.63 ms
+QS	0	15:13:34.889	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444583963 buy 0.01 EURUSD 1.10210
+JG	0	15:13:35.138	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444583963 buy 0.01 EURUSD 1.10210
+CD	0	15:13:35.139	Trades	'<demo-mt5>': deal #11205827426 sell 0.01 EURUSD at 1.10204 done (based on order #11444591126)
+MG	0	15:13:35.143	Trades	'<demo-mt5>': order #11444591126 sell 0.01 / 0.01 EURUSD at 1.10204 done in 254.799 ms
+QJ	0	15:13:35.144	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444576683 buy 0.01 EURUSD 1.10210
+EO	0	15:13:35.390	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444576683 buy 0.01 EURUSD 1.10210
+RM	0	15:13:35.391	Trades	'<demo-mt5>': deal #11205827486 sell 0.01 EURUSD at 1.10204 done (based on order #11444591187)
+GP	0	15:13:35.394	Trades	'<demo-mt5>': order #11444591187 sell 0.01 / 0.01 EURUSD at 1.10204 done in 249.822 ms
+GS	0	15:13:36.087	Trades	'<demo-mt5>': buy limit 0.01 EURUSD at 1.10201
+LH	0	15:13:36.344	Trades	'<demo-mt5>': accepted buy limit 0.01 EURUSD at 1.10201
+NS	0	15:13:36.344	Trades	'<demo-mt5>': order #11444591315 buy limit 0.01 / 0.01 EURUSD at 1.10201 done in 258.134 ms
+EP	0	15:14:46.877	Trades	'<demo-mt5>': cancel order #11444591315 buy limit 0.01 EURUSD at 1.10201
+MS	0	15:14:47.117	Trades	'<demo-mt5>': accepted cancel order #11444591315 buy 0  at market
+DJ	0	15:14:47.117	Trades	'<demo-mt5>': cancel #11444591315 buy limit 0.01 EURUSD at market done in 241.004 ms
+NH	0	15:14:47.234	Scripts	script LiveAgentMT5 (EURUSD,M1) removed
+KR	0	15:14:47.266	Experts	expert SlaveMT5 (EURUSD,M1) removed
+LK	0	15:14:49.498	Terminal	exit with code 0
+EI	0	15:14:50.235	Network	'<demo-mt5>': disconnected from MetaQuotes-Demo
+GF	0	15:14:50.310	Terminal	stopped with 0
+LF	0	15:14:50.422	Terminal	shutdown with 0
+NP	0	15:16:06.712	Startup	successfully initialized from start config "<scratch>\cp-live-mt5-2f65d8b9.ini"
+DJ	0	15:16:06.737	Terminal	MetaTrader 5 x64 build 6323 started for MetaQuotes Ltd.
+LJ	0	15:16:06.738	Terminal	<system details>
+PJ	0	15:16:06.738	Terminal	<MT5 data>
+PF	0	15:16:06.738	Terminal	launched with <scratch>\cp-live-mt5-2f65d8b9.ini
+LG	0	15:16:06.739	MCP	started on <ip>:22346
+LP	0	15:16:07.840	MQL5	2 inputs read from expert 'CopierProof\SlaveMT5' set file "<MT5 data>\MQL5\Presets\CopierProof-A-slave-x6.set"
+LH	0	15:16:07.847	Experts	expert SlaveMT5 (EURUSD,M1) loaded successfully
+ID	0	15:16:07.855	Scripts	script LiveAgentMT5 (EURUSD,M1) loaded successfully
+IP	0	15:16:08.207	Network	'<demo-mt5>': authorized on MetaQuotes-Demo through <access point> (ping: 242.68 ms, build 6323)
+KL	0	15:16:08.207	Network	'<demo-mt5>': previous successful authorization performed from <ip> on 2026.11.17 20:13:16
+NM	0	15:16:08.619	Network	'<demo-mt5>': terminal synchronized with MetaQuotes Ltd.: 0 positions, 0 orders, 12143 symbols, 0 spreads
+CR	0	15:16:08.619	Network	'<demo-mt5>': trading has been enabled, demo account - hedging mode
+QG	0	15:16:08.619	Network	'<demo-mt5>': balance management has been disabled - demo account
+EE	0	15:16:08.649	Trades	use MetaTrader VPS Hosting Service to speed up the execution: 0.12 ms via 'VPS Amsterdam 15' instead of 239.63 ms
+KJ	0	15:16:08.981	Trades	'<demo-mt5>': buy limit 0.01 EURUSD at 1.10202
+PO	0	15:16:09.225	Trades	'<demo-mt5>': accepted buy limit 0.01 EURUSD at 1.10202
+NI	0	15:16:09.225	Trades	'<demo-mt5>': order #11444618083 buy limit 0.01 / 0.01 EURUSD at 1.10202 done in 243.701 ms
+CK	0	15:16:09.227	Trades	'<demo-mt5>': sell limit 0.01 EURUSD at 1.10211
+DR	0	15:16:09.472	Trades	'<demo-mt5>': accepted sell limit 0.01 EURUSD at 1.10211
+DP	0	15:16:09.472	Trades	'<demo-mt5>': order #11444618118 sell limit 0.01 / 0.01 EURUSD at 1.10211 done in 245.241 ms
+JH	0	15:16:11.563	Trades	'<demo-mt5>': deal #11205855826 buy 0.01 EURUSD at 1.10202 done (based on order #11444618083)
+ME	0	15:16:41.292	Trades	'<demo-mt5>': cancel order #11444618118 sell limit 0.01 EURUSD at 1.10211
+JH	0	15:16:41.533	Trades	'<demo-mt5>': accepted cancel order #11444618118 buy 0  at market
+PP	0	15:16:41.533	Trades	'<demo-mt5>': cancel #11444618118 sell limit 0.01 EURUSD at market done in 241.414 ms
+LO	0	15:16:41.534	Trades	'<demo-mt5>': market sell 0.01 EURUSD, close #11444618083 buy 0.01 EURUSD 1.10202
+FP	0	15:16:41.777	Trades	'<demo-mt5>': accepted market sell 0.01 EURUSD, close #11444618083 buy 0.01 EURUSD 1.10202
+NP	0	15:16:41.778	Trades	'<demo-mt5>': deal #11205861702 sell 0.01 EURUSD at 1.10201 done (based on order #11444623955)
+MK	0	15:16:41.782	Trades	'<demo-mt5>': order #11444623955 sell 0.01 / 0.01 EURUSD at 1.10201 done in 247.760 ms
+DD	0	15:16:42.031	Scripts	script LiveAgentMT5 (EURUSD,M1) removed
+NN	0	15:16:42.066	Experts	expert SlaveMT5 (EURUSD,M1) removed
+JG	0	15:16:44.086	Terminal	exit with code 0
+RM	0	15:16:44.091	Network	'<demo-mt5>': disconnected from MetaQuotes-Demo
+KJ	0	15:16:44.171	Terminal	stopped with 0
+EQ	0	15:16:44.277	Terminal	shutdown with 0

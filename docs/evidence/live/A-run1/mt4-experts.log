@@ -1,0 +1,94 @@
+0	15:11:51.265	Expert CopierProof\MasterMT4 EURUSD,M1: loaded successfully
+0	15:11:51.265	MasterMT4 EURUSD,M1 inputs: InpChannel=liveA; InpTimerMs=200; InpHeartbeatSeconds=1; 
+0	15:11:51.273	Script CopierProof\LiveAgentMT4 EURUSD,M1: loaded successfully
+0	15:11:51.287	MasterMT4 EURUSD,M1: [CopierProof] master publishing to Common\Files\CopierProof\liveA.snap (session 1794939111, seq 0)
+0	15:11:51.304	LiveAgentMT4 EURUSD,M1: initialized
+0	15:11:51.657	MasterMT4 EURUSD,M1: initialized
+0	15:11:54.577	LiveAgentMT4 EURUSD,M1: [LiveAgent] agent started on EURUSD: demo account, 0 open item(s)
+0	15:11:54.801	MasterMT4 EURUSD,M1: [CopierProof] master publishing to Common\Files\CopierProof\liveA.snap (session 1794939114, seq 0)
+0	15:11:54.801	MasterMT4 EURUSD,M1: initialized
+2	15:12:13.009	LiveAgentMT4 EURUSD,M1: open #1644098746 buy 0.01 EURUSD at 1.10215 ok
+0	15:12:13.009	LiveAgentMT4 EURUSD,M1: [LiveAgent] OPEN done #1644098746 buy 0.01 EURUSD @1.10215 (live:b)
+0	15:12:13.010	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 1 OPEN: OK|ticket=1644098746|price=1.10215|lots=0.01
+0	15:12:13.012	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644098746;buy;EURUSD;0.01;1.10215;7770001;live:b
+0	15:12:13.139	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 19: 1 position(s)
+2	15:12:17.086	LiveAgentMT4 EURUSD,M1: close #1644098746 buy 0.01 EURUSD at 1.10215 at price 1.10212
+0	15:12:17.086	LiveAgentMT4 EURUSD,M1: [LiveAgent] CLOSE done #1644098746 0.01 of 0.01 @1.10212
+0	15:12:17.088	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 2 CLOSE: OK|ticket=1644098746|closed=0.01|price=1.10212|remainder=0
+0	15:12:17.089	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644098746;buy;EURUSD;0.01;1.10215;7770001;live:b
+0	15:12:17.199	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 23: 0 position(s)
+2	15:12:28.539	LiveAgentMT4 EURUSD,M1: open #1644098830 buy 0.01 EURUSD at 1.10216 ok
+0	15:12:28.539	LiveAgentMT4 EURUSD,M1: [LiveAgent] OPEN done #1644098830 buy 0.01 EURUSD @1.10216 (live:a)
+0	15:12:28.540	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 3 OPEN: OK|ticket=1644098830|price=1.10216|lots=0.01
+0	15:12:28.541	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644098830;buy;EURUSD;0.01;1.10216;7770001;live:a
+0	15:12:28.599	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 35: 1 position(s)
+2	15:12:59.006	LiveAgentMT4 EURUSD,M1: open #1644098947 buy 0.02 EURUSD at 1.10213 ok
+0	15:12:59.006	LiveAgentMT4 EURUSD,M1: [LiveAgent] OPEN done #1644098947 buy 0.02 EURUSD @1.10213 (live:d)
+0	15:12:59.006	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 4 OPEN: OK|ticket=1644098947|price=1.10213|lots=0.02
+0	15:12:59.007	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644098947;buy;EURUSD;0.02;1.10213;7770001;live:d
+0	15:12:59.085	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 66: 2 position(s)
+2	15:12:59.905	LiveAgentMT4 EURUSD,M1: close #1644098947 buy 0.01 EURUSD at 1.10213 at price 1.10207
+0	15:12:59.905	LiveAgentMT4 EURUSD,M1: [LiveAgent] CLOSE done #1644098947 0.01 of 0.02 @1.10207 remainder #1644098949
+0	15:12:59.907	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 5 CLOSE: OK|ticket=1644098947|closed=0.01|price=1.10207|remainder=1644098949
+0	15:12:59.908	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644098949;buy;EURUSD;0.01;1.10213;7770001;from #1644098947
+0	15:12:59.923	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644098947;buy;EURUSD;0.02;1.10213;7770001;live:d
+0	15:12:59.952	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 67: 2 position(s)
+2	15:13:34.656	LiveAgentMT4 EURUSD,M1: close #1644098949 buy 0.01 EURUSD at 1.10213 at price 1.10204
+0	15:13:34.656	LiveAgentMT4 EURUSD,M1: [LiveAgent] CLOSE done #1644098949 0.01 of 0.01 @1.10204
+0	15:13:34.695	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 103: 1 position(s)
+2	15:13:34.966	LiveAgentMT4 EURUSD,M1: close #1644098830 buy 0.01 EURUSD at 1.10216 at price 1.10204
+0	15:13:34.966	LiveAgentMT4 EURUSD,M1: [LiveAgent] CLOSE done #1644098830 0.01 of 0.01 @1.10204
+0	15:13:34.967	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 6 CLOSEALL: OK|closed=2|deleted=0|failed=0
+0	15:13:34.968	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644098830;buy;EURUSD;0.01;1.10216;7770001;live:a
+0	15:13:34.983	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644098949;buy;EURUSD;0.01;1.10213;7770001;from #1644098947
+0	15:13:35.083	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 104: 0 position(s)
+2	15:13:35.853	LiveAgentMT4 EURUSD,M1: open #1644099083 buy 0.01 EURUSD at 1.10207 ok
+0	15:13:35.853	LiveAgentMT4 EURUSD,M1: [LiveAgent] OPEN done #1644099083 buy 0.01 EURUSD @1.10207 (live:h)
+0	15:13:35.855	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 7 OPEN: OK|ticket=1644099083|price=1.10207|lots=0.01
+0	15:13:35.856	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644099083;buy;EURUSD;0.01;1.10207;7770001;live:h
+0	15:13:35.898	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 105: 1 position(s)
+0	15:14:05.932	LiveAgentMT4 EURUSD,M1: [LiveAgent] QUIT: closing this chart
+0	15:14:05.932	LiveAgentMT4 EURUSD,M1: uninit reason 0
+0	15:14:05.937	Script LiveAgentMT4 EURUSD,M1: removed
+0	15:14:05.939	MasterMT4 EURUSD,M1: uninit reason 4
+0	15:14:05.949	Expert MasterMT4 EURUSD,M1: removed
+0	15:14:32.937	Expert CopierProof\MasterMT4 EURUSD,M1: loaded successfully
+0	15:14:32.939	MasterMT4 EURUSD,M1 inputs: InpChannel=liveA; InpTimerMs=200; InpHeartbeatSeconds=1; 
+0	15:14:32.945	Script CopierProof\LiveAgentMT4 EURUSD,M1: loaded successfully
+0	15:14:32.960	MasterMT4 EURUSD,M1: [CopierProof] master publishing to Common\Files\CopierProof\liveA.snap (session 1794939114, seq 135)
+0	15:14:32.964	LiveAgentMT4 EURUSD,M1: initialized
+0	15:14:33.321	MasterMT4 EURUSD,M1: initialized
+0	15:14:36.223	LiveAgentMT4 EURUSD,M1: [LiveAgent] agent started on EURUSD: demo account, 1 open item(s)
+0	15:14:36.430	MasterMT4 EURUSD,M1: [CopierProof] master publishing to Common\Files\CopierProof\liveA.snap (session 1794939114, seq 135)
+0	15:14:36.430	MasterMT4 EURUSD,M1: initialized
+0	15:14:36.629	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 136: 1 position(s)
+2	15:14:46.597	LiveAgentMT4 EURUSD,M1: close #1644099083 buy 0.01 EURUSD at 1.10207 at price 1.10206
+0	15:14:46.597	LiveAgentMT4 EURUSD,M1: [LiveAgent] CLOSE done #1644099083 0.01 of 0.01 @1.10206
+0	15:14:46.599	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 9 CLOSEALL: OK|closed=1|deleted=0|failed=0
+0	15:14:46.600	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644099083;buy;EURUSD;0.01;1.10207;7770001;live:h
+0	15:14:46.784	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 147: 0 position(s)
+2	15:14:50.795	LiveAgentMT4 EURUSD,M1: open #1644099282 buy 0.01 EURUSD at 1.10208 ok
+0	15:14:50.795	LiveAgentMT4 EURUSD,M1: [LiveAgent] OPEN done #1644099282 buy 0.01 EURUSD @1.10208 (live:cb)
+0	15:14:50.797	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 10 OPEN: OK|ticket=1644099282|price=1.10208|lots=0.01
+0	15:14:50.798	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644099282;buy;EURUSD;0.01;1.10208;7770001;live:cb
+0	15:14:50.861	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 152: 1 position(s)
+2	15:14:51.167	LiveAgentMT4 EURUSD,M1: open #1644099284 sell 0.01 EURUSD at 1.10205 ok
+0	15:14:51.167	LiveAgentMT4 EURUSD,M1: [LiveAgent] OPEN done #1644099284 sell 0.01 EURUSD @1.10205 (live:cs)
+0	15:14:51.168	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 11 OPEN: OK|ticket=1644099284|price=1.10205|lots=0.01
+0	15:14:51.169	LiveAgentMT4 EURUSD,M1: [LiveAgent] ADD position;1644099284;sell;EURUSD;0.01;1.10205;7770001;live:cs
+0	15:14:51.264	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 154: 2 position(s)
+2	15:16:41.058	LiveAgentMT4 EURUSD,M1: close #1644099284 sell 0.01 EURUSD at 1.10205 at price 1.10204
+0	15:16:41.058	LiveAgentMT4 EURUSD,M1: [LiveAgent] CLOSE done #1644099284 0.01 of 0.01 @1.10204
+0	15:16:41.160	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 264: 1 position(s)
+2	15:16:41.352	LiveAgentMT4 EURUSD,M1: close #1644099282 buy 0.01 EURUSD at 1.10208 at price 1.10201
+0	15:16:41.352	LiveAgentMT4 EURUSD,M1: [LiveAgent] CLOSE done #1644099282 0.01 of 0.01 @1.10201
+0	15:16:41.354	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 12 CLOSEALL: OK|closed=2|deleted=0|failed=0
+0	15:16:41.357	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644099282;buy;EURUSD;0.01;1.10208;7770001;live:cb
+0	15:16:41.361	MasterMT4 EURUSD,M1: [CopierProof] snapshot seq 265: 0 position(s)
+0	15:16:41.373	LiveAgentMT4 EURUSD,M1: [LiveAgent] GONE position;1644099284;sell;EURUSD;0.01;1.10205;7770001;live:cs
+0	15:16:41.866	LiveAgentMT4 EURUSD,M1: [LiveAgent] command 13 EXPORT: OK|orders=7
+0	15:16:44.325	LiveAgentMT4 EURUSD,M1: [LiveAgent] QUIT: closing this chart
+0	15:16:44.325	LiveAgentMT4 EURUSD,M1: uninit reason 0
+0	15:16:44.327	Script LiveAgentMT4 EURUSD,M1: removed
+0	15:16:44.331	MasterMT4 EURUSD,M1: uninit reason 4
+0	15:16:44.339	Expert MasterMT4 EURUSD,M1: removed
