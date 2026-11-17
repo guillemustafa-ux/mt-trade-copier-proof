@@ -1,78 +1,92 @@
 # CopierCoreTests run in MetaTrader 5
-# started (local time): 2026-11-17 14:31:17
+# started (local time): 2026-11-17 14:55:05
 # source: MQL5\Logs\20261117.log (lines printed by the script during this run)
 
-HQ	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S1_InitialBuyIsLimitXTicksBelowMasterEntry
-RR	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S1_InitialSellIsLimitXTicksAboveMasterEntry
-GI	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S1_LimitSnapsToSlaveTickGridNeverFewerThanXTicks
-ID	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S1_AddOnIsCopiedAtMarketWithNoPrice
-NM	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S1_MasterExitClosesTheSlaveCopyInTheSameCycle
-QS	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S1_OppositeSideIsANewInitialEntry
-EE	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S1_LimitPriceAlreadyReachedIsSentAtMarket
-DH	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_1_MasterExitBeforeFillDeletesThePending
-JO	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_1_AfterTheDeleteNothingIsOpened
-QQ	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_2_AddOnGoesAtMarketAndThePendingStays
-GH	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_3_TicketMapSurvivesSaveAndLoad
-EO	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_3_RestartWithSavedMapPlacesNothingNew
-PP	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_3_LostMapIsRebuiltFromMagicAndComment
-LJ	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_3_OrderWithAnotherMagicIsNotTakenAsTheCopy
-KG	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_3_CopyNotYetListedIsNotPlacedTwice
-QS	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_3_RestartBeforeTheTerminalListsOrdersKeepsTheLinks
-IQ	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_4_HalfClosedOnMasterClosesHalfOnSlave
-CK	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_4_ClosedFractionRoundsDownToTheSlaveStep
-KF	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_4_SecondPartialCloseCountsWhatWasAlreadyClosed
-FS	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_4_AppliedPartialCloseIsNotRepeated
-OM	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_4_RemainderNeverGoesBelowTheSlaveMinimum
-QD	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_4_Mt4RemainderTicketKeepsTheOriginalIdentity
-LD	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_5_CompleteSnapshotIsReadBack
-MQ	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_5_EveryHalfWrittenPrefixIsRejected
-CN	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_5_SnapshotWithAChangedByteIsRejected
-ID	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_5_OlderOrRepeatedSnapshotIsNotApplied
-GP	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_5_NewMasterSessionIsAccepted
-EN	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_5_StaleSnapshotNeitherOpensNorCloses
-GF	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_5_SlaveActsOnlyOnceTheCompleteFileArrives
-FI	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_6_SlaveSuffixIsAppended
-NO	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_6_MasterSuffixIsReplaced
-GJ	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_6_ExplicitPairWinsOverSuffix
-FF	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_6_NoRuleKeepsTheName
-FP	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_6_CopyUsesTheSlaveSymbolAndSkipsUnknownOnes
-PK	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_7_LotsRoundDownToTheStep
-GE	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_7_LotsBelowMinimumBecomeTheMinimum
-GN	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_7_LotsAboveMaximumBecomeTheMaximum
-LJ	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_7_CoarseStepRoundsDown
-RI	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_7_VolumeDecimalsFollowTheStep
-DN	0	14:31:19.902	CopierCoreTests (EURUSD,H1)	PASS S3_7_CopyIsSizedWithTheMultiplier
-NG	0	14:31:19.903	CopierCoreTests (EURUSD,H1)	[CopierProof] master publishing to Common\Files\CopierProof\selftest.snap (session 1794936679, seq 0)
-RL	0	14:31:19.904	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot seq 1: 1 position(s)
-RK	0	14:31:19.905	CopierCoreTests (EURUSD,H1)	[CopierProof] slave reading Common\Files\CopierProof\selftest.snap, ticket map CopierProof\selftest.slave-999-20261117.map (0 link(s) loaded)
-QO	0	14:31:19.912	CopierCoreTests (EURUSD,H1)	[CopierProof] following master session 1794936679
-JD	0	14:31:19.915	CopierCoreTests (EURUSD,H1)	[CopierProof] limit @1.10000000 master #100 EURUSD buy 0.10 -> slave #5000 (initial entry as limit)
-GO	0	14:31:19.919	CopierCoreTests (EURUSD,H1)	PASS E2E_MasterFileToSlaveLimit
-FK	0	14:31:19.919	CopierCoreTests (EURUSD,H1)	[CopierProof] slave reading Common\Files\CopierProof\selftest.snap, ticket map CopierProof\selftest.slave-999-20261117.map (1 link(s) loaded)
-HO	0	14:31:19.919	CopierCoreTests (EURUSD,H1)	[CopierProof] following master session 1794936679
-FE	0	14:31:19.919	CopierCoreTests (EURUSD,H1)	PASS E2E_SlaveRestartPlacesNoDuplicate
-IF	0	14:31:19.921	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot seq 2: 2 position(s)
-JL	0	14:31:19.929	CopierCoreTests (EURUSD,H1)	[CopierProof] market master #101 EURUSD buy 0.20 -> slave #5001 (add-on copied at market)
-PP	0	14:31:19.931	CopierCoreTests (EURUSD,H1)	PASS E2E_AddOnAtMarketPendingKept
-IM	0	14:31:19.934	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot seq 3: 1 position(s)
-EJ	0	14:31:19.940	CopierCoreTests (EURUSD,H1)	[CopierProof] delete slave #5000 master #100 EURUSD buy 0.10 (master closed before the limit filled)
-OJ	0	14:31:19.940	CopierCoreTests (EURUSD,H1)	PASS E2E_ExitBeforeFillDeletesPending
-ME	0	14:31:19.941	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot seq 4: 0 position(s)
-MM	0	14:31:19.947	CopierCoreTests (EURUSD,H1)	[CopierProof] close slave #5001 master #101 EURUSD buy 0.20 (master closed)
-PP	0	14:31:19.948	CopierCoreTests (EURUSD,H1)	PASS E2E_ExitClosesCopy
-IG	0	14:31:19.957	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot incomplete or damaged: ignored, keeping the last complete one
-CI	0	14:31:19.958	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot seq 5: 1 position(s)
-KJ	0	14:31:19.967	CopierCoreTests (EURUSD,H1)	[CopierProof] limit @1.10000000 master #102 EURUSD buy 0.10 -> slave #5002 (initial entry as limit)
-PJ	0	14:31:19.968	CopierCoreTests (EURUSD,H1)	PASS E2E_HalfWrittenFileIgnoredThenCompleteOneCopied
-FM	0	14:31:19.968	CopierCoreTests (EURUSD,H1)	[CopierProof] master publishing to Common\Files\CopierProof\selftest.snap (session 1794936679, seq 5)
-LD	0	14:31:19.976	CopierCoreTests (EURUSD,H1)	[CopierProof] delete slave #5002 master #102 EURUSD buy 0.10 (master closed before the limit filled)
-PH	0	14:31:19.976	CopierCoreTests (EURUSD,H1)	PASS E2E_MasterRestartKeepsSessionAndSlaveFollows
-IH	0	14:31:19.976	CopierCoreTests (EURUSD,H1)	47 passed, 0 failed
+CS	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S1_InitialBuyIsLimitXTicksBelowMasterEntry
+EP	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S1_InitialSellIsLimitXTicksAboveMasterEntry
+LK	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S1_LimitSnapsToSlaveTickGridNeverFewerThanXTicks
+FJ	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S1_AddOnIsCopiedAtMarketWithNoPrice
+QO	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S1_MasterExitClosesTheSlaveCopyInTheSameCycle
+FQ	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S1_OppositeSideIsANewInitialEntry
+JG	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S1_LimitPriceAlreadyReachedIsSentAtMarket
+OI	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_1_MasterExitBeforeFillDeletesThePending
+EQ	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_1_AfterTheDeleteNothingIsOpened
+NG	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_2_AddOnGoesAtMarketAndThePendingStays
+DF	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_3_TicketMapSurvivesSaveAndLoad
+RL	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_3_RestartWithSavedMapPlacesNothingNew
+KR	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_3_LostMapIsRebuiltFromMagicAndComment
+OH	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_3_OrderWithAnotherMagicIsNotTakenAsTheCopy
+HE	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_3_CopyNotYetListedIsNotPlacedTwice
+NM	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_3_RestartBeforeTheTerminalListsOrdersKeepsTheLinks
+NR	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_4_HalfClosedOnMasterClosesHalfOnSlave
+HI	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_4_ClosedFractionRoundsDownToTheSlaveStep
+PD	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_4_SecondPartialCloseCountsWhatWasAlreadyClosed
+QQ	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_4_AppliedPartialCloseIsNotRepeated
+LO	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_4_RemainderNeverGoesBelowTheSlaveMinimum
+NF	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_4_Mt4RemainderTicketKeepsTheOriginalIdentity
+OF	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_5_CompleteSnapshotIsReadBack
+RO	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_5_EveryHalfWrittenPrefixIsRejected
+PI	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_5_SnapshotWithAChangedByteIsRejected
+NJ	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_5_OlderOrRepeatedSnapshotIsNotApplied
+LQ	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_5_NewMasterSessionIsAccepted
+RL	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_5_StaleSnapshotNeitherOpensNorCloses
+LG	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_5_SlaveActsOnlyOnceTheCompleteFileArrives
+PJ	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_5_FreezeAlertOnceOnFreezeOnceOnResume
+KP	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS Demo_NonDemoAccountIsRefused
+EE	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_6_SlaveSuffixIsAppended
+MS	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_6_MasterSuffixIsReplaced
+HN	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_6_ExplicitPairWinsOverSuffix
+EJ	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_6_NoRuleKeepsTheName
+EL	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_6_CopyUsesTheSlaveSymbolAndSkipsUnknownOnes
+OO	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_7_LotsRoundDownToTheStep
+HI	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_7_LotsBelowMinimumBecomeTheMinimum
+HR	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_7_LotsAboveMaximumBecomeTheMaximum
+KN	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_7_CoarseStepRoundsDown
+QE	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_7_VolumeDecimalsFollowTheStep
+CR	0	14:55:06.978	CopierCoreTests (EURUSD,H1)	PASS S3_7_CopyIsSizedWithTheMultiplier
+NS	0	14:55:06.979	CopierCoreTests (EURUSD,H1)	[CopierProof] master publishing to Common\Files\CopierProof\selftest.snap (session 1794938106, seq 0)
+QP	0	14:55:06.981	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot seq 1: 1 position(s)
+RG	0	14:55:06.981	CopierCoreTests (EURUSD,H1)	[CopierProof] slave reading Common\Files\CopierProof\selftest.snap, ticket map CopierProof\selftest.slave-999-20261117.map (0 link(s) loaded)
+NS	0	14:55:06.992	CopierCoreTests (EURUSD,H1)	[CopierProof] following master session 1794938106
+EP	0	14:55:06.994	CopierCoreTests (EURUSD,H1)	[CopierProof] limit @1.10000000 master #100 EURUSD buy 0.10 -> slave #5000 (initial entry as limit)
+OS	0	14:55:06.995	CopierCoreTests (EURUSD,H1)	PASS E2E_MasterFileToSlaveLimit
+NG	0	14:55:06.995	CopierCoreTests (EURUSD,H1)	[CopierProof] slave reading Common\Files\CopierProof\selftest.snap, ticket map CopierProof\selftest.slave-999-20261117.map (1 link(s) loaded)
+OS	0	14:55:06.995	CopierCoreTests (EURUSD,H1)	[CopierProof] following master session 1794938106
+KQ	0	14:55:06.996	CopierCoreTests (EURUSD,H1)	PASS E2E_SlaveRestartPlacesNoDuplicate
+JJ	0	14:55:06.997	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot seq 2: 2 position(s)
+LH	0	14:55:07.010	CopierCoreTests (EURUSD,H1)	[CopierProof] market master #101 EURUSD buy 0.20 -> slave #5001 (add-on copied at market)
+QD	0	14:55:07.014	CopierCoreTests (EURUSD,H1)	PASS E2E_AddOnAtMarketPendingKept
+DQ	0	14:55:07.015	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot seq 3: 1 position(s)
+GN	0	14:55:07.024	CopierCoreTests (EURUSD,H1)	[CopierProof] delete slave #5000 master #100 EURUSD buy 0.10 (master closed before the limit filled)
+MN	0	14:55:07.024	CopierCoreTests (EURUSD,H1)	PASS E2E_ExitBeforeFillDeletesPending
+RI	0	14:55:07.026	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot seq 4: 0 position(s)
+MI	0	14:55:07.034	CopierCoreTests (EURUSD,H1)	[CopierProof] close slave #5001 master #101 EURUSD buy 0.20 (master closed)
+ED	0	14:55:07.034	CopierCoreTests (EURUSD,H1)	PASS E2E_ExitClosesCopy
+ES	0	14:55:07.046	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot incomplete or damaged: ignored, keeping the last complete one
+MM	0	14:55:07.047	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot seq 5: 1 position(s)
+FF	0	14:55:07.068	CopierCoreTests (EURUSD,H1)	[CopierProof] limit @1.10000000 master #102 EURUSD buy 0.10 -> slave #5002 (initial entry as limit)
+CF	0	14:55:07.070	CopierCoreTests (EURUSD,H1)	PASS E2E_HalfWrittenFileIgnoredThenCompleteOneCopied
+RI	0	14:55:07.070	CopierCoreTests (EURUSD,H1)	[CopierProof] master publishing to Common\Files\CopierProof\selftest.snap (session 1794938106, seq 5)
+GH	0	14:55:07.080	CopierCoreTests (EURUSD,H1)	[CopierProof] delete slave #5002 master #102 EURUSD buy 0.10 (master closed before the limit filled)
+CL	0	14:55:07.080	CopierCoreTests (EURUSD,H1)	PASS E2E_MasterRestartKeepsSessionAndSlaveFollows
+KG	0	14:55:07.080	CopierCoreTests (EURUSD,H1)	[CopierProof] master publishing to Common\Files\CopierProof\selftest.snap (session 1794938107, seq 0)
+EK	0	14:55:07.081	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot seq 1: 1 position(s)
+NK	0	14:55:07.081	CopierCoreTests (EURUSD,H1)	[CopierProof] slave reading Common\Files\CopierProof\selftest.snap, ticket map CopierProof\selftest.slave-999-20261117.map (0 link(s) loaded)
+IN	0	14:55:07.092	CopierCoreTests (EURUSD,H1)	[CopierProof] following master session 1794938107
+ME	0	14:55:07.093	CopierCoreTests (EURUSD,H1)	[CopierProof] limit @1.10000000 master #200 EURUSD buy 0.10 -> slave #5000 (initial entry as limit)
+ES	0	14:55:07.095	CopierCoreTests (EURUSD,H1)	[CopierProof] master snapshot older than 10 s: master not running? no copies and no exits until it is back
+EP	0	14:55:07.095	CopierCoreTests (EURUSD,H1)	[CopierProof] ALERT master snapshot older than 10 s: slave frozen, no copies and no exits until the master is back
+ID	0	14:55:07.096	CopierCoreTests (EURUSD,H1)	[CopierProof] snapshot seq 2: 0 position(s)
+DP	0	14:55:07.103	CopierCoreTests (EURUSD,H1)	[CopierProof] following master session 1794938107
+HP	0	14:55:07.103	CopierCoreTests (EURUSD,H1)	[CopierProof] ALERT master snapshot fresh again: slave resumed
+HH	0	14:55:07.103	CopierCoreTests (EURUSD,H1)	[CopierProof] delete slave #5000 master #200 EURUSD buy 0.10 (master closed before the limit filled)
+DQ	0	14:55:07.104	CopierCoreTests (EURUSD,H1)	PASS E2E_StaleMasterAlertsOnceThenResumeAlertsOnce
+RE	0	14:55:07.105	CopierCoreTests (EURUSD,H1)	50 passed, 0 failed
 
 # terminal journal: logs\20261117.log (selected lines of this run)
-FQ	0	14:31:18.639	Startup	successfully initialized from start config "<temp>\cp-startup-b4b9b432690c4b72b52fd9567bf462ff.ini"
-FQ	0	14:31:18.670	Terminal	MetaTrader 5 x64 build 6274 started for MetaQuotes Ltd.
-QS	0	14:31:19.878	Scripts	script CopierCoreTests (EURUSD,H1) loaded successfully
-PL	0	14:31:19.976	Scripts	script CopierCoreTests (EURUSD,H1) closes terminal with code 0
-HD	0	14:31:19.976	Scripts	script CopierCoreTests (EURUSD,H1) removed
-HO	0	14:31:21.270	Terminal	exit with code 0
+II	0	14:55:05.830	Startup	successfully initialized from start config "<temp>\cp-startup-5725696d63ed42e6a8398856e1234d3b.ini"
+NI	0	14:55:05.853	Terminal	MetaTrader 5 x64 build 6323 started for MetaQuotes Ltd.
+EK	0	14:55:06.962	Scripts	script CopierCoreTests (EURUSD,H1) loaded successfully
+HG	0	14:55:07.106	Scripts	script CopierCoreTests (EURUSD,H1) closes terminal with code 0
+PM	0	14:55:07.106	Scripts	script CopierCoreTests (EURUSD,H1) removed
+OO	0	14:55:08.454	Terminal	exit with code 0

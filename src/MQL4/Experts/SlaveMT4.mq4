@@ -55,6 +55,8 @@ public:
 
    virtual long      AccountId(void) { return AccountNumber(); }
 
+   virtual bool      AccountIsDemo(void) { return IsDemo(); }
+
    virtual bool      Ready(void) { return IsConnected() && AccountNumber() != 0; }
 
    virtual bool      Start(string &error)

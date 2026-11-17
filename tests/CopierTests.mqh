@@ -573,6 +573,33 @@ void Test_S3_5_StaleNoAction()
           "r=" + IntegerToString(r) + " " + Describe(acts));
   }
 
+void Test_S3_5_FreezeEventOncePerChange()
+  {
+   int results[] = {CP_CYCLE_OK, CP_CYCLE_STALE, CP_CYCLE_STALE, CP_CYCLE_STALE, CP_CYCLE_OK, CP_CYCLE_OK};
+   bool frozen = false;
+   string seq = "";
+   int enters = 0, resumes = 0;
+   for(int i = 0; i < ArraySize(results); i++)
+     {
+      int ev = CP_FreezeEvent(frozen, results[i]);
+      seq += IntegerToString(ev);
+      if(ev == CP_FREEZE_ENTER)
+         enters++;
+      if(ev == CP_FREEZE_RESUME)
+         resumes++;
+     }
+   Expect(seq == "010020" && enters == 1 && resumes == 1 && !frozen, "S3_5_FreezeAlertOnceOnFreezeOnceOnResume",
+          "events " + seq);
+  }
+
+void Test_DemoOnlyGuard()
+  {
+   string demo = CP_DemoOnlyError("SlaveMT5", true);
+   string real = CP_DemoOnlyError("SlaveMT5", false);
+   Expect(demo == "" && StringFind(real, "demo accounts only") >= 0 && StringFind(real, "SlaveMT5") == 0,
+          "Demo_NonDemoAccountIsRefused", "demo='" + demo + "' real='" + real + "'");
+  }
+
 void Test_S3_5_HalfWrittenNeverActedOn()
   {
    CPConfig cfg; DefaultConfig(cfg);
@@ -690,6 +717,8 @@ int RunAllCopierTests()
    Test_S3_5_NewSessionAccepted();
    Test_S3_5_StaleNoAction();
    Test_S3_5_HalfWrittenNeverActedOn();
+   Test_S3_5_FreezeEventOncePerChange();
+   Test_DemoOnlyGuard();
    Test_S3_6_Mapping();
    Test_S3_6_ActionUsesMappedSymbol();
    Test_S3_7_Lots();

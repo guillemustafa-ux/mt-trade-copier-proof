@@ -7,4 +7,4 @@
 <MT4 data>\MQL4\Include\CopierProof\CopierMaster.mqh : information: including 'CopierMaster.mqh'
 <MT4 data>\MQL4\Include\CopierProof\CopierFiles.mqh : information: including 'CopierFiles.mqh'
 <MT4 data>\MQL4\Include\CopierProof\CopierSlave.mqh : information: including 'CopierSlave.mqh'
-Result: 0 errors, 0 warnings, 132 msec elapsed
+Result: 0 errors, 0 warnings, 108 msec elapsed

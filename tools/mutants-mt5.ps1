@@ -33,7 +33,9 @@ $mutants = @(
   @("no grace before a link is dropped", "else if(now - map[i].lastSeen > cfg.graceSeconds)", "else if(true)"),
   @("slave suffix not applied", "return base + CP_Trim(slaveSuffix);", "return base;"),
   @("lots below minimum not raised", "      v = volMin;", "      v = v * 1;"),
-  @("MT4 alias resolved one level only", "ids[i] = (j >= 0) ? t.ids[j] : from;", "ids[i] = from;")
+  @("MT4 alias resolved one level only", "ids[i] = (j >= 0) ? t.ids[j] : from;", "ids[i] = from;"),
+  @("stale-master alert on every cycle", "if(cycleResult == CP_CYCLE_STALE && !frozen)", "if(cycleResult == CP_CYCLE_STALE)"),
+  @("demo guard lets any account run", "   if(isDemo)`n      return `"`";", "   if(true)`n      return `"`";")
 )
 
 $lines = @("# One-line mutants of src/Include/CopierProof/CopierCore.mqh, run in MetaTrader 5", "")

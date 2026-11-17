@@ -16,8 +16,12 @@ class CCopierBroker
 public:
    virtual          ~CCopierBroker(void) {}
    virtual long      AccountId(void) { return 0; }
+   //--- MT5: ACCOUNT_TRADE_MODE_DEMO, MT4: IsDemo(); anything else stops the slave
+   virtual bool      AccountIsDemo(void) { return false; }
    //--- connected and logged in: before that the order lists can be empty
    virtual bool      Ready(void) { return false; }
+   //--- operator alert (stale master); the tests count these instead
+   virtual void      Notify(const string msg) { Alert("[CopierProof] ", msg); }
    //--- account-dependent setup, called once on the first Ready() cycle
    virtual bool      Start(string &error) { return true; }
    virtual void      CollectItems(CPSlaveItem &items[]) { ArrayResize(items, 0); }
@@ -49,6 +53,7 @@ private:
    string            m_channel;
    bool              m_started;
    bool              m_stopped;
+   bool              m_frozen;
 
    bool              SaveMap(void)
      {
@@ -142,6 +147,9 @@ private:
    //--- and at terminal start-up it is not known yet in OnInit
    bool              Start(const long now, string &error)
      {
+      error = CP_DemoOnlyError(MQLInfoString(MQL_PROGRAM_NAME), m_broker.AccountIsDemo());
+      if(error != "")
+         return false;
       if(!m_broker.Start(error))
          return false;
       if(!CP_EnsureFolder())
@@ -166,7 +174,7 @@ private:
 
 public:
                      CCopierSlave(void) : m_broker(NULL), m_retrySeconds(2), m_lastInvalidLog(0),
-                     m_started(false), m_stopped(false) {}
+                     m_started(false), m_stopped(false), m_frozen(false) {}
 
    void              Init(CCopierBroker *broker, const CPConfig &cfg, const string channel, const int retrySeconds)
      {
@@ -176,6 +184,7 @@ public:
       m_retrySeconds = MathMax(1, retrySeconds);
       m_started      = false;
       m_stopped      = false;
+      m_frozen       = false;
      }
 
    void              Cycle(const long now)
@@ -237,6 +246,19 @@ public:
       else
          SetStatus("following master session " + IntegerToString(m_state.current.session) +
                    (missing == "" ? "" : "; slave symbol unavailable: " + missing));
+
+      int freeze = CP_FreezeEvent(m_frozen, r);
+      string alert = "";
+      if(freeze == CP_FREEZE_ENTER)
+         alert = "master snapshot older than " + IntegerToString(m_cfg.staleSeconds) +
+                 " s: slave frozen, no copies and no exits until the master is back";
+      else if(freeze == CP_FREEZE_RESUME)
+         alert = "master snapshot fresh again: slave resumed";
+      if(alert != "")
+        {
+         CP_Log("ALERT " + alert);
+         m_broker.Notify(alert);
+        }
 
       for(int i = 0; i < ArraySize(acts); i++)
         {

@@ -47,6 +47,13 @@ void OnTimer()
 //--- the alias file is named after the account, unknown in OnInit at terminal start-up
    if(!g_started)
      {
+      string demo = CP_DemoOnlyError(MQLInfoString(MQL_PROGRAM_NAME), IsDemo());
+      if(demo != "")
+        {
+         CP_Log(demo + "; master stopped");
+         ExpertRemove();
+         return;
+        }
       string error = "";
       if(!g_orders.Init(CP_AliasPath(InpChannel, "master", AccountNumber()), error))
         {

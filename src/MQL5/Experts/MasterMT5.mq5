@@ -41,6 +41,14 @@ void OnTimer()
 //--- the account type is checked once connected (at terminal start-up OnInit may run before login)
    if(!g_checked)
      {
+      string demo = CP_DemoOnlyError(MQLInfoString(MQL_PROGRAM_NAME),
+                                     AccountInfoInteger(ACCOUNT_TRADE_MODE) == ACCOUNT_TRADE_MODE_DEMO);
+      if(demo != "")
+        {
+         CP_Log(demo + "; master stopped");
+         ExpertRemove();
+         return;
+        }
       if(AccountInfoInteger(ACCOUNT_MARGIN_MODE) != ACCOUNT_MARGIN_MODE_RETAIL_HEDGING)
         {
          CP_Log("master needs an MT5 hedging account; netting accounts are not supported; master stopped");

@@ -30,6 +30,10 @@
 #define CP_CYCLE_NO_SNAPSHOT   1
 #define CP_CYCLE_STALE         2
 
+#define CP_FREEZE_NONE         0
+#define CP_FREEZE_ENTER        1   // the slave has just frozen: master snapshot too old
+#define CP_FREEZE_RESUME       2   // the slave has just resumed: a fresh snapshot arrived
+
 #define CP_ACCEPT_NEW          1
 #define CP_ACCEPT_NOT_NEWER    0
 #define CP_ACCEPT_INVALID     -1
@@ -875,6 +879,34 @@ int CP_SlaveCycle(CCPSlaveState &st, CPMapEntry &map[], const CPSlaveItem &items
    CP_SyncMap(map, items, st.current, cfg, now);
    CP_Decide(st.current, map, items, specs, cfg, acts);
    return CP_CYCLE_OK;
+  }
+
+//+------------------------------------------------------------------+
+//| Stale-master alert: one event when the slave freezes and one     |
+//| when it resumes, never one per cycle. `frozen` is the slave's    |
+//| memory of the previous cycles.                                   |
+//+------------------------------------------------------------------+
+int CP_FreezeEvent(bool &frozen, const int cycleResult)
+  {
+   if(cycleResult == CP_CYCLE_STALE && !frozen)
+     {
+      frozen = true;
+      return CP_FREEZE_ENTER;
+     }
+   if(cycleResult == CP_CYCLE_OK && frozen)
+     {
+      frozen = false;
+      return CP_FREEZE_RESUME;
+     }
+   return CP_FREEZE_NONE;
+  }
+
+//--- this build runs on demo accounts only: "" when allowed, otherwise the reason to stop
+string CP_DemoOnlyError(const string program, const bool isDemo)
+  {
+   if(isDemo)
+      return "";
+   return program + " runs on demo accounts only and this account is not a demo account";
   }
 
 #endif

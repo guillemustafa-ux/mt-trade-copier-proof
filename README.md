@@ -3,9 +3,9 @@
 Four Expert Advisors that copy trades from a master account to a slave account running on the **same PC**. Master and slave can each be MetaTrader 4 or MetaTrader 5. They talk through one file in the terminals' shared `Terminal\Common\Files\CopierProof` folder.
 
 > **Status (2026-11-17), every number below comes from a file in [`docs/evidence/`](docs/evidence):**
-> - All six programs (four EAs, two test scripts) compile with `0 errors, 0 warnings`: `MetaEditor64.exe` file version 5.0.0.6274 for MQL5, MetaTrader 4's `metaeditor.exe` file version 5.0.0.2425 for MQL4 ([compile logs](docs/evidence/compile)).
-> - The test script runs **in MetaTrader 5 (build 6274), with no trading account and no orders sent**: `47 passed, 0 failed` ([output](docs/evidence/tests-mt5.txt)). 40 tests exercise the pure decision logic. 7 run the real master and slave code end to end through real files, with a fake broker in place of the trading calls.
-> - One-line mutants of the decision logic: each of the 13 makes at least one test fail, `mutants: 13, survived: 0` ([output](docs/evidence/mutants-mt5.txt)).
+> - All six programs (four EAs, two test scripts) compile with `0 errors, 0 warnings`: `MetaEditor64.exe` file version 5.0.0.6323 for MQL5, MetaTrader 4's `metaeditor.exe` file version 5.0.0.2425 for MQL4 ([compile logs](docs/evidence/compile)).
+> - The test script runs **in MetaTrader 5 (build 6323), with no orders sent**: `50 passed, 0 failed` ([output](docs/evidence/tests-mt5.txt)). 42 tests exercise the pure decision logic. 8 run the real master and slave code end to end through real files, with a fake broker in place of the trading calls.
+> - One-line mutants of the decision logic: each of the 15 makes at least one test fail, `mutants: 15, survived: 0` ([output](docs/evidence/mutants-mt5.txt)).
 > - **Not yet run on any trading account.** A run on demo accounts is pending; see [Live demo run](#live-demo-run-pending).
 
 ## What it does
@@ -62,9 +62,10 @@ Each rule has deterministic tests; the names are the ones printed in [`tests-mt5
    - the master writes a temporary file and renames it;
    - the slave accepts a file only if its checksum matches;
    - the slave accepts a snapshot only if it is later than the last one it applied (session, then sequence);
-   - a snapshot older than 10 s means the master is not running, and the slave then neither copies nor closes until it is back.
+   - a snapshot older than 10 s means the master is not running, and the slave then neither copies nor closes until it is back;
+   - the slave raises one alert (MetaTrader `Alert()` plus an `ALERT` line in the Experts log) when it freezes, and one when it resumes, never one per cycle.
 
-   Tests: `S3_5_CompleteSnapshotIsReadBack`, `S3_5_EveryHalfWrittenPrefixIsRejected` (every prefix of a snapshot is rejected), `S3_5_SnapshotWithAChangedByteIsRejected`, `S3_5_OlderOrRepeatedSnapshotIsNotApplied`, `S3_5_NewMasterSessionIsAccepted`, `S3_5_StaleSnapshotNeitherOpensNorCloses`, `S3_5_SlaveActsOnlyOnceTheCompleteFileArrives`, `E2E_HalfWrittenFileIgnoredThenCompleteOneCopied`, `E2E_MasterRestartKeepsSessionAndSlaveFollows`.
+   Tests: `S3_5_CompleteSnapshotIsReadBack`, `S3_5_EveryHalfWrittenPrefixIsRejected` (every prefix of a snapshot is rejected), `S3_5_SnapshotWithAChangedByteIsRejected`, `S3_5_OlderOrRepeatedSnapshotIsNotApplied`, `S3_5_NewMasterSessionIsAccepted`, `S3_5_StaleSnapshotNeitherOpensNorCloses`, `S3_5_SlaveActsOnlyOnceTheCompleteFileArrives`, `S3_5_FreezeAlertOnceOnFreezeOnceOnResume`, `E2E_HalfWrittenFileIgnoredThenCompleteOneCopied`, `E2E_MasterRestartKeepsSessionAndSlaveFollows`, `E2E_StaleMasterAlertsOnceThenResumeAlertsOnce`.
 6. **Symbol names that differ between brokers** (`EURUSD` and `EURUSD.m`). Explicit pairs (`XAUUSD=GOLD`) win. Otherwise the master suffix is stripped and the slave suffix is added. A master position whose slave symbol does not exist is skipped and reported. Tests: `S3_6_SlaveSuffixIsAppended`, `S3_6_MasterSuffixIsReplaced`, `S3_6_ExplicitPairWinsOverSuffix`, `S3_6_NoRuleKeepsTheName`, `S3_6_CopyUsesTheSlaveSymbolAndSkipsUnknownOnes`.
 7. **Lot sizing.** Slave lots are master lots × multiplier, rounded down to the slave's lot step. Below the slave's minimum, the minimum is used; above its maximum, the maximum. Tests: `S3_7_CopyIsSizedWithTheMultiplier`, `S3_7_LotsRoundDownToTheStep`, `S3_7_LotsBelowMinimumBecomeTheMinimum`, `S3_7_LotsAboveMaximumBecomeTheMaximum`, `S3_7_CoarseStepRoundsDown`, `S3_7_VolumeDecimalsFollowTheStep`.
 
@@ -76,6 +77,7 @@ The client's rules have their own tests: `S1_InitialBuyIsLimitXTicksBelowMasterE
 - **A copy closed on the slave side** (its own stop, or by hand), or a pending deleted by hand, is not copied again while the master position stays open.
 - **First start of the slave:** every open master position is copied by the same rules.
 - **Not connected:** the master publishes nothing, and the slave waits. Account checks run on the first connected cycle, because at terminal start-up the account number is not known yet in `OnInit`.
+- **Demo accounts only.** On the first connected cycle, each of the four EAs checks the account (MQL5: `ACCOUNT_TRADE_MODE == ACCOUNT_TRADE_MODE_DEMO`, MQL4: `IsDemo()`). On any other account it logs `<EA name> runs on demo accounts only and this account is not a demo account; master stopped` (or `slave stopped`) and removes itself before sending or publishing anything. Test: `Demo_NonDemoAccountIsRefused`.
 
 ## Install
 

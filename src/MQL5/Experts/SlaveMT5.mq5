@@ -55,6 +55,11 @@ public:
 
    virtual long      AccountId(void) { return AccountInfoInteger(ACCOUNT_LOGIN); }
 
+   virtual bool      AccountIsDemo(void)
+     {
+      return AccountInfoInteger(ACCOUNT_TRADE_MODE) == ACCOUNT_TRADE_MODE_DEMO;
+     }
+
    virtual bool      Ready(void)
      {
       return TerminalInfoInteger(TERMINAL_CONNECTED) && AccountInfoInteger(ACCOUNT_LOGIN) != 0;

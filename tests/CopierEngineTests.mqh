@@ -19,9 +19,12 @@ public:
    int               markets;
    int               closes;
    int               deletes;
+   int               alerts;
    double            lastLimitPrice;
+   string            lastAlert;
 
-                     CFakeBroker(void) : nextTicket(5000), limits(0), markets(0), closes(0), deletes(0), lastLimitPrice(0) {}
+                     CFakeBroker(void) : nextTicket(5000), limits(0), markets(0), closes(0), deletes(0), alerts(0),
+                     lastLimitPrice(0), lastAlert("") {}
 
    int               Find(const long ticket)
      {
@@ -56,7 +59,9 @@ public:
      }
 
    virtual long      AccountId(void) { return ET_ACCOUNT; }
+   virtual bool      AccountIsDemo(void) { return true; }
    virtual bool      Ready(void) { return true; }
+   virtual void      Notify(const string msg) { alerts++; lastAlert = msg; }
 
    virtual void      CollectItems(CPSlaveItem &out[])
      {
@@ -226,7 +231,44 @@ void Test_Engine_EndToEndThroughFiles()
    EngineCleanup();
   }
 
+//--- master stops writing: the slave alerts once when it freezes and once when it resumes
+void Test_Engine_StaleMasterAlerts()
+  {
+   EngineCleanup();
+   CPConfig cfg; DefaultConfig(cfg);
+   CCopierMaster master;
+   CFakeBroker broker;
+   CPMasterPos pos[];
+   long t0 = (long)TimeGMT();
+   master.Init(ET_CHANNEL, 1, t0);
+   SetPos(pos, 0, 200, CP_SIDE_BUY, 0.10, 1.10005, 1000);
+   master.Publish(pos, t0);
+   CCopierSlave slave;
+   slave.Init(GetPointer(broker), cfg, ET_CHANNEL, 1);
+   slave.Cycle(t0);
+   int alertsFresh = broker.alerts;
+//--- 30 s later with no new snapshot: frozen, one alert however many cycles run
+   long t1 = t0 + 30;
+   ArrayResize(pos, 0);                       // the master closed, but nobody published it
+   for(int i = 0; i < 5; i++)
+      slave.Cycle(t1 + i);
+   int alertsFrozen = broker.alerts;
+   string freezeText = broker.lastAlert;
+   bool nothingDone = broker.closes == 0 && broker.deletes == 0;
+//--- the master writes again: one resume alert, and the exit is copied
+   master.Publish(pos, t1 + 5);
+   for(int i = 0; i < 5; i++)
+      slave.Cycle(t1 + 5 + i);
+   Expect(alertsFresh == 0 && alertsFrozen == 1 && StringFind(freezeText, "frozen") >= 0 && nothingDone &&
+          broker.alerts == 2 && StringFind(broker.lastAlert, "resumed") >= 0 && broker.deletes == 1,
+          "E2E_StaleMasterAlertsOnceThenResumeAlertsOnce",
+          "alerts " + IntegerToString(alertsFresh) + "/" + IntegerToString(alertsFrozen) + "/" +
+          IntegerToString(broker.alerts) + " '" + freezeText + "' '" + broker.lastAlert + "' " + EngineCounts(broker));
+   EngineCleanup();
+  }
+
 void RunEngineTests(void)
   {
    Test_Engine_EndToEndThroughFiles();
+   Test_Engine_StaleMasterAlerts();
   }
