@@ -16,8 +16,12 @@
     delays.csv          master action (helper script) -> slave copier action, in ms
   Redaction: account numbers (taken from the journals' login lines) become
   <demo-mt4> / <demo-mt5>; IP addresses become <ip>; data folders and the user
-  folder become <MT5 data>, <MT4 data>, <user home>. The script stops if an
-  account number is still found in any output file.
+  folder become <MT5 data>, <MT4 data>, <user home>; the folder of the startup
+  configuration files (-IniDir of live-run.ps1) becomes <scratch>; the
+  terminals' start-up line with Windows version, CPU, memory, disk and time
+  zone becomes <system details>; access point names become <access point>.
+  The script stops if an account number, the user folder, a start-up line or
+  an access point name is still found in any output file.
 
 .EXAMPLE
   .\tools\live-evidence.ps1 -Mode A -Mt5Data "<MT5 data>" -Mt4Data "<MT4 data>" -WorkDir "<scratch>\live" -OutDir docs\evidence\live\A
@@ -63,6 +67,11 @@ foreach ($pair in @(@("mt5", (Join-Path $Mt5Data "logs\$Date.log")), @("mt4", (J
 $userHome = [Environment]::GetFolderPath("UserProfile")
 $tempDir = [IO.Path]::GetTempPath().TrimEnd([char]92)
 function Redact([string]$s) {
+  #--- whole folder of the startup configuration files, whatever its parent
+  $s = [regex]::Replace($s, '(?:[A-Za-z]:|<temp>|<user home>)\\[^"''\r\n]*?\\(?=cp-live-[0-9A-Za-z-]+\.ini)', '<scratch>\')
+  #--- terminal start-up line: Windows version, CPU, memory, disk, time zone
+  $s = [regex]::Replace($s, 'Windows \d+ [^\r\n]*?, GMT[+-]\d+(?::\d\d)?', '<system details>')
+  $s = [regex]::Replace($s, 'through Access Point [^(\r\n]*?(?= \()', 'through <access point>')
   $s = $s.Replace($Mt5Data.TrimEnd([char]92), "<MT5 data>").Replace($Mt4Data.TrimEnd([char]92), "<MT4 data>")
   $s = $s.Replace($tempDir, "<temp>").Replace($userHome, "<user home>")
   foreach ($k in $logins.Keys) { $s = [regex]::Replace($s, "(?<!\d)" + $k + "(?!\d)", $logins[$k]) }
@@ -130,7 +139,8 @@ foreach ($e in ($all | Where-Object { $_.Src -eq "$master-experts" -and $_.Line 
   if ($r.Success -and $r.Groups[1].Value -ne "0") { $alias[$r.Groups[1].Value] = $id }
   $masterEvents += [pscustomobject]@{ T = $e.T; Kind = $m.Groups[1].Value; Id = $id; Line = $e.Line }
 }
-#--- a slave EA that started after the master action was stopped on purpose: not a copy delay
+#--- a slave EA whose first connected cycle (its "slave reading" line) came after the master
+#--- action was restarted on purpose: that pair measures its start-up, not a copy delay
 $slaveStarts = @($all | Where-Object { $_.Src -eq "$slave-experts" -and $_.Line -match "\[CopierProof\] slave reading" } | ForEach-Object { $_.T })
 $rows = @("scenario;master_action;master_id;master_time;slave_action;slave_time;delay_ms;counted")
 $delays = @()
@@ -147,7 +157,7 @@ foreach ($e in ($all | Where-Object { $_.Src -eq "$slave-experts" -and $_.Line -
   if (-not $restarted) { $delays += $d }
   $fmt = { param($ms) "{0:00}:{1:00}:{2:00}.{3:000}" -f [math]::Floor($ms / 3600000), [math]::Floor(($ms % 3600000) / 60000), [math]::Floor(($ms % 60000) / 1000), ($ms % 1000) }
   $rows += ("{0};{1};{2};{3};{4};{5};{6};{7}" -f $sc, $want, $src.Id, (& $fmt $src.T), "$act ($reason)", (& $fmt $e.T), $d,
-            $(if ($restarted) { "no: slave EA started after the master action" } else { "yes" }))
+            $(if ($restarted) { "no: slave EA's first cycle came after the master action" } else { "yes" }))
 }
 if ($delays.Count -gt 0) {
   $sortedD = @($delays | Sort-Object)
@@ -161,5 +171,6 @@ foreach ($f in (Get-ChildItem -LiteralPath $OutDir -File)) {
   $text = [IO.File]::ReadAllText($f.FullName)
   foreach ($k in $logins.Keys) { if ([regex]::IsMatch($text, "(?<!\d)" + $k + "(?!\d)")) { throw "account number left in $($f.Name)" } }
   if ($text -match [regex]::Escape($userHome)) { throw "user folder left in $($f.Name)" }
+  if ($text -cmatch 'GMT[+-]\d|Access Point|(?<!<scratch>)\\cp-live-[0-9A-Za-z-]+\.ini') { throw "machine details or startup folder left in $($f.Name)" }
 }
 Write-Output ("{0}: {1} files, {2} account number(s) redacted, {3} scenario(s), delays: {4}" -f $Mode, (Get-ChildItem -LiteralPath $OutDir -File).Count, $logins.Count, $scenarios.Count, $rows[-1])

@@ -8,8 +8,8 @@ f;CLOSE;1644098947;15:13:34.656;close (master closed);15:13:35.144;488;yes
 f;CLOSE;1644098830;15:13:34.966;close (master closed);15:13:35.394;428;yes
 h;OPEN;1644099083;15:13:35.853;limit (initial entry as limit);15:13:36.347;494;yes
 h;CLOSE;1644099083;15:14:46.597;delete (master closed before the limit filled);15:14:47.117;520;yes
-c;OPEN;1644099282;15:14:50.795;limit (initial entry as limit);15:16:09.227;78432;no: slave EA started after the master action
-c;OPEN;1644099284;15:14:51.167;limit (initial entry as limit);15:16:09.478;78311;no: slave EA started after the master action
+c;OPEN;1644099282;15:14:50.795;limit (initial entry as limit);15:16:09.227;78432;no: slave EA's first cycle came after the master action
+c;OPEN;1644099284;15:14:51.167;limit (initial entry as limit);15:16:09.478;78311;no: slave EA's first cycle came after the master action
 c;CLOSE;1644099284;15:16:41.058;delete (master closed before the limit filled);15:16:41.533;475;yes
 c;CLOSE;1644099282;15:16:41.352;close (master closed);15:16:41.782;430;yes
 # counted: 11 pairs; min 323 ms; median 481 ms; max 564 ms
