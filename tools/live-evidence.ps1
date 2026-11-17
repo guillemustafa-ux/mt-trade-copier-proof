@@ -71,7 +71,7 @@ function Redact([string]$s) {
   $s = [regex]::Replace($s, '(?:[A-Za-z]:|<temp>|<user home>)\\[^"''\r\n]*?\\(?=cp-live-[0-9A-Za-z-]+\.ini)', '<scratch>\')
   #--- terminal start-up line: Windows version, CPU, memory, disk, time zone
   $s = [regex]::Replace($s, 'Windows \d+ [^\r\n]*?, GMT[+-]\d+(?::\d\d)?', '<system details>')
-  $s = [regex]::Replace($s, 'through Access Point [^(\r\n]*?(?= \()', 'through <access point>')
+  $s = [regex]::Replace($s, 'Access Point (?:[A-Z]{2,3} )?\d+', '<access point>')
   $s = $s.Replace($Mt5Data.TrimEnd([char]92), "<MT5 data>").Replace($Mt4Data.TrimEnd([char]92), "<MT4 data>")
   $s = $s.Replace($tempDir, "<temp>").Replace($userHome, "<user home>")
   foreach ($k in $logins.Keys) { $s = [regex]::Replace($s, "(?<!\d)" + $k + "(?!\d)", $logins[$k]) }
