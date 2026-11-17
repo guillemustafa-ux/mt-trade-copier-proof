@@ -1,0 +1,31 @@
+2026-11-17 16:16:04.183  mt5 start: expert= preset= ini=cp-live-mt5-fd0f0b3b.ini
+2026-11-17 16:16:08.250  ok: mt5 helper script connected
+2026-11-17 16:16:08.331  mt5 status: ask=1.10104 bid=1.10100 connected=1 demo=1 digits=5 filling=1 hedging=1 orders=0 positions=0 program_trade_allowed=1 stops_level=0 symbol=EURUSD terminal_trade_allowed=1 tick_size=0.00001000 vol_min=0.01 vol_step=0.01
+2026-11-17 16:16:08.396  mt5 open items: 0
+2026-11-17 16:16:08.539  mt5 <- 1|PING|END
+2026-11-17 16:16:08.711  mt5 -> 1|OK|PING
+2026-11-17 16:16:08.780  mt4 start: expert= preset= ini=cp-live-mt4-7da6e215.ini
+2026-11-17 16:16:16.884  ok: mt4 helper script connected
+2026-11-17 16:16:16.907  mt4 status: ask=1.10104 bid=1.10100 connected=1 demo=1 digits=5 hedging=1 orders=0 positions=0 program_trade_allowed=1 stops_level=8 symbol=EURUSD terminal_trade_allowed=1 tick_size=0.00001000 vol_min=0.01 vol_step=0.01
+2026-11-17 16:16:16.923  mt4 open items: 0
+2026-11-17 16:16:16.934  mt4 <- 1|PING|END
+2026-11-17 16:16:17.015  mt4 -> 1|OK|PING
+2026-11-17 16:16:17.033  quotes: mt4 1.10100/1.10104  mt5 1.10113/1.10116  mt4-mt5 bid -13 ticks
+2026-11-17 16:16:22.052  quotes: mt4 1.10113/1.10116  mt5 1.10113/1.10116  mt4-mt5 bid 0 ticks
+2026-11-17 16:16:27.069  quotes: mt4 1.10113/1.10116  mt5 1.10113/1.10116  mt4-mt5 bid 0 ticks
+2026-11-17 16:16:32.088  quotes: mt4 1.10114/1.10117  mt5 1.10113/1.10117  mt4-mt5 bid 1 ticks
+2026-11-17 16:16:37.109  quotes: mt4 1.10113/1.10116  mt5 1.10113/1.10116  mt4-mt5 bid 0 ticks
+2026-11-17 16:16:42.125  quotes: mt4 1.10113/1.10117  mt5 1.10114/1.10117  mt4-mt5 bid -1 ticks
+2026-11-17 16:16:47.130  quotes: mt4 1.10114/1.10118  mt5 1.10113/1.10116  mt4-mt5 bid 1 ticks
+2026-11-17 16:16:52.148  quotes: mt4 1.10114/1.10117  mt5 1.10114/1.10117  mt4-mt5 bid 0 ticks
+2026-11-17 16:16:57.163  quotes: mt4 1.10114/1.10117  mt5 1.10114/1.10117  mt4-mt5 bid 0 ticks
+2026-11-17 16:17:02.179  quotes: mt4 1.10115/1.10118  mt5 1.10115/1.10118  mt4-mt5 bid 0 ticks
+2026-11-17 16:17:07.187  quotes: mt4 1.10120/1.10122  mt5 1.10118/1.10121  mt4-mt5 bid 2 ticks
+2026-11-17 16:17:12.199  quotes: mt4 1.10118/1.10121  mt5 1.10119/1.10122  mt4-mt5 bid -1 ticks
+2026-11-17 16:17:17.224  mt5 <- 2|QUIT|END
+2026-11-17 16:17:17.296  mt5 -> 2|OK|QUIT
+2026-11-17 16:17:20.866  mt5 terminal closed
+2026-11-17 16:17:20.882  mt4 <- 2|QUIT|END
+2026-11-17 16:17:20.887  mt4 -> 2|OK|QUIT
+2026-11-17 16:17:22.002  mt4 terminal closed
+2026-11-17 16:17:22.024  probe done
